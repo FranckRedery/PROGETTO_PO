@@ -18,6 +18,8 @@ public:
 private slots:
     void on_go_pag_autori_clicked();
 
+    void on_aggiungi_autore_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
