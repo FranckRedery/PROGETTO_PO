@@ -14,3 +14,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_go_pag_autori_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pagina_autori);
+}
