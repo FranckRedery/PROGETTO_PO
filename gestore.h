@@ -11,7 +11,13 @@ public:
 
     Gestore(){};
 
+    ~Gestore();
+
     void aggiungi_autore(QString n, QString c);
+
+    void cancella_tutti_autori();
+
+
 
 private:
 

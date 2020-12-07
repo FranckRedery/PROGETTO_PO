@@ -8,3 +8,14 @@ void Gestore::aggiungi_autore(QString n, QString c){
     autori.push_back(nuovo);
 
 }
+
+void Gestore::cancella_tutti_autori(){
+    for(auto& it : autori){
+        delete it;
+    }
+    autori.clear();
+}
+
+Gestore::~Gestore(){
+    cancella_tutti_autori();
+}

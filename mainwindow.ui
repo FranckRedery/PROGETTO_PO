@@ -26,6 +26,9 @@
       <height>571</height>
      </rect>
     </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
     <widget class="QWidget" name="pagina_principale">
      <widget class="QPushButton" name="go_pag_autori">
       <property name="geometry">
