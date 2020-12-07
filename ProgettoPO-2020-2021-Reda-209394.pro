@@ -10,11 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     autore.cpp \
+    gestore.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     autore.h \
+    gestore.h \
     mainwindow.h
 
 FORMS += \

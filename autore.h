@@ -16,7 +16,11 @@ public:
 
     void set_cognome(QString c);
 
+    void set_id(int id);
+
     void aggiungi_afferenza(QString aff);
+
+    int get_id() const;
 
     QString get_nome() const;
 
