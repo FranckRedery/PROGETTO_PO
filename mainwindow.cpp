@@ -64,8 +64,8 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
     int volume = ui->inserisci_volume->value();
     QDate data = ui->calendario_rivista->selectedDate();
 
-    if(nome.isEmpty() || acronimo.isEmpty() || editore.isEmpty() || data.isNull()){
-        QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome, acronimo, editore e data non possono essere vuoti.", QMessageBox::Ok,this);
+    if(nome.isEmpty() || acronimo.isEmpty() || editore.isEmpty()){
+        QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome, acronimo ed editore non possono essere vuoti.", QMessageBox::Ok,this);
         mess.exec();
         return;
     }
@@ -73,4 +73,32 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
     gestore.aggiungi_rivista(nome,acronimo,data.toString(Qt::DateFormat::ISODate),editore,volume);
     ui->lista_riviste->addItem("Nome : " + nome + "  Acronimo : " + acronimo + "  Editore : " + editore + "  Data : " + data.toString(Qt::DateFormat::ISODate) + "  Volume : " + QString::number(volume) );
 
+}
+
+void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
+{
+    QString nome = ui->linea_nome_conferenza->text();
+    QString acronimo = ui->linea_acronimo_conferenza->text();
+    QString luogo = ui->linea_luogo_conferenza->text();
+    int part = ui->num_partecipanti_conferenza->value();
+    QDate data = ui->calendario_conferenze->selectedDate();
+
+    if(nome.isEmpty() || acronimo.isEmpty() || luogo.isEmpty()){
+        QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome, acronimo e luogo non possono essere vuoti.", QMessageBox::Ok,this);
+        mess.exec();
+        return;
+    }
+
+    gestore.aggiungi_conferenza(nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part);
+    ui->lista_conferenze->addItem("Nome : " + nome + "  Acronimo : " + acronimo + "  Luogo : " + luogo + "  Data : " + data.toString(Qt::DateFormat::ISODate) + "  Partecipanti : " + QString::number(part));
+}
+
+void MainWindow::on_vai_al_menu_principale_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pagina_principale);
+}
+
+void MainWindow::on_go_pag_conferenze_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pagina_conferenze);
 }

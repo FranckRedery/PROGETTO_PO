@@ -33,6 +33,8 @@ public:
 
     void cancella_tutte_pubblicazioni();
 
+    bool pubblicazioni_isEmpty() const { return pubblicazioni.empty(); }
+
     Gestore& operator=(const Gestore& g);
 
 private:

@@ -28,6 +28,12 @@ private slots:
 
     void on_pulsante_aggiungi_rivista_clicked();
 
+    void on_pulsante_aggiungi_conferenza_clicked();
+
+    void on_vai_al_menu_principale_clicked();
+
+    void on_go_pag_conferenze_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

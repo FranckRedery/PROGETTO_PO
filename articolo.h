@@ -39,7 +39,7 @@ private:
     int num_pagine;
     int prezzo;
     QString titolo;
-    QList<QString> articoli_correlati;
+    QList<QString> articoli_correlati; // racchiude i titoli dei correlati
     QList<Autore*> autori;
     QList<QString> keyword;
     Pubblicazione* destinata; // la pubblicazioni a cui è destinato l'articolo (può essere  per una rivista o per una conferenza)
