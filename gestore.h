@@ -15,25 +15,25 @@ public:
 
     Gestore(){};
 
-    ~Gestore();  // RICORDA CHE SERVE LA TRIADE DELETE , COSTRUTTORE COPIA E OPERATOR = !!!
+    ~Gestore();
+
+    Gestore(const Gestore& g);
 
     void aggiungi_autore(QString n, QString c);
 
-    //void aggiungi_articolo();
+    void aggiungi_conferenza(QString n, QString a, QString d, QString l, int num);
 
-    //void aggiungi_conferenza();
+    void aggiungi_rivista(QString n, QString a, QString d, QString e, int v);
 
-    //void aggiungi_rivista();
+    void aggiungi_articolo(int id, int n, int p, QString t, Pubblicazione* pub);
 
     void cancella_tutti_autori();
 
-    //void cancella_tutti_articoli();
+    void cancella_tutti_articoli();
 
-    //void cancella_tutte_pubblicazioni();
+    void cancella_tutte_pubblicazioni();
 
-    // costruttore copia
-
-    //operator =
+    Gestore& operator=(const Gestore& g);
 
 private:
 
