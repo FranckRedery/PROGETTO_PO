@@ -43,7 +43,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(66, 183, 42);</string>
+       <string notr="true">background-color: rgb(24,119,242);</string>
       </property>
       <property name="text">
        <string>Pagina Autori</string>
@@ -74,13 +74,13 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(66, 183, 42);</string>
+       <string notr="true">background-color: rgb(24,119,242);</string>
       </property>
       <property name="text">
        <string>Aggiungi</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -93,7 +93,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_nome">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(66, 183, 42);</string>
+          <string notr="true">background-color: rgb(24,119,242);</string>
          </property>
          <property name="text">
           <string>Nome</string>
@@ -103,7 +103,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_cognome">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(66, 183, 42);</string>
+          <string notr="true">background-color: rgb(24,119,242);</string>
          </property>
          <property name="text">
           <string>Cognome</string>

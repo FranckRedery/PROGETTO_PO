@@ -31,7 +31,7 @@ void MainWindow::on_aggiungi_autore_clicked()
     QString cognome = ui->linea_cognome->text();
 
     if(nome.isEmpty() || cognome.isEmpty()){
-        QMessageBox mess(QMessageBox::Critical, "Errore", "i campi nome e cognome non possono essere vuoti.", QMessageBox::Ok,this);
+        QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome e cognome non possono essere vuoti.", QMessageBox::Ok,this);
         mess.exec();
         return;
     }

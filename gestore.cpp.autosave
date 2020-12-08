@@ -16,6 +16,6 @@ void Gestore::cancella_tutti_autori(){
     autori.clear();
 }
 
-Gestore::~Gestore(){            // RICORDA CHE SERVE LA TRIADE DELETE , COSTRUTTORE COPIA E OPERATOR = !!!
+Gestore::~Gestore(){        
     cancella_tutti_autori();
 }
