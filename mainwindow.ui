@@ -30,24 +30,40 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
-     <widget class="QPushButton" name="go_pag_autori">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>40</x>
         <y>10</y>
-        <width>131</width>
-        <height>21</height>
+        <width>261</width>
+        <height>25</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(24,119,242);</string>
-      </property>
-      <property name="text">
-       <string>Pagina Autori</string>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="go_pag_autori">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Pagina Autori</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="go_pag_riviste">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Pagine Riviste</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="pagina_autori">
@@ -123,6 +139,154 @@
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="pulsante_torna_menu">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>10</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Menu principale</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pagina_riviste">
+     <widget class="QCalendarWidget" name="calendario_rivista">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>30</y>
+        <width>331</width>
+        <height>183</height>
+       </rect>
+      </property>
+      <property name="horizontalHeaderFormat">
+       <enum>QCalendarWidget::NoHorizontalHeader</enum>
+      </property>
+      <property name="verticalHeaderFormat">
+       <enum>QCalendarWidget::NoVerticalHeader</enum>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="lista_riviste">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>230</y>
+        <width>531</width>
+        <height>192</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pulsante_aggiungi_rivista">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>150</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Aggiungi Rivista</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pulsante_tornaalmenu">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>30</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Menu Principale</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>189</width>
+        <height>102</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="nome_rivista">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(24,119,242);</string>
+           </property>
+           <property name="text">
+            <string>Nome</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="acronimo_rivista">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(24,119,242);</string>
+           </property>
+           <property name="text">
+            <string>Acronimo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="editore_rivista">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(24,119,242);</string>
+           </property>
+           <property name="text">
+            <string>Editore</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="volume_rivista">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(24,119,242);</string>
+           </property>
+           <property name="text">
+            <string>Volume</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="inserisci_nome"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="inserisci_acronimo"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLineEdit" name="inserisci_editore"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QSpinBox" name="inserisci_volume"/>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>

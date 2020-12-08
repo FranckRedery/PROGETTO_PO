@@ -20,6 +20,14 @@ private slots:
 
     void on_aggiungi_autore_clicked();
 
+    void on_go_pag_riviste_clicked();
+
+    void on_pulsante_torna_menu_clicked();
+
+    void on_pulsante_tornaalmenu_clicked();
+
+    void on_pulsante_aggiungi_rivista_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
