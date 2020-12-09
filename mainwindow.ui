@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
      <widget class="QWidget" name="layoutWidget">
@@ -80,10 +80,10 @@
      <widget class="QListWidget" name="lista_autori">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>180</y>
-        <width>221</width>
-        <height>201</height>
+        <x>450</x>
+        <y>120</y>
+        <width>241</width>
+        <height>241</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -93,26 +93,26 @@
      <widget class="QPushButton" name="aggiungi_autore">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>130</y>
-        <width>75</width>
-        <height>31</height>
+        <x>300</x>
+        <y>420</y>
+        <width>151</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(24,119,242);</string>
       </property>
       <property name="text">
-       <string>Aggiungi</string>
+       <string>Aggiungi Autore</string>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>221</width>
-        <height>74</height>
+        <x>40</x>
+        <y>120</y>
+        <width>261</width>
+        <height>241</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -123,23 +123,6 @@
          </property>
          <property name="text">
           <string>Cognome</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_nome">
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>Nome</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="linea_nome">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
@@ -157,10 +140,42 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="linea_nome">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_nome">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Nome</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="1">
         <widget class="QSpinBox" name="id_autore">
          <property name="maximum">
           <number>999999999</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_afferenze">
+         <property name="text">
+          <string>Afferenze</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPlainTextEdit" name="afferenze_plaintext">
+         <property name="plainText">
+          <string>Inserire qui le afferenze di ogni autore separate da uno o più spazi
+</string>
          </property>
         </widget>
        </item>
@@ -323,9 +338,9 @@
      <widget class="QCalendarWidget" name="calendario_conferenze">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>90</y>
-        <width>312</width>
+        <x>20</x>
+        <y>70</y>
+        <width>281</width>
         <height>183</height>
        </rect>
       </property>
@@ -355,9 +370,9 @@
      <widget class="QPushButton" name="pulsante_aggiungi_conferenza">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>210</y>
-        <width>191</width>
+        <x>300</x>
+        <y>480</y>
+        <width>151</width>
         <height>61</height>
        </rect>
       </property>
@@ -371,9 +386,9 @@
      <widget class="QListWidget" name="lista_conferenze">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>290</y>
-        <width>521</width>
+        <x>310</x>
+        <y>70</y>
+        <width>471</width>
         <height>192</height>
        </rect>
       </property>
@@ -381,42 +396,19 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>90</y>
-        <width>191</width>
-        <height>100</height>
+        <x>20</x>
+        <y>270</y>
+        <width>281</width>
+        <height>201</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_nome_conf">
-         <property name="text">
-          <string>Nome</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="linea_nome_conferenza"/>
-       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_acronimo_conf">
          <property name="text">
           <string>Acronimo</string>
          </property>
         </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="linea_acronimo_conferenza"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_luogo_conf">
-         <property name="text">
-          <string>Luogo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="linea_luogo_conferenza"/>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label_part_conf">
@@ -425,8 +417,47 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="linea_nome_conferenza"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="linea_luogo_conferenza"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="linea_acronimo_conferenza"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_nome_conf">
+         <property name="text">
+          <string>Nome</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_luogo_conf">
+         <property name="text">
+          <string>Luogo</string>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="1">
         <widget class="QSpinBox" name="num_partecipanti_conferenza"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_organizzatori">
+         <property name="text">
+          <string>Organizzatori</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPlainTextEdit" name="organizzatori_plaintext">
+         <property name="plainText">
+          <string>Inserire qui i nomi degli organizzatori separati da uno o più spazi.
+
+</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

@@ -22,17 +22,13 @@ private slots:
 
     void on_go_pag_riviste_clicked();
 
-    void on_pulsante_torna_menu_clicked();
-
-    void on_pulsante_tornaalmenu_clicked();
-
     void on_pulsante_aggiungi_rivista_clicked();
 
     void on_pulsante_aggiungi_conferenza_clicked();
 
-    void on_vai_al_menu_principale_clicked();
-
     void on_go_pag_conferenze_clicked();
+
+    void on_backtohome();
 
 private:
     Ui::MainWindow *ui;

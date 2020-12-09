@@ -10,7 +10,7 @@ public:
 
     Autore(): nome("Non definito"), cognome("Non definito"), identificativo(0){}
 
-    Autore(QString n, QString c, int id): nome(n) , cognome(c), identificativo(id){}
+    Autore(QString n, QString c, int id, QList<QString> a): nome(n) , cognome(c), identificativo(id), afferenze(a){}
 
     void set_nome(QString n);
 

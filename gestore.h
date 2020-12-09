@@ -19,13 +19,13 @@ public:
 
     Gestore(const Gestore& g);
 
-    void aggiungi_autore(QString n, QString c, int id);
+    void aggiungi_autore(QString n, QString c, int id, QList<QString> a);
 
-    void aggiungi_conferenza(QString n, QString a, QString d, QString l, int num);
+    void aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, QList<QString> o);
 
     void aggiungi_rivista(QString n, QString a, QString d, QString e, int v);
 
-    void aggiungi_articolo(int id, int n, int p, QString t, Pubblicazione* pub);
+    void aggiungi_articolo(int id, int n, int p, QString t, Pubblicazione* pub, QList<QString> corr, QList<Autore*> aut, QList<QString> key);
 
     void cancella_tutti_autori();
 
@@ -37,11 +37,13 @@ public:
 
     Gestore& operator=(const Gestore& g);
 
-    Pubblicazione* get_pubblicazione(QString nome) const ; // ritorna la pubblicazione se è presente, altrimenti ritorna nullptr
+    Pubblicazione* get_pubblicazione(QString nome) const ; // ritorna un puntatore alla pubblicazione se è presente, altrimenti ritorna nullptr
 
     bool Is_ID_autore_alreadytaken(int id) const ;
 
     bool Is_Nome_pubblicazione_alreadytaken(QString nome) const ;
+
+    Autore* get_autore(int id) const;          // ritorna un puntatore ad autore se l'id di quell'autore è presente nella lista , altrimenti ritorna nullptr
 
 private:
 

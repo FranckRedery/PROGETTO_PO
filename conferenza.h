@@ -11,7 +11,7 @@ public:
 
     Conferenza() : Pubblicazione(), luogo("Non definito"), num_partecipanti(0) {}
 
-    Conferenza(QString n, QString a, QString d, QString l, int num): Pubblicazione(n,a,d) , luogo(l), num_partecipanti(num) {}
+    Conferenza(QString n, QString a, QString d, QString l, int num, QList<QString> o): Pubblicazione(n,a,d) , luogo(l), num_partecipanti(num), organizzatori(o) {}
 
     Conferenza* clone() const{ return new Conferenza(*this); }
 

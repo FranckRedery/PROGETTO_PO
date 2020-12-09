@@ -1,15 +1,15 @@
 #include "gestore.h"
 
-void Gestore::aggiungi_autore(QString n, QString c, int id){
+void Gestore::aggiungi_autore(QString n, QString c, int id, QList<QString> a){
 
-    Autore* nuovo = new Autore(n,c,id);
+    Autore* nuovo = new Autore(n,c,id,a);
     autori.push_back(nuovo);
 
 }
 
-void Gestore::aggiungi_conferenza(QString n, QString a, QString d, QString l, int num){
+void Gestore::aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, QList<QString> o){
 
-    Pubblicazione* conf = new Conferenza(n,a,d,l,num);
+    Pubblicazione* conf = new Conferenza(n,a,d,l,num,o);
     pubblicazioni.push_back(conf);
 
 }
@@ -21,9 +21,9 @@ void Gestore::aggiungi_rivista(QString n, QString a, QString d, QString e, int v
 
 }
 
-void Gestore::aggiungi_articolo(int id, int n, int p, QString t, Pubblicazione *pub){
+void Gestore::aggiungi_articolo(int id, int n, int p, QString t, Pubblicazione* pub, QList<QString> corr, QList<Autore*> aut, QList<QString> key){
 
-    Articolo* art = new Articolo(id,n,p,t,pub);
+    Articolo* art = new Articolo(id,n,p,t,pub,corr,aut,key);
     articoli.push_back(art);
 
 }
@@ -112,4 +112,13 @@ bool Gestore::Is_Nome_pubblicazione_alreadytaken(QString nome) const {
         }
     }
     return false;
+}
+
+Autore* Gestore::get_autore(int id) const{
+    for(auto& i : autori){
+        if(i->get_id() == id){
+            return i;
+        }
+    }
+    return nullptr;
 }

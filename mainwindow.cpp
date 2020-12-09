@@ -3,6 +3,9 @@
 #include "autore.h"
 #include "gestore.h"
 #include <QMessageBox>
+#include <iostream>
+
+using namespace std;
 
 Gestore gestore;
 
@@ -11,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->pulsante_torna_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->pulsante_tornaalmenu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->vai_al_menu_principale, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -29,6 +35,26 @@ void MainWindow::on_aggiungi_autore_clicked()
 
     QString nome = ui->linea_nome->text();
     QString cognome = ui->linea_cognome->text();
+    QString afferenze = ui->afferenze_plaintext->toPlainText();
+
+    QList<QString> aff;
+    QString parola;
+
+    for(int i = 0; i!=afferenze.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
+        if(afferenze[i] != ' '){
+            parola.push_back(afferenze[i]);
+            if(i+1 == afferenze.size()){
+                aff.push_back(parola);
+                parola.clear();
+            }
+        }
+
+        if(afferenze[i] == ' ' && !parola.isEmpty()){
+            aff.push_back(parola);
+            parola.clear();
+        }
+    }
+
     int id = ui->id_autore->value();
 
     if(nome.isEmpty() || cognome.isEmpty()){
@@ -43,23 +69,14 @@ void MainWindow::on_aggiungi_autore_clicked()
         return;
     }
 
-    gestore.aggiungi_autore(nome,cognome,id);
+    gestore.aggiungi_autore(nome,cognome,id,aff);
     ui->lista_autori->addItem(nome + "  " + cognome + "  ID : " + QString::number(id));
+
 }
 
 void MainWindow::on_go_pag_riviste_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->pagina_riviste);
-}
-
-void MainWindow::on_pulsante_torna_menu_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->pagina_principale);
-}
-
-void MainWindow::on_pulsante_tornaalmenu_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->pagina_principale);
 }
 
 void MainWindow::on_pulsante_aggiungi_rivista_clicked()
@@ -95,6 +112,26 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
     int part = ui->num_partecipanti_conferenza->value();
     QDate data = ui->calendario_conferenze->selectedDate();
 
+    QString stringa_di_organizzatori = ui->organizzatori_plaintext->toPlainText();
+
+    QList<QString> org;
+    QString organizzatore;
+
+    for(int i = 0; i!=stringa_di_organizzatori.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
+        if(stringa_di_organizzatori[i] != ' '){
+            organizzatore.push_back(stringa_di_organizzatori[i]);
+            if(i+1 == stringa_di_organizzatori.size()){
+                org.push_back(organizzatore);
+                organizzatore.clear();
+            }
+        }
+
+        if(stringa_di_organizzatori[i] == ' ' && !organizzatore.isEmpty()){
+            org.push_back(organizzatore);
+            organizzatore.clear();
+        }
+    }
+
     if(nome.isEmpty() || acronimo.isEmpty() || luogo.isEmpty()){
         QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome, acronimo e luogo non possono essere vuoti.", QMessageBox::Ok,this);
         mess.exec();
@@ -107,16 +144,17 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
         return;
     }
 
-    gestore.aggiungi_conferenza(nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part);
-    ui->lista_conferenze->addItem("Nome : " + nome + "  Acronimo : " + acronimo + "  Luogo : " + luogo + "  Data : " + data.toString(Qt::DateFormat::ISODate) + "  Partecipanti : " + QString::number(part));
-}
 
-void MainWindow::on_vai_al_menu_principale_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->pagina_principale);
+
+    gestore.aggiungi_conferenza(nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part,org);
+    ui->lista_conferenze->addItem("Nome : " + nome + "  Acronimo : " + acronimo + "  Luogo : " + luogo + "  Data : " + data.toString(Qt::DateFormat::ISODate) + "  Partecipanti : " + QString::number(part));
 }
 
 void MainWindow::on_go_pag_conferenze_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->pagina_conferenze);
+}
+
+void MainWindow::on_backtohome(){
+    ui->stackedWidget->setCurrentWidget(ui->pagina_principale);
 }
