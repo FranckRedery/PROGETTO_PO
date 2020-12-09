@@ -30,6 +30,10 @@ private slots:
 
     void on_backtohome();
 
+    void on_pulsante_pag_aggiungiArticolo_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

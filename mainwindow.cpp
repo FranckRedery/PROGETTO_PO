@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pulsante_torna_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->pulsante_tornaalmenu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->vai_al_menu_principale, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->pulsante_torna_al_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -157,4 +158,102 @@ void MainWindow::on_go_pag_conferenze_clicked()
 
 void MainWindow::on_backtohome(){
     ui->stackedWidget->setCurrentWidget(ui->pagina_principale);
+}
+
+void MainWindow::on_pulsante_pag_aggiungiArticolo_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pagina_articoli);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString titolo = ui->titolo_articolo_linedit->text();
+    QString nome_pubblicazione = ui->nome_pubblicazione_articolo_linedit->text();
+    int id = ui->identificativo_articolo_linedit->value();
+    int pagine = ui->numpagine_articolo_linedit->value();
+    double prezzo = ui->prezzoarticolo_linedit->value();
+
+    QString stringa_di_autori = ui->plaintext_autori_di_articolo->toPlainText();
+
+    QList<Autore*> autori;
+    QString id_autore;
+
+    for(int i = 0 ; i!=stringa_di_autori.size();i++){
+        if(stringa_di_autori[i] != ' '){
+            id_autore.push_back(stringa_di_autori[i]);
+            if(i+1 == stringa_di_autori.size() && gestore.get_autore(id_autore.toInt())!=nullptr){
+                autori.push_back(gestore.get_autore(id_autore.toInt()));
+                id_autore.clear();
+            }
+        }
+
+        if(stringa_di_autori[i] == ' ' && !id_autore.isEmpty()){
+            if(gestore.get_autore(id_autore.toInt())!=nullptr){
+                autori.push_back(gestore.get_autore(id_autore.toInt()));
+            }
+            id_autore.clear();
+        }
+    }
+
+    QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
+    QList<QString> articoli_correlati;
+    QString art;
+
+    for(int i = 0 ; i!=stringa_articoli.size();i++){
+        if(stringa_articoli[i] != ' '){
+            art.push_back(stringa_articoli[i]);
+            if(i+1 == stringa_articoli.size()){
+                articoli_correlati.push_back(art);
+                art.clear();
+            }
+        }
+
+        if(stringa_articoli[i] == ' ' && !art.isEmpty()){
+            articoli_correlati.push_back(art);
+            art.clear();
+        }
+    }
+
+
+    QString stringa_keyword = ui->plaintext_keyword_di_articolo->toPlainText();
+    QList<QString> keyword;
+    QString chiave;
+
+    for(int i = 0 ; i!=stringa_keyword.size();i++){
+        if(stringa_keyword[i] != ' '){
+            chiave.push_back(stringa_keyword[i]);
+            if(i+1 == stringa_keyword.size()){
+                keyword.push_back(chiave);
+                chiave.clear();
+            }
+        }
+
+        if(stringa_keyword[i] == ' ' && !chiave.isEmpty()){
+            keyword.push_back(chiave);
+            chiave.clear();
+        }
+
+    }
+
+    if(titolo.isEmpty()){
+        QMessageBox mess(QMessageBox::Critical, "Errore", "Il nome dell'articolo non può essere vuoto.", QMessageBox::Ok,this);
+        mess.exec();
+        return;
+    }
+
+    if(gestore.Is_ID_articolo_alreadytaken(id)){
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "L'ID richiesto è già occupato da un articolo.", QMessageBox::Ok,this);
+        mess_due.exec();
+        return;
+    }
+
+
+    if(gestore.get_pubblicazione(nome_pubblicazione) == nullptr){
+        QMessageBox mess_tre(QMessageBox::Critical, "Errore", "L'articolo/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
+        mess_tre.exec();
+        return;
+    }
+
+    gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(nome_pubblicazione),articoli_correlati,autori,keyword);
+    ui->lista_di_articoli->addItem("ID :  " + QString::number(id) + "  Titolo :  " + titolo + "  Pagine :  " + QString::number(pagine) + "  Prezzo :  " + QString::number(prezzo));
 }

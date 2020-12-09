@@ -25,7 +25,7 @@ public:
 
     void aggiungi_rivista(QString n, QString a, QString d, QString e, int v);
 
-    void aggiungi_articolo(int id, int n, int p, QString t, Pubblicazione* pub, QList<QString> corr, QList<Autore*> aut, QList<QString> key);
+    void aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<QString> corr, QList<Autore*> aut, QList<QString> key);
 
     void cancella_tutti_autori();
 
@@ -42,6 +42,8 @@ public:
     bool Is_ID_autore_alreadytaken(int id) const ;
 
     bool Is_Nome_pubblicazione_alreadytaken(QString nome) const ;
+
+    bool Is_ID_articolo_alreadytaken(int id) const;
 
     Autore* get_autore(int id) const;          // ritorna un puntatore ad autore se l'id di quell'autore è presente nella lista , altrimenti ritorna nullptr
 
