@@ -30,10 +30,10 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -81,7 +81,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>140</y>
+        <y>180</y>
         <width>221</width>
         <height>201</height>
        </rect>
@@ -94,7 +94,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>92</y>
+        <y>130</y>
         <width>75</width>
         <height>31</height>
        </rect>
@@ -110,22 +110,12 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>20</y>
+        <y>40</y>
         <width>221</width>
-        <height>61</height>
+        <height>74</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_nome">
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>Nome</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_cognome">
          <property name="styleSheet">
@@ -133,6 +123,16 @@
          </property>
          <property name="text">
           <string>Cognome</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_nome">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Nome</string>
          </property>
         </widget>
        </item>
@@ -147,6 +147,20 @@
         <widget class="QLineEdit" name="linea_cognome">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_id_autore">
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="id_autore">
+         <property name="maximum">
+          <number>999999999</number>
          </property>
         </widget>
        </item>
@@ -228,7 +242,7 @@
        <string>Menu principale</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -294,7 +308,11 @@
           <widget class="QLineEdit" name="inserisci_editore"/>
          </item>
          <item row="3" column="0">
-          <widget class="QSpinBox" name="inserisci_volume"/>
+          <widget class="QSpinBox" name="inserisci_volume">
+           <property name="maximum">
+            <number>999999999</number>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -360,7 +378,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>30</x>

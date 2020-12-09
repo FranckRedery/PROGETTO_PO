@@ -8,9 +8,9 @@ class Autore
 
 public:
 
-    Autore(): nome("Non definito"), cognome("Non definito"){}
+    Autore(): nome("Non definito"), cognome("Non definito"), identificativo(0){}
 
-    Autore(QString n, QString c): nome(n) , cognome(c){}
+    Autore(QString n, QString c, int id): nome(n) , cognome(c), identificativo(id){}
 
     void set_nome(QString n);
 

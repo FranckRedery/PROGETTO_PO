@@ -29,6 +29,7 @@ void MainWindow::on_aggiungi_autore_clicked()
 
     QString nome = ui->linea_nome->text();
     QString cognome = ui->linea_cognome->text();
+    int id = ui->id_autore->value();
 
     if(nome.isEmpty() || cognome.isEmpty()){
         QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome e cognome non possono essere vuoti.", QMessageBox::Ok,this);
@@ -36,9 +37,14 @@ void MainWindow::on_aggiungi_autore_clicked()
         return;
     }
 
-    gestore.aggiungi_autore(nome,cognome);
+    if(gestore.Is_ID_autore_alreadytaken(id)){
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "L'ID richiesto è già occupato da un autore.", QMessageBox::Ok,this);
+        mess_due.exec();
+        return;
+    }
 
-    ui->lista_autori->addItem(nome + "  " + cognome);
+    gestore.aggiungi_autore(nome,cognome,id);
+    ui->lista_autori->addItem(nome + "  " + cognome + "  ID : " + QString::number(id));
 }
 
 void MainWindow::on_go_pag_riviste_clicked()
@@ -70,8 +76,14 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
         return;
     }
 
+    if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
+        mess_due.exec();
+        return;
+    }
+
     gestore.aggiungi_rivista(nome,acronimo,data.toString(Qt::DateFormat::ISODate),editore,volume);
-    ui->lista_riviste->addItem("Nome : " + nome + "  Acronimo : " + acronimo + "  Editore : " + editore + "  Data : " + data.toString(Qt::DateFormat::ISODate) + "  Volume : " + QString::number(volume) );
+    ui->lista_riviste->addItem("Nome : " + nome + "    Acronimo : " + acronimo + "    Editore : " + editore + "    Data : " + data.toString(Qt::DateFormat::ISODate) + "    Volume : " + QString::number(volume) );
 
 }
 
@@ -86,6 +98,12 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
     if(nome.isEmpty() || acronimo.isEmpty() || luogo.isEmpty()){
         QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome, acronimo e luogo non possono essere vuoti.", QMessageBox::Ok,this);
         mess.exec();
+        return;
+    }
+
+    if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
+        mess_due.exec();
         return;
     }
 

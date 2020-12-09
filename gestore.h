@@ -19,7 +19,7 @@ public:
 
     Gestore(const Gestore& g);
 
-    void aggiungi_autore(QString n, QString c);
+    void aggiungi_autore(QString n, QString c, int id);
 
     void aggiungi_conferenza(QString n, QString a, QString d, QString l, int num);
 
@@ -37,9 +37,14 @@ public:
 
     Gestore& operator=(const Gestore& g);
 
+    Pubblicazione* get_pubblicazione(QString nome) const ; // ritorna la pubblicazione se è presente, altrimenti ritorna nullptr
+
+    bool Is_ID_autore_alreadytaken(int id) const ;
+
+    bool Is_Nome_pubblicazione_alreadytaken(QString nome) const ;
+
 private:
 
-    int current_id = 0;
     QList<Autore*> autori;
     QList<Articolo*> articoli;
     QList<Pubblicazione*> pubblicazioni;

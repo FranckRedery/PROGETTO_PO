@@ -1,10 +1,8 @@
 #include "gestore.h"
 
-void Gestore::aggiungi_autore(QString n, QString c){
+void Gestore::aggiungi_autore(QString n, QString c, int id){
 
-    Autore* nuovo = new Autore(n,c);
-    nuovo->set_id(current_id);
-    current_id++;
+    Autore* nuovo = new Autore(n,c,id);
     autori.push_back(nuovo);
 
 }
@@ -89,3 +87,29 @@ Gestore& Gestore::operator=(const Gestore &g){
     return * this;
 }
 
+bool Gestore::Is_ID_autore_alreadytaken(int id) const {
+    for(auto& i : autori){
+        if(i->get_id() == id){
+            return true;
+        }
+    }
+    return false;
+}
+
+Pubblicazione* Gestore::get_pubblicazione(QString nome) const {
+    for(auto& i : pubblicazioni){
+        if(i->get_nome() == nome){
+            return i;
+        }
+    }
+    return nullptr;
+}
+
+bool Gestore::Is_Nome_pubblicazione_alreadytaken(QString nome) const {
+    for(auto& i : pubblicazioni){
+        if(i->get_nome() == nome){
+            return true;
+        }
+    }
+    return false;
+}
