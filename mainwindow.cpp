@@ -196,20 +196,22 @@ void MainWindow::on_pushButton_clicked()
     }
 
     QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
-    QList<QString> articoli_correlati;
+    QList<int> articoli_correlati;
     QString art;
 
     for(int i = 0 ; i!=stringa_articoli.size();i++){
         if(stringa_articoli[i] != ' '){
             art.push_back(stringa_articoli[i]);
             if(i+1 == stringa_articoli.size()){
-                articoli_correlati.push_back(art);
+                cout<<"Ho aggiunto l'articolo correlato con ID : "<<art.toInt()<<endl;
+                articoli_correlati.push_back(art.toInt());
                 art.clear();
             }
         }
 
         if(stringa_articoli[i] == ' ' && !art.isEmpty()){
-            articoli_correlati.push_back(art);
+             cout<<"Ho aggiunto l'articolo correlato con ID : "<<art.toInt()<<endl;
+            articoli_correlati.push_back(art.toInt());
             art.clear();
         }
     }
@@ -249,7 +251,7 @@ void MainWindow::on_pushButton_clicked()
 
 
     if(gestore.get_pubblicazione(nome_pubblicazione) == nullptr){
-        QMessageBox mess_tre(QMessageBox::Critical, "Errore", "L'articolo/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
+        QMessageBox mess_tre(QMessageBox::Critical, "Errore", "La conferenza/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
         mess_tre.exec();
         return;
     }

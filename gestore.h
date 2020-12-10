@@ -25,7 +25,7 @@ public:
 
     void aggiungi_rivista(QString n, QString a, QString d, QString e, int v);
 
-    void aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<QString> corr, QList<Autore*> aut, QList<QString> key);
+    void aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<int> corr, QList<Autore*> aut, QList<QString> key);
 
     void cancella_tutti_autori();
 

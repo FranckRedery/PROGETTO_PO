@@ -14,7 +14,7 @@ public:
 
     Articolo(){}
 
-    Articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<QString> corr, QList<Autore*> aut, QList<QString> key) : identificativo(id), num_pagine(n), prezzo(p), titolo(t) , destinata(pub), articoli_correlati(corr), autori(aut), keyword(key) {}
+    Articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<int> corr, QList<Autore*> aut, QList<QString> key) : identificativo(id), num_pagine(n), prezzo(p), titolo(t) , destinata(pub), articoli_correlati(corr), autori(aut), keyword(key) {}
 
     int get_identificativo() const { return identificativo; }
     int get_num_pagine() const { return num_pagine; }
@@ -38,7 +38,7 @@ private:
     int num_pagine;
     double prezzo;
     QString titolo;
-    QList<QString> articoli_correlati; // racchiude gli ID degli articoli correlati
+    QList<int> articoli_correlati; // racchiude gli ID degli articoli correlati
     QList<Autore*> autori;
     QList<QString> keyword;
     Pubblicazione* destinata; // la pubblicazioni a cui è destinato l'articolo (può essere  per una rivista o per una conferenza)

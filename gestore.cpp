@@ -21,7 +21,7 @@ void Gestore::aggiungi_rivista(QString n, QString a, QString d, QString e, int v
 
 }
 
-void Gestore::aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<QString> corr, QList<Autore*> aut, QList<QString> key){
+void Gestore::aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<int> corr, QList<Autore*> aut, QList<QString> key){
 
     Articolo* art = new Articolo(id,n,p,t,pub,corr,aut,key);
     articoli.push_back(art);
