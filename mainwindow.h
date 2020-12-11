@@ -34,6 +34,10 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_SEZIONE_B_clicked();
+
+    void on_SEZIONEB_PULSANTE_VISUALIZZA_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

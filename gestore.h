@@ -7,6 +7,8 @@
 #include "rivista.h"
 #include "conferenza.h"
 #include "articolo.h"
+#include <list>
+using namespace std;
 
 class Gestore
 {
@@ -19,13 +21,13 @@ public:
 
     Gestore(const Gestore& g);
 
-    void aggiungi_autore(QString n, QString c, int id, QList<QString> a);
+    void aggiungi_autore(QString n, QString c, int id, list<QString> a);
 
-    void aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, QList<QString> o);
+    void aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, list<QString> o);
 
     void aggiungi_rivista(QString n, QString a, QString d, QString e, int v);
 
-    void aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<int> corr, QList<Autore*> aut, QList<QString> key);
+    void aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, list<int> corr, list<Autore*> aut, list<QString> key);
 
     void cancella_tutti_autori();
 
@@ -47,11 +49,15 @@ public:
 
     Autore* get_autore(int id) const;          // ritorna un puntatore ad autore se l'id di quell'autore è presente nella lista , altrimenti ritorna nullptr
 
+    void get_articoli_autore(int id, list<Articolo*>& lista) const; // SEZIONE B METODO 1 TROVA GLI ARTICOLI DI UN DETERMINATO AUTORE PRESO PER ID
+
+    void get_articoli_conferenza(QString nome, list<Articolo*>& lista) const; // SEZIONE B METODO 4 TROVA GLI ARTICOLI DI UNA CONFERENZA PRESA PER NOME
+
 private:
 
-    QList<Autore*> autori;
-    QList<Articolo*> articoli;
-    QList<Pubblicazione*> pubblicazioni;
+    list<Autore*> autori;
+    list<Articolo*> articoli;
+    list<Pubblicazione*> pubblicazioni;
 
 };
 

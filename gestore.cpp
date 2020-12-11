@@ -1,13 +1,13 @@
 #include "gestore.h"
 
-void Gestore::aggiungi_autore(QString n, QString c, int id, QList<QString> a){
+void Gestore::aggiungi_autore(QString n, QString c, int id, list<QString> a){
 
     Autore* nuovo = new Autore(n,c,id,a);
     autori.push_back(nuovo);
 
 }
 
-void Gestore::aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, QList<QString> o){
+void Gestore::aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, list<QString> o){
 
     Pubblicazione* conf = new Conferenza(n,a,d,l,num,o);
     pubblicazioni.push_back(conf);
@@ -21,7 +21,7 @@ void Gestore::aggiungi_rivista(QString n, QString a, QString d, QString e, int v
 
 }
 
-void Gestore::aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, QList<int> corr, QList<Autore*> aut, QList<QString> key){
+void Gestore::aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, list<int> corr, list<Autore*> aut, list<QString> key){
 
     Articolo* art = new Articolo(id,n,p,t,pub,corr,aut,key);
     articoli.push_back(art);
@@ -43,7 +43,7 @@ void Gestore::cancella_tutti_articoli(){
 }
 
 void Gestore::cancella_tutte_pubblicazioni(){
-    for(auto& it : pubblicazioni){
+    for(auto& it : pubblicazioni){    
         delete it;
     }
     pubblicazioni.clear();
@@ -131,3 +131,24 @@ bool Gestore::Is_ID_articolo_alreadytaken(int id) const{
     }
     return false;
 }
+
+void Gestore::get_articoli_autore(int id, list<Articolo*>& lista) const {           // SEZIONE B METODO 1
+
+    list<int> id_da_controllare;
+
+    for(auto& i : articoli){
+        id_da_controllare = i->get_id_autori();
+        id_da_controllare.sort();
+        id_da_controllare.unique();         // nel caso ci fossero ID duplicati di autori nell'articolo li rendo unici
+        for(auto& j : id_da_controllare){
+            if(j == id){                        // SE TRA GLI ID DA CONTROLLARE TROVO QUELLO CHE CERCO , PUSHO NELLA LISTA L'ARTICOLO
+                lista.push_back(i);
+            }
+        }
+    }
+}
+
+
+
+
+

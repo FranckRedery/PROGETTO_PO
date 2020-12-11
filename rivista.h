@@ -9,7 +9,7 @@ class Rivista : public Pubblicazione
 public:
 
     Rivista() : Pubblicazione(), editore("Non definito"), volume(0) {}
-    Rivista(QString n, QString a, QString d, QString e, int v) : Pubblicazione(n,a,d) , editore(e) , volume(v) {}
+    Rivista(QString n, QString a, QString d, QString e, int v) : Pubblicazione(n,a,d,false) , editore(e) , volume(v) {}
 
     Rivista* clone() const { return new Rivista(*this); }
 

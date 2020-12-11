@@ -7,3 +7,11 @@ void Articolo::aggiungi_autore(Autore *a){
 void Articolo::aggiungi_keyword(QString k){
     keyword.push_back(k);
 }
+
+list<int> Articolo::get_id_autori() const{
+    list<int> id_autori;
+    for(auto& i : autori){
+        id_autori.push_back(i->get_id());
+    }
+    return id_autori;
+}

@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pulsante_tornaalmenu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->vai_al_menu_principale, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->pulsante_torna_al_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->sezioneB_to_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -38,7 +39,7 @@ void MainWindow::on_aggiungi_autore_clicked()
     QString cognome = ui->linea_cognome->text();
     QString afferenze = ui->afferenze_plaintext->toPlainText();
 
-    QList<QString> aff;
+    list<QString> aff;
     QString parola;
 
     for(int i = 0; i!=afferenze.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
@@ -115,7 +116,7 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
 
     QString stringa_di_organizzatori = ui->organizzatori_plaintext->toPlainText();
 
-    QList<QString> org;
+    list<QString> org;
     QString organizzatore;
 
     for(int i = 0; i!=stringa_di_organizzatori.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
@@ -175,7 +176,7 @@ void MainWindow::on_pushButton_clicked()
 
     QString stringa_di_autori = ui->plaintext_autori_di_articolo->toPlainText();
 
-    QList<Autore*> autori;
+    list<Autore*> autori;
     QString id_autore;
 
     for(int i = 0 ; i!=stringa_di_autori.size();i++){
@@ -196,21 +197,19 @@ void MainWindow::on_pushButton_clicked()
     }
 
     QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
-    QList<int> articoli_correlati;
+    list<int> articoli_correlati;
     QString art;
 
     for(int i = 0 ; i!=stringa_articoli.size();i++){
         if(stringa_articoli[i] != ' '){
             art.push_back(stringa_articoli[i]);
             if(i+1 == stringa_articoli.size()){
-                cout<<"Ho aggiunto l'articolo correlato con ID : "<<art.toInt()<<endl;
                 articoli_correlati.push_back(art.toInt());
                 art.clear();
             }
         }
 
         if(stringa_articoli[i] == ' ' && !art.isEmpty()){
-             cout<<"Ho aggiunto l'articolo correlato con ID : "<<art.toInt()<<endl;
             articoli_correlati.push_back(art.toInt());
             art.clear();
         }
@@ -218,7 +217,7 @@ void MainWindow::on_pushButton_clicked()
 
 
     QString stringa_keyword = ui->plaintext_keyword_di_articolo->toPlainText();
-    QList<QString> keyword;
+    list<QString> keyword;
     QString chiave;
 
     for(int i = 0 ; i!=stringa_keyword.size();i++){
@@ -257,5 +256,31 @@ void MainWindow::on_pushButton_clicked()
     }
 
     gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(nome_pubblicazione),articoli_correlati,autori,keyword);
-    ui->lista_di_articoli->addItem("ID :  " + QString::number(id) + "  Titolo :  " + titolo + "  Pagine :  " + QString::number(pagine) + "  Prezzo :  " + QString::number(prezzo));
+    ui->lista_di_articoli->addItem("ID :  " + QString::number(id) + "  Titolo :  " + titolo + "  Pagine :  " + QString::number(pagine) + "  Prezzo :  " + QString::number(prezzo) + "  Conferenza/Rivista associata :  " + nome_pubblicazione);
 }
+
+void MainWindow::on_SEZIONE_B_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_B);
+}
+
+void MainWindow::on_SEZIONEB_PULSANTE_VISUALIZZA_clicked()
+{
+    ui->SEZIONE_B_visualizzazione_articoli->clear();
+    list<Articolo*> lista_articoli;
+    if(ui->SezioneB_scelta_visualizza_articoli_per_autore->isChecked()){
+        int id = ui->sezioneB_id_autore->value();
+        gestore.get_articoli_autore(id,lista_articoli);
+
+        for(auto& i : lista_articoli){
+            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+        }
+
+    }
+    lista_articoli.clear();
+}
+
+
+
+
+

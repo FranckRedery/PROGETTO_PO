@@ -1,8 +1,9 @@
 #ifndef CONFERENZA_H
 #define CONFERENZA_H
 #include "pubblicazione.h"
-#include <QList>
+#include <list>
 #include <QString>
+using namespace std;
 
 class Conferenza : public Pubblicazione
 {
@@ -11,7 +12,7 @@ public:
 
     Conferenza() : Pubblicazione(), luogo("Non definito"), num_partecipanti(0) {}
 
-    Conferenza(QString n, QString a, QString d, QString l, int num, QList<QString> o): Pubblicazione(n,a,d) , luogo(l), num_partecipanti(num), organizzatori(o) {}
+    Conferenza(QString n, QString a, QString d, QString l, int num, list<QString> o): Pubblicazione(n,a,d,true) , luogo(l), num_partecipanti(num), organizzatori(o) {}
 
     Conferenza* clone() const{ return new Conferenza(*this); }
 
@@ -27,7 +28,7 @@ public:
 private:
 
     QString luogo;
-    QList<QString> organizzatori;
+    list<QString> organizzatori;
     int num_partecipanti;
 
 };

@@ -39,20 +39,10 @@
         <x>40</x>
         <y>10</y>
         <width>711</width>
-        <height>25</height>
+        <height>151</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="2">
-        <widget class="QPushButton" name="go_pag_conferenze">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(24,119,242);</string>
-         </property>
-         <property name="text">
-          <string>Aggiungi conferenze</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="go_pag_riviste">
          <property name="styleSheet">
@@ -60,6 +50,16 @@
          </property>
          <property name="text">
           <string>Aggiungi riviste</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="pulsante_pag_aggiungiArticolo">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Aggiungi articolo</string>
          </property>
         </widget>
        </item>
@@ -73,13 +73,23 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pulsante_pag_aggiungiArticolo">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="go_pag_conferenze">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(24,119,242);</string>
          </property>
          <property name="text">
-          <string>Aggiungi articolo</string>
+          <string>Aggiungi conferenze</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="SEZIONE_B">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Sezione B</string>
          </property>
         </widget>
        </item>
@@ -573,7 +583,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Nome Articolo/Rivista in cui pubblicarlo</string>
+          <string>Nome Conferenza/Rivista in cui pubblicarlo</string>
          </property>
         </widget>
        </item>
@@ -645,6 +655,132 @@ esempio : 1  2   3   4
 esempio : 1 2 3 4</string>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="PAG_SEZIONE_B">
+     <widget class="QPushButton" name="sezioneB_to_menu">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>10</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Menu principale</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="SEZIONEB_PULSANTE_VISUALIZZA">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>140</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Clicca per confermare</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="SEZIONE_B_visualizzazione_articoli">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>771</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>771</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="SezioneB_scelta_visualizza_articoli_per_autore">
+         <property name="text">
+          <string>Visualizza articoli di quell'autore</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QRadioButton" name="radioButton_2">
+         <property name="text">
+          <string>Visualizza articoli di quella conferenza</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QRadioButton" name="radioButton_3">
+         <property name="text">
+          <string>Visualizza articoli di quella rivista</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_9">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>ID autore</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="sezioneB_id_autore">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>999999999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Nome conferenza</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit"/>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="2">
+        <layout class="QGridLayout" name="gridLayout_10">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Nome rivista</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_2"/>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
