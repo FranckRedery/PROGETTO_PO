@@ -15,7 +15,7 @@ public:
     QString get_nome() const { return nome; }
     QString get_acronimo() const { return acronimo; }
     QString get_data() const { return data; }
-    bool is_conferenza() const { return conferenza; }
+    virtual bool is_conferenza() const { return conferenza; }
 
     void set_nome(QString n) { nome = n; }
     void set_acronimo(QString a) { acronimo = a; }

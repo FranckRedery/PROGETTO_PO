@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
      <widget class="QWidget" name="layoutWidget">
@@ -720,14 +720,14 @@ esempio : 1 2 3 4</string>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QRadioButton" name="radioButton_2">
+        <widget class="QRadioButton" name="SEZIONE_B_pulsante_visualizz_articoli_di_conferenza">
          <property name="text">
           <string>Visualizza articoli di quella conferenza</string>
          </property>
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QRadioButton" name="radioButton_3">
+        <widget class="QRadioButton" name="SEZIONE_B_pulsante_visualizz_articoli_di_rivista">
          <property name="text">
           <string>Visualizza articoli di quella rivista</string>
          </property>
@@ -764,7 +764,7 @@ esempio : 1 2 3 4</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="SEZIONE_B_nome_conferenza"/>
          </item>
         </layout>
        </item>
@@ -778,7 +778,7 @@ esempio : 1 2 3 4</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_2"/>
+          <widget class="QLineEdit" name="SEZIONE_B_nome_rivista"/>
          </item>
         </layout>
        </item>

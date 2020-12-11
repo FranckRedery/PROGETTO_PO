@@ -277,6 +277,31 @@ void MainWindow::on_SEZIONEB_PULSANTE_VISUALIZZA_clicked()
         }
 
     }
+
+    if(ui->SEZIONE_B_pulsante_visualizz_articoli_di_conferenza->isChecked()){
+        gestore.get_articoli_conferenza_or_rivista(ui->SEZIONE_B_nome_conferenza->text(),lista_articoli);
+        for(auto& i : lista_articoli){
+            if(i->get_pubblicazione()->is_conferenza() == false){
+                QMessageBox mess(QMessageBox::Critical, "Errore", "Il nome che hai inserito corrisponde ad una RIVISTA.", QMessageBox::Ok,this);
+                mess.exec();
+                return;
+            }
+            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+        }
+    }
+
+    if(ui->SEZIONE_B_pulsante_visualizz_articoli_di_rivista->isChecked()){
+        gestore.get_articoli_conferenza_or_rivista(ui->SEZIONE_B_nome_rivista->text(),lista_articoli);
+        for(auto& i : lista_articoli){
+            if(i->get_pubblicazione()->is_conferenza() == true){
+                QMessageBox mess(QMessageBox::Critical, "Errore", "Il nome che hai inserito corrisponde ad una CONFERENZA.", QMessageBox::Ok,this);
+                mess.exec();
+                return;
+            }
+            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+        }
+    }
+
     lista_articoli.clear();
 }
 

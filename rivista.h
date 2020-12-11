@@ -19,6 +19,8 @@ public:
     void set_volume(int v) { volume = v; }
     void set_editore(QString e) { editore = e; }
 
+    bool is_conferenza() const { return false; }
+
 private:
 
     QString editore;

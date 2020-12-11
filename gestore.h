@@ -51,7 +51,7 @@ public:
 
     void get_articoli_autore(int id, list<Articolo*>& lista) const; // SEZIONE B METODO 1 TROVA GLI ARTICOLI DI UN DETERMINATO AUTORE PRESO PER ID
 
-    void get_articoli_conferenza(QString nome, list<Articolo*>& lista) const; // SEZIONE B METODO 4 TROVA GLI ARTICOLI DI UNA CONFERENZA PRESA PER NOME
+    void get_articoli_conferenza_or_rivista(QString nome, list<Articolo*>& lista) const; // SEZIONE B METODO 4 E 5 TROVA GLI ARTICOLI DI UNA CONFERENZA/RIVSTA PRESA PER NOME
 
 private:
 

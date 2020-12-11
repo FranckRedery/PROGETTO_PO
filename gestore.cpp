@@ -148,7 +148,14 @@ void Gestore::get_articoli_autore(int id, list<Articolo*>& lista) const {       
     }
 }
 
+void Gestore::get_articoli_conferenza_or_rivista(QString nome, list<Articolo *> &lista) const{      // SEZIONE B METODO 4 E 5 (FUNZIONA PER ENTRAMBI)
 
+    for(auto& i : articoli){
+        if(i->get_pubblicazione()->get_nome() == nome){
+            lista.push_back(i);
+        }
+    }
+}
 
 
 

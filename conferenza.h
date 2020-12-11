@@ -24,6 +24,8 @@ public:
 
     void aggiungi_organizzatore(QString org);
 
+    bool is_conferenza() const { return true; }
+
 
 private:
 
