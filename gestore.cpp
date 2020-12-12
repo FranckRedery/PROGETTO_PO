@@ -1,4 +1,5 @@
 #include "gestore.h"
+#include <algorithm>
 
 void Gestore::aggiungi_autore(QString n, QString c, int id, list<QString> a){
 
@@ -157,5 +158,34 @@ void Gestore::get_articoli_conferenza_or_rivista(QString nome, list<Articolo *> 
     }
 }
 
+void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &lista, int scelta) const{ // SEZIONE C METODO 1 E 2 (FUNZIONA PER ENTRAMBI INSERENDO IL TIPO DI SCELTA)
 
+    list<Articolo*> articoli_autore;
+    get_articoli_autore(id,articoli_autore); // trovo tutti gli articoli di quell'autore
+
+    int max = INT_MIN ,  min = INT_MAX;
+
+    for(auto& i : articoli_autore){             // trovo il prezzo max e min degli articoli dell'autore
+        if(i->get_prezzo() > max){
+            max = i->get_prezzo();
+        }
+        if(i->get_prezzo()< min){
+            min = i->get_prezzo();
+        }
+    }
+    if(scelta == 1){                        // se la scelta è la numero 1 , restituisco gli articoli con il prezzo più basso
+        for(auto& i : articoli_autore){
+            if(i->get_prezzo() == min){
+                lista.push_back(i);
+            }
+        }
+    }
+    else if(scelta == 2){                    // se la scelta è la 2, restituisco gli articoli con il prezzo più alto
+        for(auto& i : articoli_autore){
+            if(i->get_prezzo() == max){
+                lista.push_back(i);
+            }
+        }
+    }
+}
 

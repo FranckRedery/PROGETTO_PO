@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
      <widget class="QWidget" name="layoutWidget">
@@ -90,6 +90,16 @@
          </property>
          <property name="text">
           <string>Sezione B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="SEZIONE_C">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Sezione C</string>
          </property>
         </widget>
        </item>
@@ -702,7 +712,7 @@ esempio : 1 2 3 4</string>
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -781,6 +791,104 @@ esempio : 1 2 3 4</string>
           <widget class="QLineEdit" name="SEZIONE_B_nome_rivista"/>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="PAG_SEZIONE_C">
+     <widget class="QPushButton" name="SEZIONE_C_TORNAMENU">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>10</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Menu principale</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="SEZIONE_C_LISTWIDGET">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>190</y>
+        <width>771</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="SEZIONE_C_PULSANTE_CONFERMA">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>130</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Clicca per confermare</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>771</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_13">
+       <item row="0" column="2">
+        <widget class="QRadioButton" name="SEZIONE_C_ARTICOLI_MAX">
+         <property name="text">
+          <string>Visualizza articoli con prezzo max</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>ID autore</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SEZIONE_C_ID_AUTORE">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>99999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <widget class="QRadioButton" name="SEZIONE_C_ARTICOLI_MIN">
+         <property name="text">
+          <string>Visualizza articoli con prezzo min</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QRadioButton" name="SEZIONE_C_KEYWORD_MAX">
+         <property name="text">
+          <string>Visualizza keyword che hanno il guadagno max (NON RIFERITE ALL'AUTORE)</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

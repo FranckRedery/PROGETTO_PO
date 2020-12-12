@@ -53,6 +53,8 @@ public:
 
     void get_articoli_conferenza_or_rivista(QString nome, list<Articolo*>& lista) const; // SEZIONE B METODO 4 E 5 TROVA GLI ARTICOLI DI UNA CONFERENZA/RIVSTA PRESA PER NOME
 
+    void get_articoli_autore_prezzo_max_or_min(int id, list<Articolo*>& lista, int scelta) const; // SEZIONE C METODO 1 E 2 , TROVA GLI ARTICOLI DI UN AUTORE CON PREZZO MAX O MIN
+
 private:
 
     list<Autore*> autori;

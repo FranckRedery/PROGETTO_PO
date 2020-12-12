@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->vai_al_menu_principale, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->pulsante_torna_al_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->sezioneB_to_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->SEZIONE_C_TORNAMENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -309,3 +310,31 @@ void MainWindow::on_SEZIONEB_PULSANTE_VISUALIZZA_clicked()
 
 
 
+
+void MainWindow::on_SEZIONE_C_PULSANTE_CONFERMA_clicked()
+{
+    ui->SEZIONE_C_LISTWIDGET->clear();
+    list<Articolo*> lista_articoli;
+
+    if(ui->SEZIONE_C_ARTICOLI_MIN->isChecked()){
+
+        gestore.get_articoli_autore_prezzo_max_or_min(ui->SEZIONE_C_ID_AUTORE->value(),lista_articoli,1);
+        for(auto& i : lista_articoli){
+            ui->SEZIONE_C_LISTWIDGET->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+        }
+    }
+    if(ui->SEZIONE_C_ARTICOLI_MAX->isChecked()){
+
+        gestore.get_articoli_autore_prezzo_max_or_min(ui->SEZIONE_C_ID_AUTORE->value(),lista_articoli,2);
+        for(auto& i : lista_articoli){
+            ui->SEZIONE_C_LISTWIDGET->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+        }
+    }
+
+    lista_articoli.clear();
+}
+
+void MainWindow::on_SEZIONE_C_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_C);
+}
