@@ -55,6 +55,8 @@ public:
 
     void get_articoli_autore_prezzo_max_or_min(int id, list<Articolo*>& lista, int scelta) const; // SEZIONE C METODO 1 E 2 , TROVA GLI ARTICOLI DI UN AUTORE CON PREZZO MAX O MIN
 
+    void get_keywords_guadagno_max(list<QString>& lista) const;                                    // SEZIONE C METODO 6
+
 private:
 
     list<Autore*> autori;

@@ -189,3 +189,40 @@ void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &li
     }
 }
 
+void Gestore::get_keywords_guadagno_max(list<QString> &lista) const{            // SEZIONE C METODO 6
+
+    list<QString> keywords;
+    list<QString> nuove_key;
+    for(auto& i : articoli){
+        nuove_key = i->get_keywords();
+        for(auto& j : nuove_key){
+            keywords.push_back(j);                      // prendo le keyword di tutti gli articoli
+        }
+    }
+    keywords.sort();
+    keywords.unique();                                  // se ci sono duplicati li elimino
+
+    vector<double> valore_key;                          // utilizzo un vector di double per conservare i prezzi totali degli articoli contenenti quella keyword
+    valore_key.resize(keywords.size());
+
+    double max = INT_MIN;
+    auto it = keywords.begin();
+
+    for(int i = 0 ; i!=valore_key.size();i++){
+        for(auto& j : articoli){
+            nuove_key = j->get_keywords();
+            if(find(nuove_key.begin(),nuove_key.end(),*it) != nuove_key.end()){
+                valore_key[i] += j->get_prezzo();
+            }
+        }
+    if(valore_key[i] > max){                                                    // SE TROVO UN VALORE PIù GRANDE DI PREZZO PULISCO LA LISTA E INSERISCO LA NUOVA KEYWORD
+        max = valore_key[i];
+        lista.clear();
+        lista.push_back(*it);
+    }
+    else if(valore_key[i] == max){                                              // SE TROVO UN VALORE UGUALE DI PREZZO INSERISCO ANCHE QUESTA KEY
+        lista.push_back(*it);
+    }
+    it++;
+    }
+}

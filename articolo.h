@@ -22,8 +22,8 @@ public:
     double get_prezzo() const { return prezzo; }
     QString get_titolo() const { return titolo; }
     Pubblicazione* get_pubblicazione() const { return destinata; }
-    list<QString> get_keywords() const; // DA IMPLEMENTARE per metodo 6 sezione C
-    list<int> get_id_autori() const; // DA IMPLEMENTARE per metodo 1 - 2 sezione C
+    list<QString> get_keywords() const { return keyword; }
+    list<int> get_id_autori() const;
 
     void set_identificativo(int id) { identificativo = id; }
     void set_num_pagine(int n) { num_pagine = n; }

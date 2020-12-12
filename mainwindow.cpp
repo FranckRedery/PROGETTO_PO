@@ -315,6 +315,7 @@ void MainWindow::on_SEZIONE_C_PULSANTE_CONFERMA_clicked()
 {
     ui->SEZIONE_C_LISTWIDGET->clear();
     list<Articolo*> lista_articoli;
+    list<QString> keyword_max;
 
     if(ui->SEZIONE_C_ARTICOLI_MIN->isChecked()){
 
@@ -330,8 +331,16 @@ void MainWindow::on_SEZIONE_C_PULSANTE_CONFERMA_clicked()
             ui->SEZIONE_C_LISTWIDGET->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
         }
     }
+    if(ui->SEZIONE_C_KEYWORD_MAX->isChecked()){
+        gestore.get_keywords_guadagno_max(keyword_max);
+        for(auto& i : keyword_max){
+            ui->SEZIONE_C_LISTWIDGET->addItem(i);
+        }
+    }
+
 
     lista_articoli.clear();
+    keyword_max.clear();
 }
 
 void MainWindow::on_SEZIONE_C_clicked()
