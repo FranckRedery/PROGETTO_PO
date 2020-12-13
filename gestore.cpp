@@ -163,7 +163,7 @@ void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &li
     list<Articolo*> articoli_autore;
     get_articoli_autore(id,articoli_autore); // trovo tutti gli articoli di quell'autore
 
-    int max = INT_MIN ,  min = INT_MAX;
+    double max = INT_MIN ,  min = INT_MAX;
 
     for(auto& i : articoli_autore){             // trovo il prezzo max e min degli articoli dell'autore
         if(i->get_prezzo() > max){
