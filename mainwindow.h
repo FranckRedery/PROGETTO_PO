@@ -42,6 +42,10 @@ private slots:
 
     void on_SEZIONE_C_clicked();
 
+    void on_PAG_D_PULSANTE_CONFERMA_clicked();
+
+    void on_pulsante_sezione_D_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

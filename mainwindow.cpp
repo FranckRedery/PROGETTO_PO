@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pulsante_torna_al_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->sezioneB_to_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->SEZIONE_C_TORNAMENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->PAG_D_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -346,4 +347,24 @@ void MainWindow::on_SEZIONE_C_PULSANTE_CONFERMA_clicked()
 void MainWindow::on_SEZIONE_C_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_C);
+}
+
+void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
+{
+    ui->PAG_D_LISTA->clear();
+    list<Articolo*> lista_articoli;
+
+    if(ui->PAG_D_RADIO_VISUALIZZA_AUTORE->isChecked()){
+        gestore.articoli_autore_sorted(ui->PAG_D_ID_AUTORE->value(),lista_articoli);
+        for(auto& i : lista_articoli){
+            ui->PAG_D_LISTA->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+        }
+    }
+
+    lista_articoli.clear();
+}
+
+void MainWindow::on_pulsante_sezione_D_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_D);
 }

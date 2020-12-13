@@ -233,10 +233,10 @@ bool sort_autore(const Articolo* a , const Articolo* b){
     if(a->get_pubblicazione()->get_data() > b->get_pubblicazione()->get_data()){
         return false;
     }
-    else if(a->get_prezzo() < b->get_prezzo()){
+    else if(a->get_prezzo() < b->get_prezzo() && a->get_pubblicazione()->get_data() == b->get_pubblicazione()->get_data()){
         return false;
     }
-    else if(a->get_prima_key() > b->get_prima_key()){
+    else if(a->get_prima_key() > b->get_prima_key() && a->get_pubblicazione()->get_data() == b->get_pubblicazione()->get_data() && a->get_prezzo() == b->get_prezzo()){
         return false;
     }
     return true;
