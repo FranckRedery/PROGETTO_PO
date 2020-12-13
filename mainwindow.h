@@ -46,6 +46,10 @@ private slots:
 
     void on_pulsante_sezione_D_clicked();
 
+    void on_pushButton_2_clicked();
+
+    void on_PAG_E_pulsante_key_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -283,3 +283,51 @@ void Gestore::get_articoli_keyword(QString key, list<Articolo*> &lista) const{
         }
     }
 }
+
+void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
+
+    list<QString> contenitore_chiavi;
+    list<QString> nuove_chiavi;
+
+    for(auto& i : articoli){
+        nuove_chiavi = i->get_keywords();               // prendo le key di ogni articolo
+        for(auto& j : nuove_chiavi){
+            contenitore_chiavi.push_back(j);            // le conservo tutte nel contenitore
+        }
+        nuove_chiavi.clear();
+    }
+
+    vector<int> quant;                               // qui vedo quante volte la chiave è presente
+    quant.resize(contenitore_chiavi.size());
+    int ind = 0, max = INT_MIN;
+
+    for(auto& i : contenitore_chiavi){
+        for(auto& j : contenitore_chiavi){
+            if(i == j){
+                quant[ind]++;                       // se le key sono uguali aumenta la quantità contenuta
+            }
+        }
+    if(quant[ind] > max){                           // trovo il max tra le occorrenze di una chiave
+        max = quant[ind];
+    }
+    ind++;
+    }
+
+    auto it = contenitore_chiavi.begin();
+
+    while(chiavi.size()!=5 && max != 0 && max!=INT_MIN){          // esco dal while se trovo 5 chiavi oppure se il max scende a 0 dunque non ci sono più chiavi da controllare
+                                                                   // aggiunto come condizione max!=INT_MIN perché se non erano presenti chiavi si genereva un loop infinito
+        for(int i = 0 ; i<quant.size();i++){
+            if(quant[i] == max && find(chiavi.begin(),chiavi.end(),*it) == chiavi.end()){       // se la chiave corrispondente alla pos è uguale al max e non è presente la aggiungo
+                chiavi.push_back(*it);
+
+                if(chiavi.size() == 5){
+                    break;
+                }
+            }
+            it++;
+        }
+    it = contenitore_chiavi.begin();
+    max--;
+    }
+}

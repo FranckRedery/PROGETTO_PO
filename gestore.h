@@ -63,6 +63,8 @@ public:
 
     void get_articoli_keyword(QString key, list<Articolo*>& lista) const;                                                   // trova gli articoli in cui è presente quella keyword
 
+    void get_5_most_common_key(list<QString>& chiavi) const;                                       // SEZIONE E METODO 3
+
 private:
 
     list<Autore*> autori;

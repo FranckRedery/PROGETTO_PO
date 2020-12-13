@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sezioneB_to_menu, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->SEZIONE_C_TORNAMENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->PAG_D_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->PAG_E_BOTTONE_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -374,4 +375,22 @@ void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
 void MainWindow::on_pulsante_sezione_D_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_D);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_E);
+}
+
+void MainWindow::on_PAG_E_pulsante_key_clicked()
+{
+    ui->PAG_E_LISTA->clear();
+    list<QString> chiavi_diffuse;
+
+    gestore.get_5_most_common_key(chiavi_diffuse);
+
+    for(auto& i : chiavi_diffuse){
+        ui->PAG_E_LISTA->addItem(i);
+    }
+    chiavi_diffuse.clear();
 }
