@@ -291,6 +291,8 @@ void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
 
     for(auto& i : articoli){
         nuove_chiavi = i->get_keywords();               // prendo le key di ogni articolo
+        nuove_chiavi.sort();
+        nuove_chiavi.unique();                          // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche (presumo che un articolo non debba avere keyword duplicate)
         for(auto& j : nuove_chiavi){
             contenitore_chiavi.push_back(j);            // le conservo tutte nel contenitore
         }
