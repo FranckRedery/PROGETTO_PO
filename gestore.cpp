@@ -248,3 +248,38 @@ void Gestore::articoli_autore_sorted(int id, list<Articolo *> &lista) const {   
     get_articoli_autore(id,lista);                                          // per prima cosa prendo tutti gli articoli dell'autore
     lista.sort(sort_autore);                                                // dopo li ordino
 }
+
+bool sort_key(const Articolo* a, const Articolo* b){
+    if(a->get_pubblicazione()->get_data() < b->get_pubblicazione()->get_data()){
+        return false;
+    }
+    else if(a->get_prezzo() > b->get_prezzo() && a->get_pubblicazione()->get_data() == b->get_pubblicazione()->get_data()){
+        return false;
+    }
+    else if(a->get_primo_cognome_autore() > b->get_primo_cognome_autore() && a->get_prezzo() == b->get_prezzo() && a->get_pubblicazione()->get_data() == b->get_pubblicazione()->get_data()){
+        return false;
+    }
+    return true;
+}
+
+void Gestore::articoli_keyword_sorted(QString key, list<Articolo*> &lista) const{      // SEZIONE D METODO 5
+
+    get_articoli_keyword(key,lista);
+    lista.sort(sort_key);
+}
+
+void Gestore::get_articoli_keyword(QString key, list<Articolo*> &lista) const{
+
+    list<QString> key_da_controllare;
+
+    for(auto& i : articoli){
+        key_da_controllare = i->get_keywords();
+        key_da_controllare.sort();
+        key_da_controllare.unique();         // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche
+        for(auto& j : key_da_controllare){
+            if(j == key){                        // se tra le keywords da controllare trovo quella che cerco , pusho nella lista l'articolo.
+                lista.push_back(i);
+            }
+        }
+    }
+}

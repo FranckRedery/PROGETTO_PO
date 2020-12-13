@@ -59,6 +59,10 @@ public:
 
     void articoli_autore_sorted(int id, list<Articolo*>& lista) const;                             // SEZIONE D METODO 6
 
+    void articoli_keyword_sorted(QString key, list<Articolo*>& lista) const;                       // SEZIONE D METODO 5
+
+    void get_articoli_keyword(QString key, list<Articolo*>& lista) const;                                                   // trova gli articoli in cui è presente quella keyword
+
 private:
 
     list<Autore*> autori;

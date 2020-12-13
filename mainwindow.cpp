@@ -361,6 +361,13 @@ void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
         }
     }
 
+    if(ui->PAG_D_RADIO_VISUALIZZA_KEYWORD->isChecked()){
+        gestore.articoli_keyword_sorted(ui->PAG_D_KEYWORD->text(),lista_articoli);
+        for(auto& i : lista_articoli){
+            ui->PAG_D_LISTA->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+        }
+    }
+
     lista_articoli.clear();
 }
 

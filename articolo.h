@@ -24,7 +24,9 @@ public:
     Pubblicazione* get_pubblicazione() const { return destinata; }
     list<QString> get_keywords() const { return keyword; }
     list<int> get_id_autori() const;
-    QString get_prima_key() const { return keyword.front(); }
+
+    QString get_prima_key() const { return keyword.front(); }                           // due metodi get che servono per il sort della sezione D :)
+    QString get_primo_cognome_autore() const { return autori.front()->get_cognome(); }
 
     void set_identificativo(int id) { identificativo = id; }
     void set_num_pagine(int n) { num_pagine = n; }
