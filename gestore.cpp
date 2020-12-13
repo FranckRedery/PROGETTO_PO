@@ -211,18 +211,40 @@ void Gestore::get_keywords_guadagno_max(list<QString> &lista) const{            
     for(int i = 0 ; i!=valore_key.size();i++){
         for(auto& j : articoli){
             nuove_key = j->get_keywords();
-            if(find(nuove_key.begin(),nuove_key.end(),*it) != nuove_key.end()){
+            if(find(nuove_key.begin(),nuove_key.end(),*it) != nuove_key.end()){         // se la keyword corrispondente alla posizione del vector dei prezzi è presente nell'articolo, aggiungo il prezzo dell'articolo al totale
                 valore_key[i] += j->get_prezzo();
             }
         }
-    if(valore_key[i] > max){                                                    // SE TROVO UN VALORE PIù GRANDE DI PREZZO PULISCO LA LISTA E INSERISCO LA NUOVA KEYWORD
+
+     if(valore_key[i] == max){                                              // SE TROVO UN VALORE UGUALE DI PREZZO INSERISCO ANCHE QUESTA KEY
+            lista.push_back(*it);
+        }
+    else if(valore_key[i] > max){                                                    // SE TROVO UN VALORE PIù GRANDE DI PREZZO PULISCO LA LISTA E INSERISCO LA NUOVA KEYWORD
         max = valore_key[i];
         lista.clear();
         lista.push_back(*it);
     }
-    else if(valore_key[i] == max){                                              // SE TROVO UN VALORE UGUALE DI PREZZO INSERISCO ANCHE QUESTA KEY
-        lista.push_back(*it);
-    }
     it++;
     }
+}
+
+
+bool sort_autore(const Articolo* a , const Articolo* b){
+    if(a->get_pubblicazione()->get_data() > b->get_pubblicazione()->get_data()){
+        return false;
+    }
+    else if(a->get_prezzo() < b->get_prezzo()){
+        return false;
+    }
+    else if(a->get_prima_key() > b->get_prima_key()){
+        return false;
+    }
+    return true;
+}
+
+
+void Gestore::articoli_autore_sorted(int id, list<Articolo *> &lista) const {       // SEZIONE D METODO 6
+
+    get_articoli_autore(id,lista);                                          // per prima cosa prendo tutti gli articoli dell'autore
+    lista.sort(sort_autore);                                                // dopo li ordino
 }

@@ -57,6 +57,8 @@ public:
 
     void get_keywords_guadagno_max(list<QString>& lista) const;                                    // SEZIONE C METODO 6
 
+    void articoli_autore_sorted(int id, list<Articolo*>& lista) const;                             // SEZIONE D METODO 6
+
 private:
 
     list<Autore*> autori;
