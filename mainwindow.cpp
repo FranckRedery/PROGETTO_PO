@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 Gestore gestore;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->SEZIONE_C_TORNAMENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->PAG_D_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->PAG_E_BOTTONE_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->PAG_F_TORNA_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -239,8 +241,8 @@ void MainWindow::on_pushButton_clicked()
 
     }
 
-    if(titolo.isEmpty()){
-        QMessageBox mess(QMessageBox::Critical, "Errore", "Il nome dell'articolo non può essere vuoto.", QMessageBox::Ok,this);
+    if(titolo.isEmpty() || autori.empty() || keyword.empty() || articoli_correlati.empty()){
+        QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
         mess.exec();
         return;
     }
@@ -393,4 +395,21 @@ void MainWindow::on_PAG_E_pulsante_key_clicked()
         ui->PAG_E_LISTA->addItem(i);
     }
     chiavi_diffuse.clear();
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_F);
+}
+
+void MainWindow::on_PAG_F_CERCA_CONFERENZE_COMUN_clicked()
+{
+    list<Pubblicazione*> comuni;
+    ui->PAG_F_LISTA->clear();
+    gestore.get_conferenze_simili(ui->PAGINA_F_NOME_CONFERENZA->text(),comuni);
+    for(auto& i : comuni){
+        ui->PAG_F_LISTA->addItem("Nome : " +i->get_nome() + "  Acronimo : " + i->get_acronimo() + "  Data : " + i->get_data());
+    }
+    comuni.clear();
 }

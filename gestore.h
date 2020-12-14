@@ -61,9 +61,11 @@ public:
 
     void articoli_keyword_sorted(QString key, list<Articolo*>& lista) const;                       // SEZIONE D METODO 5
 
-    void get_articoli_keyword(QString key, list<Articolo*>& lista) const;                                                   // trova gli articoli in cui è presente quella keyword
+    void get_articoli_keyword(QString key, list<Articolo*>& lista) const;                          // trova gli articoli in cui è presente quella keyword
 
     void get_5_most_common_key(list<QString>& chiavi) const;                                       // SEZIONE E METODO 3
+
+    void get_conferenze_simili(QString nome, list<Pubblicazione*>& lista) const;         // SEZIONE F METODO 5
 
 private:
 

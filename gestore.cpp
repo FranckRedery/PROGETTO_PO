@@ -1,5 +1,6 @@
 #include "gestore.h"
 #include <algorithm>
+#include <iostream>
 
 void Gestore::aggiungi_autore(QString n, QString c, int id, list<QString> a){
 
@@ -271,7 +272,6 @@ void Gestore::articoli_keyword_sorted(QString key, list<Articolo*> &lista) const
 void Gestore::get_articoli_keyword(QString key, list<Articolo*> &lista) const{
 
     list<QString> key_da_controllare;
-
     for(auto& i : articoli){
         key_da_controllare = i->get_keywords();
         key_da_controllare.sort();
@@ -284,7 +284,7 @@ void Gestore::get_articoli_keyword(QString key, list<Articolo*> &lista) const{
     }
 }
 
-void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
+void Gestore::get_5_most_common_key(list<QString> &chiavi) const{       // SEZIONE E METODO 3
 
     list<QString> contenitore_chiavi;
     list<QString> nuove_chiavi;
@@ -332,4 +332,62 @@ void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
     it = contenitore_chiavi.begin();
     max--;
     }
+}
+
+bool simili(const list<QString> a , const list<QString> b, const list<QString> totali){
+
+    double cont_prima = 0, cont_seconda = 0 ;
+
+    for(auto& i : totali){           // in questo for conto quante key della prima sono contenute nell'insieme delle key
+        for(auto& j : a){
+            if(i == j){
+                cont_prima++;
+            }
+        }
+        for(auto& k : b){           // in questo for conto quante key della seconda sono contenute nell'insieme delle key
+            if(i == k){
+                cont_seconda++;
+            }
+        }
+    }
+    if(cont_prima/totali.size()>=0.8 && cont_seconda/totali.size() >= 0.8){     // se entrambi i contatori sono maggiori di 0.8 allora hanno entrambe più dell' 80% di key in comune
+        return true;
+    }
+
+    return false;
+}
+
+void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) const{       // SEZIONE F METODO 5
+
+    list<QString> key;
+    for(auto& i : articoli){
+        if(i->get_pubblicazione()->get_nome() == nome && i->get_pubblicazione()->is_conferenza()){
+            key = i->get_keywords();
+            key.sort();                                 // prendo le chiavi uniche riferite all'articolo che ha pubblicazione uguale per nome
+            key.unique();
+            break;
+        }
+    }
+
+    list<QString> key_totali;
+    list<QString> controlla;
+
+    for(auto& i : articoli){
+        key_totali = key;
+        if(i->get_pubblicazione()->is_conferenza()){            // sto assumendo che una conferenza uguale a se stessa sia anche simile quindi voglio visualizzare anche quella scelta
+            controlla = i->get_keywords();
+            controlla.sort();
+            controlla.unique();
+            for(auto & j : controlla){                  // l'idea è di prendere le chiavi di entrambe le conferenze in un unica lista
+                key_totali.push_back(j);
+            }
+            key_totali.sort();                          // potrebbero esserci ora dei nuovi duplicati , quindi faccio sort e unique
+            key_totali.unique();
+            if(simili(key,controlla,key_totali)){                   // e da questa lista controllare se entrambi le conferenze hanno l'80% delle chiavi contenute li dentro
+                lista.push_back(i->get_pubblicazione());
+            }
+        }
+    }
+    lista.sort();
+    lista.unique();
 }

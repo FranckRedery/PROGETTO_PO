@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
      <widget class="QWidget" name="layoutWidget">
@@ -43,13 +43,23 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="1">
-        <widget class="QPushButton" name="go_pag_riviste">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="go_pag_autori">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(24,119,242);</string>
          </property>
          <property name="text">
-          <string>Aggiungi riviste</string>
+          <string>Aggiungi autori</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pulsante_sezione_D">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Sezione D</string>
          </property>
         </widget>
        </item>
@@ -60,16 +70,6 @@
          </property>
          <property name="text">
           <string>Aggiungi articolo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="go_pag_autori">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(24,119,242);</string>
-         </property>
-         <property name="text">
-          <string>Aggiungi autori</string>
          </property>
         </widget>
        </item>
@@ -93,6 +93,16 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="go_pag_riviste">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Aggiungi riviste</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="1">
         <widget class="QPushButton" name="SEZIONE_C">
          <property name="styleSheet">
@@ -103,16 +113,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pulsante_sezione_D">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(24,119,242);</string>
-         </property>
-         <property name="text">
-          <string>Sezione D</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="3">
         <widget class="QPushButton" name="pushButton_2">
          <property name="styleSheet">
@@ -120,6 +120,16 @@
          </property>
          <property name="text">
           <string>Sezione E</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Sezione F</string>
          </property>
         </widget>
        </item>
@@ -1060,6 +1070,72 @@ esempio : 1 2 3 4</string>
         <height>192</height>
        </rect>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="PAG_SEZIONE_F">
+     <widget class="QPushButton" name="PAG_F_TORNA_MENU">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>10</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Menu principale</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="PAG_F_CERCA_CONFERENZE_COMUN">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>120</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(24,119,242);</string>
+      </property>
+      <property name="text">
+       <string>Conferenze comuni</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="PAG_F_LISTA">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>190</y>
+        <width>771</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>80</y>
+        <width>225</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_17">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>Nome conferenza</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="PAGINA_F_NOME_CONFERENZA"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

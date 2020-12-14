@@ -50,6 +50,10 @@ private slots:
 
     void on_PAG_E_pulsante_key_clicked();
 
+    void on_pushButton_3_clicked();
+
+    void on_PAG_F_CERCA_CONFERENZE_COMUN_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
