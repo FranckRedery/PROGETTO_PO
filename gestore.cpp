@@ -334,56 +334,82 @@ void Gestore::get_5_most_common_key(list<QString> &chiavi) const{       // SEZIO
     }
 }
 
-bool simili(const list<QString> a , const list<QString> b, const list<QString> totali){
 
-    double cont_prima = 0, cont_seconda = 0 ;
+list<QString> get_key_comuni(list<QString>& a, list<QString>& b){
 
-    for(auto& i : totali){           // in questo for conto quante key della prima sono contenute nell'insieme delle key
-        for(auto& j : a){
-            if(i == j){
-                cont_prima++;
-            }
-        }
-        for(auto& k : b){           // in questo for conto quante key della seconda sono contenute nell'insieme delle key
-            if(i == k){
-                cont_seconda++;
+    list<QString> comuni;
+    // se trovo chiavi comuni che non sono presente nella list comuni le aggiungo
+    for(auto& i : a){
+        for(auto& j : b){
+            if(i == j && find(comuni.begin(),comuni.end(),i) == comuni.end()){
+                comuni.push_back(i);
             }
         }
     }
-    if(cont_prima/totali.size()>=0.8 && cont_seconda/totali.size() >= 0.8){     // se entrambi i contatori sono maggiori di 0.8 allora hanno entrambe più dell' 80% di key in comune
-        return true;
-    }
+    comuni.sort();
+    comuni.unique();
+    return  comuni;
+}
 
-    return false;
+list<QString> get_key_unione(list<QString>& a, list<QString>& b){
+
+    list<QString> unione = a;
+    for(auto& i : b){
+        unione.push_back(i);
+    }
+    unione.sort();
+    unione.unique();
+    return unione;
+
 }
 
 void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) const{       // SEZIONE F METODO 5
 
     list<QString> key;
+    list<QString> nuove_key;
+    // in questo for prendo tutte le chiavi relative alla conferenza scelta da input
     for(auto& i : articoli){
         if(i->get_pubblicazione()->get_nome() == nome && i->get_pubblicazione()->is_conferenza()){
-            key = i->get_keywords();
-            key.sort();                                 // prendo le chiavi uniche riferite all'articolo che ha pubblicazione uguale per nome
-            key.unique();
-            break;
+            nuove_key = i->get_keywords();
+            for(auto& j: nuove_key){
+                key.push_back(j);
+            }
         }
     }
+    key.sort();
+    key.unique();
 
-    list<QString> key_totali;
-    list<QString> controlla;
+    list<QString> key_comuni;
+    list<QString> key_seconda_conf;
+    list<QString> key_unione;
 
+    // assumo che una conferenza uguale a se stessa sia anche simile quindi voglio visualizzare anche quella scelta
     for(auto& i : articoli){
-        key_totali = key;
-        if(i->get_pubblicazione()->is_conferenza()){            // sto assumendo che una conferenza uguale a se stessa sia anche simile quindi voglio visualizzare anche quella scelta
-            controlla = i->get_keywords();
-            controlla.sort();
-            controlla.unique();
-            for(auto & j : controlla){                  // l'idea è di prendere le chiavi di entrambe le conferenze in un unica lista
-                key_totali.push_back(j);
+
+        key_seconda_conf.clear();
+        key_comuni = key;
+
+        // se trovo un altra pubblicazione che è una conferenza prendo tutte le keywords di quella conferenza
+
+        if(i->get_pubblicazione()->is_conferenza()){
+            QString nome_conf = i->get_pubblicazione()->get_nome();
+            for(auto & j : articoli){
+                if(j->get_pubblicazione()->get_nome() == nome_conf){
+                    nuove_key = j->get_keywords();
+                    for(auto& k: nuove_key){
+                        key_seconda_conf.push_back(k);
+                    }
+                }
             }
-            key_totali.sort();                          // potrebbero esserci ora dei nuovi duplicati , quindi faccio sort e unique
-            key_totali.unique();
-            if(simili(key,controlla,key_totali)){                   // e da questa lista controllare se entrambi le conferenze hanno l'80% delle chiavi contenute li dentro
+            key_seconda_conf.sort();
+            key_seconda_conf.unique();
+
+            // faccio l'unione delle key delle due conferenze e anche l'intersezione
+            //dopodiché faccio size di intersezione / size di unione , se è >=0,8 aggiungo alla lista la pubblicazione
+
+            key_unione = get_key_unione(key_comuni,key_seconda_conf);
+            key_comuni = get_key_comuni(key_comuni,key_seconda_conf);
+            if(static_cast<double>(key_comuni.size())/key_unione.size() >= 0.8){
                 lista.push_back(i->get_pubblicazione());
             }
         }
