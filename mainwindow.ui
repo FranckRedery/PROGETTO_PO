@@ -683,7 +683,7 @@ esempio : 1  2   3   4
        <item row="6" column="1">
         <widget class="QPlainTextEdit" name="plaintext_keyword_di_articolo">
          <property name="plainText">
-          <string>Inserire qui le keywords separate da uno o più spazi.
+          <string>Inserire qui le keywords separate da una virgola &quot;,&quot; 
 </string>
          </property>
         </widget>
@@ -1115,7 +1115,7 @@ esempio : 1 2 3 4</string>
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>270</x>

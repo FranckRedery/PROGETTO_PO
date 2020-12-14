@@ -226,16 +226,18 @@ void MainWindow::on_pushButton_clicked()
     QString chiave;
 
     for(int i = 0 ; i!=stringa_keyword.size();i++){
-        if(stringa_keyword[i] != ' '){
+        if(stringa_keyword[i] != ',' && !chiave.isEmpty()){
             chiave.push_back(stringa_keyword[i]);
             if(i+1 == stringa_keyword.size()){
-                keyword.push_back(chiave);
+                keyword.push_back(chiave.simplified());
                 chiave.clear();
             }
         }
-
-        if(stringa_keyword[i] == ' ' && !chiave.isEmpty()){
-            keyword.push_back(chiave);
+        if(chiave.isEmpty() && stringa_keyword[i]!=' ' && stringa_keyword[i]!=','){
+            chiave.push_back(stringa_keyword[i]);
+        }
+        if(stringa_keyword[i] == ',' && !chiave.isEmpty()){
+            keyword.push_back(chiave.simplified());
             chiave.clear();
         }
 
