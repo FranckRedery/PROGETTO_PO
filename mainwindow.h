@@ -54,6 +54,14 @@ private slots:
 
     void on_PAG_F_CERCA_CONFERENZE_COMUN_clicked();
 
+    void on_pulsante_visualizza_Autori_clicked();
+
+    void on_pulsante_visualizza_Riviste_clicked();
+
+    void on_pulsante_visualizza_conferenze_clicked();
+
+    void on_pulsante_visualizza_Articoli_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

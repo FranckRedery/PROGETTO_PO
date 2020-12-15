@@ -24,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->PAG_D_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->PAG_E_BOTTONE_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
     connect(ui->PAG_F_TORNA_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->PAG_VISUALIZZA_ARTICOLI_PULSANTE_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->PAG_VISUALIZZA_AUTORI_PULSANTE_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->PAG_VISUALIZZA_CONFERENZE_PULSANTE_MENU, &QPushButton::clicked, this, &MainWindow::on_backtohome);
+    connect(ui->PAG_VISUALIZZA_RIVISTE_PULSANTE_MENU_, &QPushButton::clicked, this, &MainWindow::on_backtohome);
 }
 
 MainWindow::~MainWindow()
@@ -46,21 +50,30 @@ void MainWindow::on_aggiungi_autore_clicked()
 
     list<QString> aff;
     QString parola;
+    QString visualizza_afferenze;
 
     for(int i = 0; i!=afferenze.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
-        if(afferenze[i] != ' '){
+        if(afferenze[i] != ',' && !parola.isEmpty()){
             parola.push_back(afferenze[i]);
             if(i+1 == afferenze.size()){
-                aff.push_back(parola);
+                aff.push_back(parola.simplified());
+                visualizza_afferenze += parola.simplified();
+                visualizza_afferenze += ", ";
                 parola.clear();
             }
         }
-
-        if(afferenze[i] == ' ' && !parola.isEmpty()){
-            aff.push_back(parola);
+        if(parola.isEmpty() && afferenze[i]!=' ' && afferenze[i]!=','){
+            parola.push_back(afferenze[i]);
+        }
+        if(afferenze[i] == ',' && !parola.isEmpty()){
+            aff.push_back(parola.simplified());
+            visualizza_afferenze += parola.simplified();
+            visualizza_afferenze += ", ";
             parola.clear();
         }
     }
+    int last_char = visualizza_afferenze.size()-2;
+    visualizza_afferenze[last_char] = '.';
 
     int id = ui->id_autore->value();
 
@@ -77,7 +90,7 @@ void MainWindow::on_aggiungi_autore_clicked()
     }
 
     gestore.aggiungi_autore(nome,cognome,id,aff);
-    ui->lista_autori->addItem(nome + "  " + cognome + "  ID : " + QString::number(id));
+    ui->PAG_VISUALIZZA_AUTORI_LISTA->addItem("ID : " + QString::number(id) + "    NOME : "+ nome + "    COGNOME : " + cognome + "    AFFERENZE : " + visualizza_afferenze);
 
 }
 
@@ -107,8 +120,7 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
     }
 
     gestore.aggiungi_rivista(nome,acronimo,data.toString(Qt::DateFormat::ISODate),editore,volume);
-    ui->lista_riviste->addItem("Nome : " + nome + "    Acronimo : " + acronimo + "    Editore : " + editore + "    Data : " + data.toString(Qt::DateFormat::ISODate) + "    Volume : " + QString::number(volume) );
-
+    ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("NOME : " + nome + "    ACRONIMO : " + acronimo + "    EDITORE : " + editore + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    VOLUME : " + QString::number(volume));
 }
 
 void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
@@ -123,21 +135,30 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
 
     list<QString> org;
     QString organizzatore;
+    QString visualizza_organizzatori;
 
     for(int i = 0; i!=stringa_di_organizzatori.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
-        if(stringa_di_organizzatori[i] != ' '){
+        if(stringa_di_organizzatori[i] != ',' && !organizzatore.isEmpty()){
             organizzatore.push_back(stringa_di_organizzatori[i]);
             if(i+1 == stringa_di_organizzatori.size()){
-                org.push_back(organizzatore);
+                org.push_back(organizzatore.simplified());
+                visualizza_organizzatori += organizzatore.simplified();
+                visualizza_organizzatori += ", ";
                 organizzatore.clear();
             }
         }
-
-        if(stringa_di_organizzatori[i] == ' ' && !organizzatore.isEmpty()){
-            org.push_back(organizzatore);
+        if(organizzatore.isEmpty() && stringa_di_organizzatori[i]!=' ' && stringa_di_organizzatori[i]!=','){
+            organizzatore.push_back(stringa_di_organizzatori[i]);
+        }
+        if(stringa_di_organizzatori[i] == ',' && !organizzatore.isEmpty()){
+            org.push_back(organizzatore.simplified());
+            visualizza_organizzatori += organizzatore.simplified();
+            visualizza_organizzatori += ", ";
             organizzatore.clear();
         }
     }
+    int last_char = visualizza_organizzatori.size()-2;
+    visualizza_organizzatori[last_char] = '.';
 
     if(nome.isEmpty() || acronimo.isEmpty() || luogo.isEmpty()){
         QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome, acronimo e luogo non possono essere vuoti.", QMessageBox::Ok,this);
@@ -151,10 +172,8 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
         return;
     }
 
-
-
     gestore.aggiungi_conferenza(nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part,org);
-    ui->lista_conferenze->addItem("Nome : " + nome + "  Acronimo : " + acronimo + "  Luogo : " + luogo + "  Data : " + data.toString(Qt::DateFormat::ISODate) + "  Partecipanti : " + QString::number(part));
+    ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("NOME : " + nome + "    ACRONIMO : " + acronimo + "    LUOGO : " + luogo + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    PARTECIPANTI : " + QString::number(part) + "    ORGANIZZATORI : " + visualizza_organizzatori );
 }
 
 void MainWindow::on_go_pag_conferenze_clicked()
@@ -180,6 +199,7 @@ void MainWindow::on_pushButton_clicked()
     double prezzo = ui->prezzoarticolo_linedit->value();
 
     QString stringa_di_autori = ui->plaintext_autori_di_articolo->toPlainText();
+    QString visualizza_autori;
 
     list<Autore*> autori;
     QString id_autore;
@@ -189,6 +209,8 @@ void MainWindow::on_pushButton_clicked()
             id_autore.push_back(stringa_di_autori[i]);
             if(i+1 == stringa_di_autori.size() && gestore.get_autore(id_autore.toInt())!=nullptr){
                 autori.push_back(gestore.get_autore(id_autore.toInt()));
+                visualizza_autori += id_autore;
+                visualizza_autori += ", ";
                 id_autore.clear();
             }
         }
@@ -196,12 +218,18 @@ void MainWindow::on_pushButton_clicked()
         if(stringa_di_autori[i] == ' ' && !id_autore.isEmpty()){
             if(gestore.get_autore(id_autore.toInt())!=nullptr){
                 autori.push_back(gestore.get_autore(id_autore.toInt()));
+                visualizza_autori += id_autore;
+                visualizza_autori += ", ";
             }
             id_autore.clear();
         }
     }
 
+    int last_char = visualizza_autori.size() -2;
+    visualizza_autori[last_char] = '.';
+
     QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
+    QString visualizza_correlati;
     list<int> articoli_correlati;
     QString art;
 
@@ -210,18 +238,25 @@ void MainWindow::on_pushButton_clicked()
             art.push_back(stringa_articoli[i]);
             if(i+1 == stringa_articoli.size()){
                 articoli_correlati.push_back(art.toInt());
+                visualizza_correlati += art;
+                visualizza_correlati += ", ";
                 art.clear();
             }
         }
 
         if(stringa_articoli[i] == ' ' && !art.isEmpty()){
             articoli_correlati.push_back(art.toInt());
+            visualizza_correlati += art;
+            visualizza_correlati += ", ";
             art.clear();
         }
     }
 
+    last_char = visualizza_correlati.size()-2;
+    visualizza_correlati[last_char] = '.';
 
     QString stringa_keyword = ui->plaintext_keyword_di_articolo->toPlainText();
+    QString visualizza_keyword;
     list<QString> keyword;
     QString chiave;
 
@@ -230,6 +265,8 @@ void MainWindow::on_pushButton_clicked()
             chiave.push_back(stringa_keyword[i]);
             if(i+1 == stringa_keyword.size()){
                 keyword.push_back(chiave.simplified());
+                visualizza_keyword += chiave.simplified();
+                visualizza_keyword += ", ";
                 chiave.clear();
             }
         }
@@ -238,10 +275,15 @@ void MainWindow::on_pushButton_clicked()
         }
         if(stringa_keyword[i] == ',' && !chiave.isEmpty()){
             keyword.push_back(chiave.simplified());
+            visualizza_keyword += chiave.simplified();
+            visualizza_keyword += ", ";
             chiave.clear();
         }
 
     }
+
+    last_char = visualizza_keyword.size()-2;
+    visualizza_keyword[last_char] = '.';
 
     if(titolo.isEmpty() || autori.empty() || keyword.empty() || articoli_correlati.empty()){
         QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
@@ -263,7 +305,7 @@ void MainWindow::on_pushButton_clicked()
     }
 
     gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(nome_pubblicazione),articoli_correlati,autori,keyword);
-    ui->lista_di_articoli->addItem("ID :  " + QString::number(id) + "  Titolo :  " + titolo + "  Pagine :  " + QString::number(pagine) + "  Prezzo :  " + QString::number(prezzo) + "  Conferenza/Rivista associata :  " + nome_pubblicazione);
+    ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    CONFERENZA/RIVISTA ASSOCIATA : " + nome_pubblicazione + "    ID AUTORI :" +visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " +visualizza_keyword);
 }
 
 void MainWindow::on_SEZIONE_B_clicked()
@@ -414,4 +456,24 @@ void MainWindow::on_PAG_F_CERCA_CONFERENZE_COMUN_clicked()
         ui->PAG_F_LISTA->addItem("Nome : " +i->get_nome() + "  Acronimo : " + i->get_acronimo() + "  Data : " + i->get_data());
     }
     comuni.clear();
+}
+
+void MainWindow::on_pulsante_visualizza_Autori_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_VISUALIZZA_AUTORI);
+}
+
+void MainWindow::on_pulsante_visualizza_Riviste_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_VISUALIZZA_RIVISTE);
+}
+
+void MainWindow::on_pulsante_visualizza_conferenze_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_VISUALIZZA_CONFERENZE);
+}
+
+void MainWindow::on_pulsante_visualizza_Articoli_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->PAG_VISUALIZZA_ARTICOLI);
 }
