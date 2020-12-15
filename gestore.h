@@ -39,7 +39,8 @@ public:
 
     Gestore& operator=(const Gestore& g);
 
-    Pubblicazione* get_pubblicazione(QString nome) const ; // ritorna un puntatore alla pubblicazione se è presente, altrimenti ritorna nullptr
+    // ritorna un puntatore alla pubblicazione se è presente, altrimenti ritorna nullptr
+    Pubblicazione* get_pubblicazione(QString nome) const ;
 
     bool Is_ID_autore_alreadytaken(int id) const ;
 
@@ -47,25 +48,35 @@ public:
 
     bool Is_ID_articolo_alreadytaken(int id) const;
 
-    Autore* get_autore(int id) const;          // ritorna un puntatore ad autore se l'id di quell'autore è presente nella lista , altrimenti ritorna nullptr
+    // ritorna un puntatore ad autore se l'id di quell'autore è presente nella lista , altrimenti ritorna nullptr
+    Autore* get_autore(int id) const;
 
-    void get_articoli_autore(int id, list<Articolo*>& lista) const; // SEZIONE B METODO 1 TROVA GLI ARTICOLI DI UN DETERMINATO AUTORE PRESO PER ID
+    // SEZIONE B METODO 1 TROVA GLI ARTICOLI DI UN DETERMINATO AUTORE PRESO PER ID
+    void get_articoli_autore(int id, list<Articolo*>& lista) const;
 
-    void get_articoli_conferenza_or_rivista(QString nome, list<Articolo*>& lista) const; // SEZIONE B METODO 4 E 5 TROVA GLI ARTICOLI DI UNA CONFERENZA/RIVSTA PRESA PER NOME
+    // SEZIONE B METODO 4 E 5 TROVA GLI ARTICOLI DI UNA CONFERENZA/RIVSTA PRESA PER NOME
+    void get_articoli_conferenza_or_rivista(QString nome, list<Articolo*>& lista) const;
 
-    void get_articoli_autore_prezzo_max_or_min(int id, list<Articolo*>& lista, int scelta) const; // SEZIONE C METODO 1 E 2 , TROVA GLI ARTICOLI DI UN AUTORE CON PREZZO MAX O MIN
+    // SEZIONE C METODO 1 E 2 , TROVA GLI ARTICOLI DI UN AUTORE CON PREZZO MAX O MIN
+    void get_articoli_autore_prezzo_max_or_min(int id, list<Articolo*>& lista, int scelta) const;
 
-    void get_keywords_guadagno_max(list<QString>& lista) const;                                    // SEZIONE C METODO 6
+    // SEZIONE C METODO 6
+    void get_keywords_guadagno_max(list<QString>& lista) const;
 
-    void articoli_autore_sorted(int id, list<Articolo*>& lista) const;                             // SEZIONE D METODO 6
+    // SEZIONE D METODO 6
+    void articoli_autore_sorted(int id, list<Articolo*>& lista) const;
 
-    void articoli_keyword_sorted(QString key, list<Articolo*>& lista) const;                       // SEZIONE D METODO 5
+    // SEZIONE D METODO 5
+    void articoli_keyword_sorted(QString key, list<Articolo*>& lista) const;
 
-    void get_articoli_keyword(QString key, list<Articolo*>& lista) const;                          // trova gli articoli in cui è presente quella keyword
+     // trova gli articoli in cui è presente quella keyword
+    void get_articoli_keyword(QString key, list<Articolo*>& lista) const;
 
-    void get_5_most_common_key(list<QString>& chiavi) const;                                       // SEZIONE E METODO 3
+    // SEZIONE E METODO 3
+    void get_5_most_common_key(list<QString>& chiavi) const;
 
-    void get_conferenze_simili(QString nome, list<Pubblicazione*>& lista) const;         // SEZIONE F METODO 5
+    // SEZIONE F METODO 5
+    void get_conferenze_simili(QString nome, list<Pubblicazione*>& lista) const;
 
 private:
 

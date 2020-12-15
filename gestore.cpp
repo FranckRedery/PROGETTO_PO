@@ -134,23 +134,28 @@ bool Gestore::Is_ID_articolo_alreadytaken(int id) const{
     return false;
 }
 
-void Gestore::get_articoli_autore(int id, list<Articolo*>& lista) const {           // SEZIONE B METODO 1
+// SEZIONE B METODO 1
+void Gestore::get_articoli_autore(int id, list<Articolo*>& lista) const {
 
     list<int> id_da_controllare;
 
     for(auto& i : articoli){
         id_da_controllare = i->get_id_autori();
+
+        // nel caso ci fossero ID duplicati di autori nell'articolo li rendo unici
         id_da_controllare.sort();
-        id_da_controllare.unique();         // nel caso ci fossero ID duplicati di autori nell'articolo li rendo unici
+        id_da_controllare.unique();
         for(auto& j : id_da_controllare){
-            if(j == id){                        // SE TRA GLI ID DA CONTROLLARE TROVO QUELLO CHE CERCO , PUSHO NELLA LISTA L'ARTICOLO
+            // SE TRA GLI ID DA CONTROLLARE TROVO QUELLO CHE CERCO , PUSHO NELLA LISTA L'ARTICOLO
+            if(j == id){
                 lista.push_back(i);
             }
         }
     }
 }
 
-void Gestore::get_articoli_conferenza_or_rivista(QString nome, list<Articolo *> &lista) const{      // SEZIONE B METODO 4 E 5 (FUNZIONA PER ENTRAMBI)
+// SEZIONE B METODO 4 E 5 (FUNZIONA PER ENTRAMBI)
+void Gestore::get_articoli_conferenza_or_rivista(QString nome, list<Articolo *> &lista) const{
 
     for(auto& i : articoli){
         if(i->get_pubblicazione()->get_nome() == nome){
@@ -159,14 +164,19 @@ void Gestore::get_articoli_conferenza_or_rivista(QString nome, list<Articolo *> 
     }
 }
 
-void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &lista, int scelta) const{ // SEZIONE C METODO 1 E 2 (FUNZIONA PER ENTRAMBI INSERENDO IL TIPO DI SCELTA)
+// SEZIONE C METODO 1 E 2 (FUNZIONA PER ENTRAMBI INSERENDO IL TIPO DI SCELTA)
+// Scegliendo 1 si prendono gli articoli con prezzo min , scegliendo 2 quelli con prezzo max
+void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &lista, int scelta) const{
 
     list<Articolo*> articoli_autore;
-    get_articoli_autore(id,articoli_autore); // trovo tutti gli articoli di quell'autore
+
+     // trovo tutti gli articoli di quell'autore
+    get_articoli_autore(id,articoli_autore);
 
     double max = INT_MIN ,  min = INT_MAX;
 
-    for(auto& i : articoli_autore){             // trovo il prezzo max e min degli articoli dell'autore
+    // trovo il prezzo max e min degli articoli dell'autore
+    for(auto& i : articoli_autore){
         if(i->get_prezzo() > max){
             max = i->get_prezzo();
         }
@@ -174,14 +184,14 @@ void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &li
             min = i->get_prezzo();
         }
     }
-    if(scelta == 1){                        // se la scelta è la numero 1 , restituisco gli articoli con il prezzo più basso
+    if(scelta == 1){
         for(auto& i : articoli_autore){
             if(i->get_prezzo() == min){
                 lista.push_back(i);
             }
         }
     }
-    else if(scelta == 2){                    // se la scelta è la 2, restituisco gli articoli con il prezzo più alto
+    else if(scelta == 2){
         for(auto& i : articoli_autore){
             if(i->get_prezzo() == max){
                 lista.push_back(i);
@@ -190,41 +200,50 @@ void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &li
     }
 }
 
-void Gestore::get_keywords_guadagno_max(list<QString> &lista) const{            // SEZIONE C METODO 6
+// SEZIONE C METODO 6
+void Gestore::get_keywords_guadagno_max(list<QString> &lista) const{
 
     list<QString> keywords;
     list<QString> nuove_key;
+
+      // prendo le keyword di tutti gli articoli
     for(auto& i : articoli){
         nuove_key = i->get_keywords();
         for(auto& j : nuove_key){
-            keywords.push_back(j);                      // prendo le keyword di tutti gli articoli
+            keywords.push_back(j);
         }
     }
+    // se ci sono duplicati li elimino
     keywords.sort();
-    keywords.unique();                                  // se ci sono duplicati li elimino
+    keywords.unique();
 
-    vector<double> valore_key;                          // utilizzo un vector di double per conservare i prezzi totali degli articoli contenenti quella keyword
+    // utilizzo un vector di double per conservare i prezzi totali degli articoli contenenti quella keyword
+    // il suo size deve essere uguale a quelle delle keyword
+    vector<double> valore_key;
     valore_key.resize(keywords.size());
 
     double max = INT_MIN;
     auto it = keywords.begin();
 
+    // se la keyword corrispondente alla posizione del vector dei prezzi è presente nell'articolo, aggiungo il prezzo dell'articolo al totale
     for(int i = 0 ; i!=valore_key.size();i++){
         for(auto& j : articoli){
             nuove_key = j->get_keywords();
-            if(find(nuove_key.begin(),nuove_key.end(),*it) != nuove_key.end()){         // se la keyword corrispondente alla posizione del vector dei prezzi è presente nell'articolo, aggiungo il prezzo dell'articolo al totale
+            if(find(nuove_key.begin(),nuove_key.end(),*it) != nuove_key.end()){
                 valore_key[i] += j->get_prezzo();
             }
         }
-
-     if(valore_key[i] == max){                                              // SE TROVO UN VALORE UGUALE DI PREZZO INSERISCO ANCHE QUESTA KEY
+    // SE TROVO UN VALORE UGUALE DI PREZZO INSERISCO ANCHE QUESTA KEY
+     if(valore_key[i] == max){
             lista.push_back(*it);
         }
-    else if(valore_key[i] > max){                                                    // SE TROVO UN VALORE PIù GRANDE DI PREZZO PULISCO LA LISTA E INSERISCO LA NUOVA KEYWORD
+     // SE TROVO UN VALORE PIù GRANDE DI PREZZO PULISCO LA LISTA E INSERISCO LA NUOVA KEYWORD
+    else if(valore_key[i] > max){
         max = valore_key[i];
         lista.clear();
         lista.push_back(*it);
     }
+    // come si incrementa l'indice dei guadagni nel vector bisogna incrementare anche l'iteratore che corrisponde alla parola relativa a quell'indice
     it++;
     }
 }
@@ -243,11 +262,11 @@ bool sort_autore(const Articolo* a , const Articolo* b){
     return true;
 }
 
+// SEZIONE D METODO 6, prendo gli articoli dell'autore e li ordino secondo i criteri
+void Gestore::articoli_autore_sorted(int id, list<Articolo *> &lista) const {
 
-void Gestore::articoli_autore_sorted(int id, list<Articolo *> &lista) const {       // SEZIONE D METODO 6
-
-    get_articoli_autore(id,lista);                                          // per prima cosa prendo tutti gli articoli dell'autore
-    lista.sort(sort_autore);                                                // dopo li ordino
+    get_articoli_autore(id,lista);
+    lista.sort(sort_autore);
 }
 
 bool sort_key(const Articolo* a, const Articolo* b){
@@ -263,7 +282,8 @@ bool sort_key(const Articolo* a, const Articolo* b){
     return true;
 }
 
-void Gestore::articoli_keyword_sorted(QString key, list<Articolo*> &lista) const{      // SEZIONE D METODO 5
+// SEZIONE D METODO 5 prendo gli articoli con quella keyword e li ordino secondo i criteri
+void Gestore::articoli_keyword_sorted(QString key, list<Articolo*> &lista) const{
 
     get_articoli_keyword(key,lista);
     lista.sort(sort_key);
@@ -274,42 +294,51 @@ void Gestore::get_articoli_keyword(QString key, list<Articolo*> &lista) const{
     list<QString> key_da_controllare;
     for(auto& i : articoli){
         key_da_controllare = i->get_keywords();
+         // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche
         key_da_controllare.sort();
-        key_da_controllare.unique();         // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche
+        key_da_controllare.unique();
         for(auto& j : key_da_controllare){
-            if(j == key){                        // se tra le keywords da controllare trovo quella che cerco , pusho nella lista l'articolo.
+            // se tra le keywords da controllare trovo quella che cerco , pusho nella lista l'articolo.
+            if(j == key){
                 lista.push_back(i);
             }
         }
     }
 }
 
-void Gestore::get_5_most_common_key(list<QString> &chiavi) const{       // SEZIONE E METODO 3
+// SEZIONE E METODO 3
+void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
 
     list<QString> contenitore_chiavi;
     list<QString> nuove_chiavi;
 
+     // prendo le key di ogni articolo
     for(auto& i : articoli){
-        nuove_chiavi = i->get_keywords();               // prendo le key di ogni articolo
+        nuove_chiavi = i->get_keywords();
+
+        // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche  e le conservo nel contenitore
         nuove_chiavi.sort();
-        nuove_chiavi.unique();                          // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche (presumo che un articolo non debba avere keyword duplicate)
+        nuove_chiavi.unique();
         for(auto& j : nuove_chiavi){
-            contenitore_chiavi.push_back(j);            // le conservo tutte nel contenitore
+            contenitore_chiavi.push_back(j);
         }
         nuove_chiavi.clear();
     }
 
-    vector<int> quant;                               // qui vedo quante volte la chiave è presente
+    // uso questo vector per contare quante volte la chiave è presente
+    vector<int> quant;
     quant.resize(contenitore_chiavi.size());
     int ind = 0, max = INT_MIN;
 
+    // se le key sono uguali aumenta la quantità contenuta nel vector
     for(auto& i : contenitore_chiavi){
         for(auto& j : contenitore_chiavi){
             if(i == j){
-                quant[ind]++;                       // se le key sono uguali aumenta la quantità contenuta
+                quant[ind]++;
             }
         }
-    if(quant[ind] > max){                           // trovo il max tra le occorrenze di una chiave
+    // allo stesso tempo trovo il max tra le occorrenze di una chiave
+    if(quant[ind] > max){
         max = quant[ind];
     }
     ind++;
@@ -317,18 +346,24 @@ void Gestore::get_5_most_common_key(list<QString> &chiavi) const{       // SEZIO
 
     auto it = contenitore_chiavi.begin();
 
-    while(chiavi.size()!=5 && max != 0 && max!=INT_MIN){          // esco dal while se trovo 5 chiavi oppure se il max scende a 0 dunque non ci sono più chiavi da controllare
-                                                                   // aggiunto come condizione max!=INT_MIN perché se non erano presenti chiavi si genereva un loop infinito
+    // esco dal while se trovo 5 chiavi oppure se il max scende a 0 dunque non ci sono più chiavi da controllare
+    // aggiunto come condizione max!=INT_MIN perché se non erano presenti chiavi si genereva un loop infinito
+    while(chiavi.size()!=5 && max != 0 && max!=INT_MIN){
         for(int i = 0 ; i<quant.size();i++){
-            if(quant[i] == max && find(chiavi.begin(),chiavi.end(),*it) == chiavi.end()){       // se la chiave corrispondente alla pos è uguale al max e non è presente la aggiungo
+
+            // se la chiave corrispondente alla pos è uguale al max e non è presente la aggiungo
+            // perché chiaramente nel contenitore che ho creato ci sono più chiavi uguali!
+            if(quant[i] == max && find(chiavi.begin(),chiavi.end(),*it) == chiavi.end()){
                 chiavi.push_back(*it);
 
+                // se ne ho già trovato 5 esco dal for loop e di conseguenza dopo anche dal while
                 if(chiavi.size() == 5){
                     break;
                 }
             }
             it++;
         }
+    //resetto l'iteratore all'inizio della lista per ogni iterazione che faccio nel while!
     it = contenitore_chiavi.begin();
     max--;
     }
@@ -363,10 +398,12 @@ list<QString> get_key_unione(list<QString>& a, list<QString>& b){
 
 }
 
-void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) const{       // SEZIONE F METODO 5
+// SEZIONE F METODO 5
+void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) const{
 
     list<QString> key;
     list<QString> nuove_key;
+
     // in questo for prendo tutte le chiavi relative alla conferenza scelta da input
     for(auto& i : articoli){
         if(i->get_pubblicazione()->get_nome() == nome && i->get_pubblicazione()->is_conferenza()){
@@ -405,7 +442,7 @@ void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) c
             key_seconda_conf.unique();
 
             // faccio l'unione delle key delle due conferenze e anche l'intersezione
-            //dopodiché faccio size di intersezione / size di unione , se è >=0,8 aggiungo alla lista la pubblicazione
+            //dopodiché faccio size di intersezione / size di unione , se è >=0,8 aggiungo alla lista di quelle comuni la pubblicazione attuale
 
             key_unione = get_key_unione(key_comuni,key_seconda_conf);
             key_comuni = get_key_comuni(key_comuni,key_seconda_conf);
