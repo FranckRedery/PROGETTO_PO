@@ -52,7 +52,8 @@ void MainWindow::on_aggiungi_autore_clicked()
     QString parola;
     QString visualizza_afferenze;
 
-    for(int i = 0; i!=afferenze.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
+    // prendo ogni afferenza dalla stringa e le inserisco nella lista
+    for(int i = 0; i!=afferenze.size();i++){
         if(afferenze[i] != ',' && !parola.isEmpty()){
             parola.push_back(afferenze[i]);
             if(i+1 == afferenze.size()){
@@ -137,7 +138,8 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
     QString organizzatore;
     QString visualizza_organizzatori;
 
-    for(int i = 0; i!=stringa_di_organizzatori.size();i++){        // prendo ogni afferenza dalla stringa e le inserisco nella lista
+    // prendo ogni afferenza dalla stringa e le inserisco nella lista
+    for(int i = 0; i!=stringa_di_organizzatori.size();i++){
         if(stringa_di_organizzatori[i] != ',' && !organizzatore.isEmpty()){
             organizzatore.push_back(stringa_di_organizzatori[i]);
             if(i+1 == stringa_di_organizzatori.size()){
