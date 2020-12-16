@@ -73,8 +73,11 @@ void MainWindow::on_aggiungi_autore_clicked()
             parola.clear();
         }
     }
-    int last_char = visualizza_afferenze.size()-2;
-    visualizza_afferenze[last_char] = '.';
+
+    if(visualizza_afferenze.size()>=2){
+        int last_char = visualizza_afferenze.size()-2;
+        visualizza_afferenze[last_char] = '.';
+    }
 
     int id = ui->id_autore->value();
 
@@ -159,8 +162,11 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
             organizzatore.clear();
         }
     }
-    int last_char = visualizza_organizzatori.size()-2;
-    visualizza_organizzatori[last_char] = '.';
+
+    if(visualizza_organizzatori.size()>=2){
+        int last_char = visualizza_organizzatori.size()-2;
+        visualizza_organizzatori[last_char] = '.';
+    }
 
     if(nome.isEmpty() || acronimo.isEmpty() || luogo.isEmpty()){
         QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome, acronimo e luogo non possono essere vuoti.", QMessageBox::Ok,this);
@@ -227,8 +233,11 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 
-    int last_char = visualizza_autori.size() -2;
-    visualizza_autori[last_char] = '.';
+    int last_char;
+    if(visualizza_autori.size()>= 2){
+        last_char = visualizza_autori.size() -2;
+        visualizza_autori[last_char] = '.';
+    }
 
     QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
     QString visualizza_correlati;
@@ -254,8 +263,10 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 
-    last_char = visualizza_correlati.size()-2;
-    visualizza_correlati[last_char] = '.';
+    if(visualizza_correlati.size()>=2){
+        last_char = visualizza_correlati.size()-2;
+        visualizza_correlati[last_char] = '.';
+    }
 
     QString stringa_keyword = ui->plaintext_keyword_di_articolo->toPlainText();
     QString visualizza_keyword;
@@ -284,8 +295,10 @@ void MainWindow::on_pushButton_clicked()
 
     }
 
-    last_char = visualizza_keyword.size()-2;
-    visualizza_keyword[last_char] = '.';
+    if(visualizza_keyword.size()>=2){
+        last_char = visualizza_keyword.size()-2;
+        visualizza_keyword[last_char] = '.';
+    }
 
     if(titolo.isEmpty() || autori.empty() || keyword.empty() || articoli_correlati.empty()){
         QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);

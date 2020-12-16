@@ -51,6 +51,8 @@ void Gestore::cancella_tutte_pubblicazioni(){
     pubblicazioni.clear();
 }
 
+//triade delete, costruttore copia, operator =
+
 Gestore::~Gestore(){
     cancella_tutti_autori();
     cancella_tutte_pubblicazioni();
