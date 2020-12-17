@@ -159,7 +159,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   27,
+    QMetaType::QString, QMetaType::QString,   27,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -196,7 +196,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->on_pulsante_visualizza_conferenze_clicked(); break;
         case 22: _t->on_pulsante_visualizza_Articoli_clicked(); break;
         case 23: _t->on_pulsante_aggiungi_autori_file_clicked(); break;
-        case 24: _t->readFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 24: { QString _r = _t->readFile((*reinterpret_cast< QString(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 25: _t->on_pulsante_aggiungi_riviste_file_clicked(); break;
         case 26: _t->on_pulsante_aggiungi_conferenze_file_clicked(); break;
         default: ;

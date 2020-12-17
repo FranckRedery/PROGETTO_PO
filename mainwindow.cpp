@@ -502,39 +502,18 @@ INSERIRLO SCRIVERE '.' SE CI SONO CAMPI COME LE KEYWORD CHE POSSONO
 ESSERE DIVERSE BISOGNA SEPARARLE UNA DALL'ALTRA CON ','
 IN PARTICOLARE LE MODALITà DI INSERIMENTO SONO SPIEGATE DENTRO I FILE
 DI TESTO SPECIFICI PER ESSERE PIù CHIARI
+
+NB: NEL CASO SI VOLESSERO INSERIRE CONTEMPORANEAMENTE FILE DALL'INTERFACCIA E DA TESTO,
+SE VENGONO INSERITI PRECEDENTEMENTE (DA INTERFACCIA) ID DI AUTORI/ARTICOLI IN MODO NON UNIFORME ES: 1 , 5 , 4 , 3
+I SETTAGGI AUTOMATICI PER AUGGIUNGERE GLI ID (DA FILE DI TESTO) HA QUALCHE PROBLEMA QUINDI BISOGNA INSERIRLI
+IN MODO ORDINATO O IN MODO SEMPRE CRESCENTE GRAZIE
                                                                 */
 void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
 {
-    readFile("autori.txt");
+    QString testo_file = readFile("autori.txt");
 
-}
-
-void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
-{
-    readFile("conferenze.txt");
-}
-
-void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
-{
-    readFile("riviste.txt");
-}
-
-
-
-void MainWindow::readFile(QString filename)
-{
-    QFile file(filename);
-
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        cout<<"File open failed";
-    }
-
-    QTextStream in(&file);
-    QString testo_file = in.readAll();
-
-    if(filename == "autori.txt"){
-
-        int i = 0, cont = 0, id =1 ;
+        int i = 0, cont = 0;
+        int id = gestore.get_first_free_id_autore();
         QString nome, cognome, visualizza_afferenze, parola;
         list<QString> aff;
 
@@ -582,81 +561,138 @@ void MainWindow::readFile(QString filename)
             }
             i++;
         }
-    return;
-    }
 
-    if(filename == "conferenze.txt"){
+}
 
-        int i = 0, cont = 0, part=0;
-        QString nome, acronimo, visualizza_orgnizzatori, org, luogo, partecipanti,data;
-        list<QString> organizzatori;
+void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
+{
+   QString testo_file = readFile("conferenze.txt");
 
-        while(i!=testo_file.size()){
-            if(testo_file[i] == '.'){
-                cont++;
-            }
-            if(testo_file[i]!='.' && cont == 0){
-                nome.push_back(testo_file[i]);
-            }
-            if(testo_file[i]!='.' && cont == 1){
-                acronimo.push_back(testo_file[i]);
-            }
-            if(testo_file[i]!='.' && cont == 2){
-                data.push_back(testo_file[i]);
-            }
-            if(testo_file[i]!='.' && cont == 3){
-                luogo.push_back(testo_file[i]);
-            }
-            if(testo_file[i].isNumber() && cont == 4){
+       int i = 0, cont = 0;
+       QString nome, acronimo, visualizza_orgnizzatori, org, luogo, partecipanti,data;
+       list<QString> organizzatori;
 
-                partecipanti.push_back(testo_file[i]);
-                part += partecipanti.toInt();
-                part *=10;
-                partecipanti.clear();
-            }
+       while(i!=testo_file.size()){
+           if(testo_file[i] == '.'){
+               cont++;
+           }
+           if(testo_file[i]!='.' && cont == 0){
+               nome.push_back(testo_file[i]);
+           }
+           if(testo_file[i]!='.' && cont == 1){
+               acronimo.push_back(testo_file[i]);
+           }
+           if(testo_file[i]!='.' && cont == 2){
+               data.push_back(testo_file[i]);
+           }
+           if(testo_file[i]!='.' && cont == 3){
+               luogo.push_back(testo_file[i]);
+           }
+           if(testo_file[i].isNumber() && cont == 4){
+               partecipanti.push_back(testo_file[i]);
+           }
 
-            if(testo_file[i] != ',' && testo_file[i]!='.' && cont == 5){
-                org.push_back(testo_file[i]);
-            }
-            if(testo_file[i] == ',' && !org.isEmpty()){
-                organizzatori.push_back(org.simplified());
-                visualizza_orgnizzatori += org.simplified();
-                visualizza_orgnizzatori += ", ";
-                org.clear();
-            }
+           if(testo_file[i] != ',' && testo_file[i]!='.' && cont == 5){
+               org.push_back(testo_file[i]);
+           }
+           if(testo_file[i] == ',' && !org.isEmpty()){
+               organizzatori.push_back(org.simplified());
+               visualizza_orgnizzatori += org.simplified();
+               visualizza_orgnizzatori += ", ";
+               org.clear();
+           }
 
-            if(cont == 6){
-                part/= 10;
-                organizzatori.push_back(org.simplified());
-                visualizza_orgnizzatori += org.simplified();
+           if(cont == 6){
+               organizzatori.push_back(org.simplified());
+               visualizza_orgnizzatori += org.simplified();
 
 
 
-                if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
-                    QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
-                    mess_due.exec();
-                    return;
-                    }
+               if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
+                   QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
+                   mess_due.exec();
+                   return;
+                   }
 
-                gestore.aggiungi_conferenza(nome.simplified(),acronimo.simplified(),data.simplified(),luogo.simplified(),part,organizzatori);
-                ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    LUOGO : " + luogo.simplified() + "    DATA : " + data.simplified() + "    PARTECIPANTI : " + QString::number(part)  + "    ORGANIZZATORI : " + visualizza_orgnizzatori);
+               gestore.aggiungi_conferenza(nome.simplified(),acronimo.simplified(),data.simplified(),luogo.simplified(),partecipanti.toInt(),organizzatori);
+               ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    LUOGO : " + luogo.simplified() + "    DATA : " + data + "    PARTECIPANTI : " + QString::number(partecipanti.toInt())  + "    ORGANIZZATORI : " + visualizza_orgnizzatori);
 
-                part = 0;
-                cont = 0;
-                nome.clear();
-                acronimo.clear();
-                visualizza_orgnizzatori.clear();
-                org.clear();
-                luogo.clear();
-                partecipanti.clear();
-                data.clear();
-                organizzatori.clear();
-                }
-            i++;
-            }
-        return;
+               cont = 0;
+               nome.clear();
+               acronimo.clear();
+               visualizza_orgnizzatori.clear();
+               org.clear();
+               luogo.clear();
+               partecipanti.clear();
+               data.clear();
+               organizzatori.clear();
+               }
+           i++;
+           }
+}
+
+void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
+{
+    QString testo_file =readFile("riviste.txt");
+
+    int i = 0, cont = 0;
+    QString nome, acronimo, data, editore, volume;
+
+    while(i!=testo_file.size()){
+        if(testo_file[i] == '.'){
+            cont++;
+        }
+        if(testo_file[i]!='.' && cont == 0){
+            nome.push_back(testo_file[i]);
+        }
+        if(testo_file[i]!='.' && cont == 1){
+            acronimo.push_back(testo_file[i]);
+        }
+        if(testo_file[i]!='.' && cont == 2){
+            data.push_back(testo_file[i]);
+        }
+        if(testo_file[i]!='.' && cont == 3){
+            editore.push_back(testo_file[i]);
+        }
+        if(testo_file[i].isNumber() && cont == 4){
+            volume.push_back(testo_file[i]);
         }
 
+        if(cont == 5){
 
+
+            if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
+                QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
+                mess_due.exec();
+                return;
+                }
+
+            gestore.aggiungi_rivista(nome.simplified(),acronimo.simplified(),data.simplified(),editore.simplified(),volume.toInt());
+            ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    EDITORE : " + editore.simplified() + "    DATA : " + data + "    VOLUME : " + QString::number(volume.toInt()));
+
+            cont = 0;
+            nome.clear();
+            acronimo.clear();
+            data.clear();
+            editore.clear();
+            volume.clear();
+            }
+        i++;
+        }
+}
+
+
+
+QString MainWindow::readFile(QString filename)
+{
+    QFile file(filename);
+
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        cout<<"File open failed";
+    }
+
+    QTextStream in(&file);
+    QString testo_file = in.readAll();
+    return testo_file;
 }
 

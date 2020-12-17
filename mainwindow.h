@@ -65,7 +65,7 @@ private slots:
 
     void on_pulsante_aggiungi_autori_file_clicked();
 
-    void readFile(QString filename);
+    QString readFile(QString filename);
 
     void on_pulsante_aggiungi_riviste_file_clicked();
 

@@ -456,3 +456,10 @@ void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) c
     lista.sort();
     lista.unique();
 }
+
+int Gestore::get_first_free_id_autore() const{
+    if(autori.empty()){
+        return 1;
+    }
+    return autori.back()->get_id()+1;
+}

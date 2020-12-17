@@ -78,6 +78,8 @@ public:
     // SEZIONE F METODO 5
     void get_conferenze_simili(QString nome, list<Pubblicazione*>& lista) const;
 
+    int get_first_free_id_autore() const;
+
 private:
 
     list<Autore*> autori;
