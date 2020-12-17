@@ -512,31 +512,30 @@ void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
 {
     QString testo_file = readFile("autori.txt");
 
-        int i = 0, cont = 0;
-        int id = gestore.get_first_free_id_autore();
+        int i = 0, cont = 0, id;
         QString nome, cognome, visualizza_afferenze, parola;
         list<QString> aff;
 
         while(i != testo_file.size()){
 
-            if(testo_file[i] == '.'){
+            if(testo_file[i] == '|'){
                 cont++;
             }
-            if(testo_file[i]!='.' && cont == 0){
+            if(testo_file[i]!='|' && cont == 0){
                 nome.push_back(testo_file[i]);
             }
 
-            if(testo_file[i]!='.' && cont == 1){
+            if(testo_file[i]!='|' && cont == 1){
                 cognome.push_back(testo_file[i]);
             }
 
             if(testo_file[i]!=',' && cont == 2 && !parola.isEmpty()){
                 parola.push_back(testo_file[i]);
             }
-            if(parola.isEmpty() && testo_file[i]!=' ' && testo_file[i]!='.' && cont == 2){
+            if(parola.isEmpty() && testo_file[i]!=' ' && testo_file[i]!='|' && cont == 2){
                 parola.push_back(testo_file[i]);
             }
-            if(testo_file[i] == ',' && !parola.isEmpty()){
+            if(testo_file[i] == ',' && !parola.isEmpty() && cont == 2){
                 aff.push_back(parola.simplified());
                 visualizza_afferenze += parola.simplified();
                 visualizza_afferenze += ", ";
@@ -547,7 +546,7 @@ void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
             if(cont == 3){
                 aff.push_back(parola.simplified());
                 visualizza_afferenze += parola.simplified();
-
+                id = gestore.get_first_free_id_autore();
                 gestore.aggiungi_autore(nome.simplified(),cognome.simplified(),id,aff);
                 ui->PAG_VISUALIZZA_AUTORI_LISTA->addItem("ID : " + QString::number(id) + "    NOME : "+ nome.simplified() + "    COGNOME : " + cognome.simplified() + "    AFFERENZE : " + visualizza_afferenze.simplified());
 
@@ -573,29 +572,29 @@ void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
        list<QString> organizzatori;
 
        while(i!=testo_file.size()){
-           if(testo_file[i] == '.'){
+           if(testo_file[i] == '|'){
                cont++;
            }
-           if(testo_file[i]!='.' && cont == 0){
+           if(testo_file[i]!='|' && cont == 0){
                nome.push_back(testo_file[i]);
            }
-           if(testo_file[i]!='.' && cont == 1){
+           if(testo_file[i]!='|' && cont == 1){
                acronimo.push_back(testo_file[i]);
            }
-           if(testo_file[i]!='.' && cont == 2){
+           if(testo_file[i]!='|' && cont == 2){
                data.push_back(testo_file[i]);
            }
-           if(testo_file[i]!='.' && cont == 3){
+           if(testo_file[i]!='|' && cont == 3){
                luogo.push_back(testo_file[i]);
            }
            if(testo_file[i].isNumber() && cont == 4){
                partecipanti.push_back(testo_file[i]);
            }
 
-           if(testo_file[i] != ',' && testo_file[i]!='.' && cont == 5){
+           if(testo_file[i] != ',' && testo_file[i]!='|' && cont == 5){
                org.push_back(testo_file[i]);
            }
-           if(testo_file[i] == ',' && !org.isEmpty()){
+           if(testo_file[i] == ',' && !org.isEmpty() && cont == 5){
                organizzatori.push_back(org.simplified());
                visualizza_orgnizzatori += org.simplified();
                visualizza_orgnizzatori += ", ";
@@ -639,19 +638,19 @@ void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
     QString nome, acronimo, data, editore, volume;
 
     while(i!=testo_file.size()){
-        if(testo_file[i] == '.'){
+        if(testo_file[i] == '|'){
             cont++;
         }
-        if(testo_file[i]!='.' && cont == 0){
+        if(testo_file[i]!='|' && cont == 0){
             nome.push_back(testo_file[i]);
         }
-        if(testo_file[i]!='.' && cont == 1){
+        if(testo_file[i]!='|' && cont == 1){
             acronimo.push_back(testo_file[i]);
         }
-        if(testo_file[i]!='.' && cont == 2){
+        if(testo_file[i]!='|' && cont == 2){
             data.push_back(testo_file[i]);
         }
-        if(testo_file[i]!='.' && cont == 3){
+        if(testo_file[i]!='|' && cont == 3){
             editore.push_back(testo_file[i]);
         }
         if(testo_file[i].isNumber() && cont == 4){
@@ -681,6 +680,110 @@ void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
         }
 }
 
+void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
+{
+    QString testo_file =readFile("articoli.txt");
+
+    QString titolo, nome_pubblicazione, num_pagine, prezzo, id_autore, keyword, id_correlato;
+    int cont = 0, i = 0, id;
+
+    QString visualizza_autori, visualizza_keyword,visualizza_correlati;
+    list<int> articoli_correlati;
+    list<Autore*> autori;
+    list<QString> keys;
+
+    while(i!=testo_file.size()){
+        if(testo_file[i] == '|'){
+            cont++;
+        }
+        if(testo_file[i]!='|' && cont == 0){
+            titolo.push_back(testo_file[i]);
+        }
+        if(testo_file[i]!='|' && cont == 1){
+            nome_pubblicazione.push_back(testo_file[i]);
+        }
+        if(testo_file[i]!='|' && cont == 2){
+            num_pagine.push_back(testo_file[i]);
+        }
+        if(testo_file[i]!='|' && cont == 3){
+            prezzo.push_back(testo_file[i]);
+        }
+        if(testo_file[i] != '|' && testo_file[i]!=',' && cont == 4){
+            id_autore.push_back(testo_file[i]);
+        }
+        if(testo_file[i] == ',' && !id_autore.isEmpty() && cont == 4){
+            autori.push_back(gestore.get_autore(id_autore.toInt()));
+            visualizza_autori += id_autore.simplified();
+            visualizza_autori += ", ";
+            id_autore.clear();
+        }
+        if(testo_file[i]!= ',' && testo_file[i]!='|' && cont == 5){
+            keyword.push_back(testo_file[i]);
+        }
+        if(testo_file[i] == ',' && !keyword.isEmpty() && cont == 5){
+            keys.push_back(keyword.simplified());
+            visualizza_keyword += keyword.simplified();
+            visualizza_keyword += ", ";
+            keyword.clear();
+        }
+
+        if(testo_file[i] != ',' && testo_file[i]!='|' && cont == 6){
+            id_correlato.push_back(testo_file[i]);
+        }
+        if(testo_file[i] == ',' && !id_correlato.isEmpty() && cont == 6){
+            articoli_correlati.push_back(id_correlato.toInt());
+            visualizza_correlati += id_correlato.simplified();
+            visualizza_correlati += ", ";
+            id_correlato.clear();
+        }
+        if(cont == 7){
+
+            autori.push_back(gestore.get_autore(id_autore.toInt()));
+            visualizza_autori += id_autore.simplified();
+
+            keys.push_back(keyword.simplified());
+            visualizza_keyword += keyword.simplified();
+
+            articoli_correlati.push_back(id_correlato.toInt());
+            visualizza_correlati += id_correlato.simplified();
+
+            id = gestore.get_first_free_id_articolo();
+
+            if(titolo.isEmpty() || autori.empty() || keys.empty() || articoli_correlati.empty()){
+                QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
+                mess.exec();
+                return;
+            }
+            if(gestore.get_pubblicazione(nome_pubblicazione.simplified()) == nullptr){
+                QMessageBox mess_tre(QMessageBox::Critical, "Errore", "La conferenza/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
+                mess_tre.exec();
+                return;
+            }
+
+            gestore.aggiungi_articolo(id,num_pagine.toInt(),prezzo.toDouble(),titolo.simplified(),gestore.get_pubblicazione(nome_pubblicazione.simplified()),articoli_correlati,autori,keys);
+            ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID : " + QString::number(id) + "    TITOLO : " + titolo.simplified() + "    PAGINE : " + QString::number(num_pagine.toInt()) + "    PREZZO : " + QString::number(prezzo.toDouble()) + "    CONFERENZA/RIVISTA ASSOCIATA : " + nome_pubblicazione.simplified() + "    ID AUTORI :" + visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " + visualizza_keyword);
+
+            cont = 0;
+            titolo.clear();
+            nome_pubblicazione.clear();
+            num_pagine.clear();
+            prezzo.clear();
+            id_autore.clear();
+            keyword.clear();
+            id_correlato.clear();
+            visualizza_autori.clear();
+            visualizza_keyword.clear();
+            visualizza_correlati.clear();
+            articoli_correlati.clear();
+            autori.clear();
+            keys.clear();
+        }
+        i++;
+    }
+
+}
+
+
 
 
 QString MainWindow::readFile(QString filename)
@@ -695,4 +798,3 @@ QString MainWindow::readFile(QString filename)
     QString testo_file = in.readAll();
     return testo_file;
 }
-

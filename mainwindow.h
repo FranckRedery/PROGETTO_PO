@@ -71,6 +71,8 @@ private slots:
 
     void on_pulsante_aggiungi_conferenze_file_clicked();
 
+    void on_pulsante_aggiungi_articolo_file_clicked();
+
 private:
     Ui::MainWindow *ui;
     Gestore gestore;

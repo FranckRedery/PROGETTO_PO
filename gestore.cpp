@@ -463,3 +463,10 @@ int Gestore::get_first_free_id_autore() const{
     }
     return autori.back()->get_id()+1;
 }
+
+int Gestore::get_first_free_id_articolo() const{
+    if(articoli.empty()){
+        return 1;
+    }
+    return articoli.back()->get_identificativo()+1;
+}

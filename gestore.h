@@ -80,6 +80,8 @@ public:
 
     int get_first_free_id_autore() const;
 
+    int get_first_free_id_articolo() const;
+
 private:
 
     list<Autore*> autori;
