@@ -4,11 +4,11 @@
 #include "gestore.h"
 #include <QMessageBox>
 #include <iostream>
+#include <QFile>
+#include <QTextStream>
 
 using namespace std;
 
-
-Gestore gestore;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -492,3 +492,171 @@ void MainWindow::on_pulsante_visualizza_Articoli_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->PAG_VISUALIZZA_ARTICOLI);
 }
+
+
+/*SEZIONE F METODO 4 : AGGIUNGERE GLI INPUT DA FILE DI TESTO
+L'ID DA FILE DI TESTO LO SETTO IN AUTOMATICO PER SEMPLIFICARE,
+DOVE è RICHIESTO. PER QUANTO RIGUARDA LA MODALITà DI INSERIMENTO,
+IN GENERALE BISOGNA INSERIRE OGNI CAMPO E POI QUANDO SI FINISCE DI
+INSERIRLO SCRIVERE '.' SE CI SONO CAMPI COME LE KEYWORD CHE POSSONO
+ESSERE DIVERSE BISOGNA SEPARARLE UNA DALL'ALTRA CON ','
+IN PARTICOLARE LE MODALITà DI INSERIMENTO SONO SPIEGATE DENTRO I FILE
+DI TESTO SPECIFICI PER ESSERE PIù CHIARI
+                                                                */
+void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
+{
+    readFile("autori.txt");
+
+}
+
+void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
+{
+    readFile("conferenze.txt");
+}
+
+void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
+{
+    readFile("riviste.txt");
+}
+
+
+
+void MainWindow::readFile(QString filename)
+{
+    QFile file(filename);
+
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        cout<<"File open failed";
+    }
+
+    QTextStream in(&file);
+    QString testo_file = in.readAll();
+
+    if(filename == "autori.txt"){
+
+        int i = 0, cont = 0, id =1 ;
+        QString nome, cognome, visualizza_afferenze, parola;
+        list<QString> aff;
+
+        while(i != testo_file.size()){
+
+            if(testo_file[i] == '.'){
+                cont++;
+            }
+            if(testo_file[i]!='.' && cont == 0){
+                nome.push_back(testo_file[i]);
+            }
+
+            if(testo_file[i]!='.' && cont == 1){
+                cognome.push_back(testo_file[i]);
+            }
+
+            if(testo_file[i]!=',' && cont == 2 && !parola.isEmpty()){
+                parola.push_back(testo_file[i]);
+            }
+            if(parola.isEmpty() && testo_file[i]!=' ' && testo_file[i]!='.' && cont == 2){
+                parola.push_back(testo_file[i]);
+            }
+            if(testo_file[i] == ',' && !parola.isEmpty()){
+                aff.push_back(parola.simplified());
+                visualizza_afferenze += parola.simplified();
+                visualizza_afferenze += ", ";
+                parola.clear();
+            }
+
+
+            if(cont == 3){
+                aff.push_back(parola.simplified());
+                visualizza_afferenze += parola.simplified();
+
+                gestore.aggiungi_autore(nome.simplified(),cognome.simplified(),id,aff);
+                ui->PAG_VISUALIZZA_AUTORI_LISTA->addItem("ID : " + QString::number(id) + "    NOME : "+ nome.simplified() + "    COGNOME : " + cognome.simplified() + "    AFFERENZE : " + visualizza_afferenze.simplified());
+
+                id++;
+                cont = 0;
+                nome.clear();
+                cognome.clear();
+                aff.clear();
+                parola.clear();
+                visualizza_afferenze.clear();
+            }
+            i++;
+        }
+    return;
+    }
+
+    if(filename == "conferenze.txt"){
+
+        int i = 0, cont = 0, part=0;
+        QString nome, acronimo, visualizza_orgnizzatori, org, luogo, partecipanti,data;
+        list<QString> organizzatori;
+
+        while(i!=testo_file.size()){
+            if(testo_file[i] == '.'){
+                cont++;
+            }
+            if(testo_file[i]!='.' && cont == 0){
+                nome.push_back(testo_file[i]);
+            }
+            if(testo_file[i]!='.' && cont == 1){
+                acronimo.push_back(testo_file[i]);
+            }
+            if(testo_file[i]!='.' && cont == 2){
+                data.push_back(testo_file[i]);
+            }
+            if(testo_file[i]!='.' && cont == 3){
+                luogo.push_back(testo_file[i]);
+            }
+            if(testo_file[i].isNumber() && cont == 4){
+
+                partecipanti.push_back(testo_file[i]);
+                part += partecipanti.toInt();
+                part *=10;
+                partecipanti.clear();
+            }
+
+            if(testo_file[i] != ',' && testo_file[i]!='.' && cont == 5){
+                org.push_back(testo_file[i]);
+            }
+            if(testo_file[i] == ',' && !org.isEmpty()){
+                organizzatori.push_back(org.simplified());
+                visualizza_orgnizzatori += org.simplified();
+                visualizza_orgnizzatori += ", ";
+                org.clear();
+            }
+
+            if(cont == 6){
+                part/= 10;
+                organizzatori.push_back(org.simplified());
+                visualizza_orgnizzatori += org.simplified();
+
+
+
+                if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
+                    QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
+                    mess_due.exec();
+                    return;
+                    }
+
+                gestore.aggiungi_conferenza(nome.simplified(),acronimo.simplified(),data.simplified(),luogo.simplified(),part,organizzatori);
+                ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    LUOGO : " + luogo.simplified() + "    DATA : " + data.simplified() + "    PARTECIPANTI : " + QString::number(part)  + "    ORGANIZZATORI : " + visualizza_orgnizzatori);
+
+                part = 0;
+                cont = 0;
+                nome.clear();
+                acronimo.clear();
+                visualizza_orgnizzatori.clear();
+                org.clear();
+                luogo.clear();
+                partecipanti.clear();
+                data.clear();
+                organizzatori.clear();
+                }
+            i++;
+            }
+        return;
+        }
+
+
+}
+

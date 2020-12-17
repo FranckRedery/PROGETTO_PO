@@ -39,10 +39,50 @@
         <x>40</x>
         <y>10</y>
         <width>711</width>
-        <height>381</height>
+        <height>551</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="2" column="0">
+        <widget class="QPushButton" name="SEZIONE_B">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(217,188,0);</string>
+         </property>
+         <property name="text">
+          <string>Sezione B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pulsante_visualizza_conferenze">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(15,138,8); </string>
+         </property>
+         <property name="text">
+          <string>Visualizza conferenze</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="pulsante_pag_aggiungiArticolo">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(24,119,242);</string>
+         </property>
+         <property name="text">
+          <string>Aggiungi articolo</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pulsante_visualizza_Riviste">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(15,138,8); </string>
+         </property>
+         <property name="text">
+          <string>Visualizza riviste</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="2">
         <widget class="QPushButton" name="go_pag_conferenze">
          <property name="styleSheet">
@@ -50,6 +90,36 @@
          </property>
          <property name="text">
           <string>Aggiungi conferenze</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(217,188,0);</string>
+         </property>
+         <property name="text">
+          <string>Sezione F</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="SEZIONE_C">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(217,188,0);</string>
+         </property>
+         <property name="text">
+          <string>Sezione C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pulsante_visualizza_Autori">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(15,138,8); </string>
+         </property>
+         <property name="text">
+          <string>Visualizza autori</string>
          </property>
         </widget>
        </item>
@@ -73,26 +143,6 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="SEZIONE_C">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(217,188,0);</string>
-         </property>
-         <property name="text">
-          <string>Sezione C</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(217,188,0);</string>
-         </property>
-         <property name="text">
-          <string>Sezione F</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="go_pag_autori">
          <property name="styleSheet">
@@ -100,26 +150,6 @@
          </property>
          <property name="text">
           <string>Aggiungi autori</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pulsante_pag_aggiungiArticolo">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(24,119,242);</string>
-         </property>
-         <property name="text">
-          <string>Aggiungi articolo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="SEZIONE_B">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(217,188,0);</string>
-         </property>
-         <property name="text">
-          <string>Sezione B</string>
          </property>
         </widget>
        </item>
@@ -133,36 +163,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pulsante_visualizza_Autori">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(15,138,8); </string>
-         </property>
-         <property name="text">
-          <string>Visualizza autori</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pulsante_visualizza_Riviste">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(15,138,8); </string>
-         </property>
-         <property name="text">
-          <string>Visualizza riviste</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pulsante_visualizza_conferenze">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(15,138,8); </string>
-         </property>
-         <property name="text">
-          <string>Visualizza conferenze</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="3">
         <widget class="QPushButton" name="pulsante_visualizza_Articoli">
          <property name="styleSheet">
@@ -170,6 +170,46 @@
          </property>
          <property name="text">
           <string>Visualizza articoli</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="pulsante_aggiungi_autori_file">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(145, 15, 15);</string>
+         </property>
+         <property name="text">
+          <string>Aggiungi autori da file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="pulsante_aggiungi_riviste_file">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(145, 15, 15);</string>
+         </property>
+         <property name="text">
+          <string>Aggiungi riviste da file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QPushButton" name="pulsante_aggiungi_conferenze_file">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(145, 15, 15);</string>
+         </property>
+         <property name="text">
+          <string>Aggiungi conferenze da file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QPushButton" name="pulsante_aggiungi_articolo_file">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(145, 15, 15);</string>
+         </property>
+         <property name="text">
+          <string>Aggiungi articolo da file</string>
          </property>
         </widget>
        </item>
@@ -322,7 +362,7 @@ esempio (ciao, sono una, afferenza)</string>
        <string>Menu principale</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>140</x>
@@ -449,7 +489,7 @@ esempio (ciao, sono una, afferenza)</string>
        <string>Aggiungi conferenza</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>170</x>

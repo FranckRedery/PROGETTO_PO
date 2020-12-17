@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "gestore.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -62,7 +63,16 @@ private slots:
 
     void on_pulsante_visualizza_Articoli_clicked();
 
+    void on_pulsante_aggiungi_autori_file_clicked();
+
+    void readFile(QString filename);
+
+    void on_pulsante_aggiungi_riviste_file_clicked();
+
+    void on_pulsante_aggiungi_conferenze_file_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Gestore gestore;
 };
 #endif // MAINWINDOW_H
