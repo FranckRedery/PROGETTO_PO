@@ -758,10 +758,12 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
             id_autore.push_back(testo_file[i]);
         }
         if(testo_file[i] == ',' && !id_autore.isEmpty() && cont == 4){
-            autori.push_back(gestore.get_autore(id_autore.toInt()));
-            visualizza_autori += id_autore.simplified();
-            visualizza_autori += ", ";
-            id_autore.clear();
+            if(gestore.get_autore(id_autore.toInt())!=nullptr){
+                autori.push_back(gestore.get_autore(id_autore.toInt()));
+                visualizza_autori += id_autore.simplified();
+                visualizza_autori += ", ";
+                id_autore.clear();
+            }
         }
         if(testo_file[i]!= ',' && testo_file[i]!='|' && cont == 5){
             keyword.push_back(testo_file[i]);
@@ -783,9 +785,10 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
             id_correlato.clear();
         }
         if(cont == 7){
-
-            autori.push_back(gestore.get_autore(id_autore.toInt()));
-            visualizza_autori += id_autore.simplified();
+            if(gestore.get_autore(id_autore.toInt())!=nullptr){
+                    autori.push_back(gestore.get_autore(id_autore.toInt()));
+                    visualizza_autori += id_autore.simplified();
+            }
 
             keys.push_back(keyword.simplified());
             visualizza_keyword += keyword.simplified();
@@ -795,7 +798,7 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
 
             id = gestore.get_first_free_id_articolo();
 
-            if(titolo.isEmpty() || visualizza_autori.isEmpty() || keys.empty() || articoli_correlati.empty()){
+            if(titolo.isEmpty() || autori.empty() || keys.empty() || articoli_correlati.empty()){
                 QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
                 mess.exec();
                 return;
