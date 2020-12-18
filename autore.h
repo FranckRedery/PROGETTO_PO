@@ -13,19 +13,19 @@ public:
 
     Autore(QString n, QString c, int id, list<QString> a): nome(n) , cognome(c), identificativo(id), afferenze(a){}
 
-    void set_nome(QString n);
+    void set_nome(QString n){ nome = n; }
 
-    void set_cognome(QString c);
+    void set_cognome(QString c){ cognome = c; }
 
-    void set_id(int id);
+    void set_id(int id){ identificativo = id; }
 
-    void aggiungi_afferenza(QString aff);
+    void aggiungi_afferenza(QString aff){ afferenze.push_back(aff); }
 
-    int get_id() const;
+    int get_id() const { return identificativo; }
 
-    QString get_nome() const;
+    QString get_nome() const { return nome; }
 
-    QString get_cognome() const;
+    QString get_cognome() const { return cognome; }
 
 private:
 
