@@ -11,11 +11,9 @@ CONFIG += c++11
 SOURCES += \
     articolo.cpp \
     autore.cpp \
-    conferenza.cpp \
     gestore.cpp \
     main.cpp \
-    mainwindow.cpp \
-    rivista.cpp
+    mainwindow.cpp
 
 HEADERS += \
     articolo.h \

@@ -42,10 +42,12 @@ public:
     // ritorna un puntatore alla pubblicazione se è presente, altrimenti ritorna nullptr
     Pubblicazione* get_pubblicazione(QString nome) const ;
 
+    // se l'id è stato preso torna true
     bool Is_ID_autore_alreadytaken(int id) const ;
 
     bool Is_Nome_pubblicazione_alreadytaken(QString nome) const ;
 
+    //se l'id è stato preso torna true
     bool Is_ID_articolo_alreadytaken(int id) const;
 
     // ritorna un puntatore ad autore se l'id di quell'autore è presente nella lista , altrimenti ritorna nullptr

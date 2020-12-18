@@ -223,6 +223,7 @@ Makefile: ProgettoPO-2020-2021-Reda-209394.pro ../../../../Qt/5.15.0/mingw81_64/
 		../../../../Qt/5.15.0/mingw81_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.15.0/mingw81_64/mkspecs/win32-g++/qmake.conf \
 		../../../../Qt/5.15.0/mingw81_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.15.0/mingw81_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.15.0/mingw81_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/5.15.0/mingw81_64/mkspecs/features/default_pre.prf \
@@ -251,7 +252,6 @@ Makefile: ProgettoPO-2020-2021-Reda-209394.pro ../../../../Qt/5.15.0/mingw81_64/
 		../../../../Qt/5.15.0/mingw81_64/lib/Qt5Gui.prl \
 		../../../../Qt/5.15.0/mingw81_64/lib/Qt5Core.prl \
 		../../../../Qt/5.15.0/mingw81_64/lib/qtmain.prl \
-		.qmake.stash \
 		../../../../Qt/5.15.0/mingw81_64/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ProgettoPO-2020-2021-Reda-209394.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/features/spec_pre.prf:
@@ -407,6 +407,7 @@ Makefile: ProgettoPO-2020-2021-Reda-209394.pro ../../../../Qt/5.15.0/mingw81_64/
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/win32-g++/qmake.conf:
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/features/default_pre.prf:
@@ -435,7 +436,6 @@ ProgettoPO-2020-2021-Reda-209394.pro:
 ../../../../Qt/5.15.0/mingw81_64/lib/Qt5Gui.prl:
 ../../../../Qt/5.15.0/mingw81_64/lib/Qt5Core.prl:
 ../../../../Qt/5.15.0/mingw81_64/lib/qtmain.prl:
-.qmake.stash:
 ../../../../Qt/5.15.0/mingw81_64/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ProgettoPO-2020-2021-Reda-209394.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

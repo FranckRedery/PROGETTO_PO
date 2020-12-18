@@ -22,7 +22,7 @@ public:
     void set_luogo(QString l) { luogo =  l; }
     void set_num_partecipanti(int n) { num_partecipanti = n; }
 
-    void aggiungi_organizzatore(QString org);
+    void aggiungi_organizzatore(QString org){ organizzatori.push_back(org); }
 
     bool is_conferenza() const { return true; }
 

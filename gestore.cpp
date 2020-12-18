@@ -91,6 +91,7 @@ Gestore& Gestore::operator=(const Gestore &g){
     return * this;
 }
 
+// se l'id è stato preso ritorna true, altrimenti false
 bool Gestore::Is_ID_autore_alreadytaken(int id) const {
     for(auto& i : autori){
         if(i->get_id() == id){
@@ -127,6 +128,7 @@ Autore* Gestore::get_autore(int id) const{
     return nullptr;
 }
 
+// se l'id è stato preso ritorna true altrimenti false
 bool Gestore::Is_ID_articolo_alreadytaken(int id) const{
     for(auto& i : articoli){
         if(i->get_identificativo() == id){
@@ -457,16 +459,23 @@ void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) c
     lista.unique();
 }
 
+
+// metodo per avere l'id automatico quando si va ad inserire un autore da file
+// restituisce il primo id libero per un autore
 int Gestore::get_first_free_id_autore() const{
-    if(autori.empty()){
-        return 1;
+    int id = 1;
+    while(Is_ID_autore_alreadytaken(id)){
+        id++;
     }
-    return autori.back()->get_id()+1;
+    return id;
 }
 
+// metodo per avere l'id automatico quando si insersice un articolo
+// restituisce il primo id libero per un articolo
 int Gestore::get_first_free_id_articolo() const{
-    if(articoli.empty()){
-        return 1;
+    int id = 1;
+    while(Is_ID_articolo_alreadytaken(id)){
+        id++;
     }
-    return articoli.back()->get_identificativo()+1;
+    return id;
 }
