@@ -10,7 +10,7 @@ public:
 
     Rivista() : Pubblicazione(), editore("Non definito"), volume(0) {}
 
-    Rivista(QString n, QString a, QString d, QString e, int v) : Pubblicazione(n,a,d,false) , editore(e) , volume(v) {}
+    Rivista(int id, QString n, QString a, QString d, QString e, int v) : Pubblicazione(id,n,a,d,false) , editore(e) , volume(v) {}
 
     // metodo che viene usato per fare il costruttore di copia e operator =
     // nel gestore perché usiamo l'ereditarietà

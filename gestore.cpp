@@ -9,16 +9,16 @@ void Gestore::aggiungi_autore(QString n, QString c, int id, list<QString> a){
 
 }
 
-void Gestore::aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, list<QString> o){
+void Gestore::aggiungi_conferenza(int id, QString n, QString a, QString d, QString l, int num, list<QString> o){
 
-    Pubblicazione* conf = new Conferenza(n,a,d,l,num,o);
+    Pubblicazione* conf = new Conferenza(id,n,a,d,l,num,o);
     pubblicazioni.push_back(conf);
 
 }
 
-void Gestore::aggiungi_rivista(QString n, QString a, QString d, QString e, int v){
+void Gestore::aggiungi_rivista(int id,QString n, QString a, QString d, QString e, int v){
 
-    Pubblicazione* riv = new Rivista(n,a,d,e,v);
+    Pubblicazione* riv = new Rivista(id,n,a,d,e,v);
     pubblicazioni.push_back(riv);
 
 }
@@ -101,18 +101,18 @@ bool Gestore::Is_ID_autore_alreadytaken(int id) const {
     return false;
 }
 
-Pubblicazione* Gestore::get_pubblicazione(QString nome) const {
+Pubblicazione* Gestore::get_pubblicazione(int id) const {
     for(auto& i : pubblicazioni){
-        if(i->get_nome() == nome){
+        if(i->get_id() == id){
             return i;
         }
     }
     return nullptr;
 }
 
-bool Gestore::Is_Nome_pubblicazione_alreadytaken(QString nome) const {
+bool Gestore::Is_ID_pubblicazione_alreadytaken(int id) const {
     for(auto& i : pubblicazioni){
-        if(i->get_nome() == nome){
+        if(i->get_id() == id){
             return true;
         }
     }
@@ -159,10 +159,10 @@ void Gestore::get_articoli_autore(int id, list<Articolo*>& lista) const {
 }
 
 // SEZIONE B METODO 4 E 5 (FUNZIONA PER ENTRAMBI)
-void Gestore::get_articoli_conferenza_or_rivista(QString nome, list<Articolo *> &lista) const{
+void Gestore::get_articoli_conferenza_or_rivista(int id, list<Articolo *> &lista) const{
 
     for(auto& i : articoli){
-        if(i->get_pubblicazione()->get_nome() == nome){
+        if(i->get_pubblicazione()->get_id() == id){
             lista.push_back(i);
         }
     }
@@ -403,14 +403,14 @@ list<QString> get_key_unione(list<QString>& a, list<QString>& b){
 }
 
 // SEZIONE F METODO 5
-void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) const{
+void Gestore::get_conferenze_simili(int id, list<Pubblicazione*> &lista) const{
 
     list<QString> key;
     list<QString> nuove_key;
 
     // in questo for prendo tutte le chiavi relative alla conferenza scelta da input
     for(auto& i : articoli){
-        if(i->get_pubblicazione()->get_nome() == nome && i->get_pubblicazione()->is_conferenza()){
+        if(i->get_pubblicazione()->get_id() == id && i->get_pubblicazione()->is_conferenza()){
             nuove_key = i->get_keywords();
             for(auto& j: nuove_key){
                 key.push_back(j);
@@ -433,9 +433,9 @@ void Gestore::get_conferenze_simili(QString nome, list<Pubblicazione*> &lista) c
         // se trovo un altra pubblicazione che è una conferenza prendo tutte le keywords di quella conferenza
 
         if(i->get_pubblicazione()->is_conferenza()){
-            QString nome_conf = i->get_pubblicazione()->get_nome();
+            int id_conf = i->get_pubblicazione()->get_id();
             for(auto & j : articoli){
-                if(j->get_pubblicazione()->get_nome() == nome_conf){
+                if(j->get_pubblicazione()->get_id() == id_conf){
                     nuove_key = j->get_keywords();
                     for(auto& k: nuove_key){
                         key_seconda_conf.push_back(k);
@@ -475,6 +475,14 @@ int Gestore::get_first_free_id_autore() const{
 int Gestore::get_first_free_id_articolo() const{
     int id = 1;
     while(Is_ID_articolo_alreadytaken(id)){
+        id++;
+    }
+    return id;
+}
+
+int Gestore::get_first_free_id_pubblicazione() const {
+    int id = 1;
+    while(Is_ID_pubblicazione_alreadytaken(id)){
         id++;
     }
     return id;

@@ -12,7 +12,7 @@ public:
 
     Conferenza() : Pubblicazione(), luogo("Non definito"), num_partecipanti(0) {}
 
-    Conferenza(QString n, QString a, QString d, QString l, int num, list<QString> o): Pubblicazione(n,a,d,true) , luogo(l), num_partecipanti(num), organizzatori(o) {}
+    Conferenza(int id, QString n, QString a, QString d, QString l, int num, list<QString> o): Pubblicazione(id,n,a,d,true) , luogo(l), num_partecipanti(num), organizzatori(o) {}
 
     // metodo che viene usato per fare il costruttore di copia e operator =
     // nel gestore perché usiamo l'ereditarietà

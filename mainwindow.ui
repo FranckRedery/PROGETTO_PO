@@ -376,37 +376,7 @@ esempio (ciao, sono una, afferenza)</string>
         <layout class="QGridLayout" name="gridLayout_5">
          <item row="0" column="0">
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="0">
-            <widget class="QLabel" name="nome_rivista">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Nome</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="acronimo_rivista">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Acronimo</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="editore_rivista">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Editore</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
+           <item row="4" column="0">
             <widget class="QLabel" name="volume_rivista">
              <property name="styleSheet">
               <string notr="true"/>
@@ -416,26 +386,73 @@ esempio (ciao, sono una, afferenza)</string>
              </property>
             </widget>
            </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="editore_rivista">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Editore</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="acronimo_rivista">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Acronimo</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="nome_rivista">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Nome</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="0" column="1">
           <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="inserisci_nome"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLineEdit" name="inserisci_acronimo"/>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLineEdit" name="inserisci_editore"/>
-           </item>
-           <item row="3" column="0">
+           <item row="4" column="0">
             <widget class="QSpinBox" name="inserisci_volume">
              <property name="minimum">
               <number>1</number>
              </property>
              <property name="maximum">
               <number>999999999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLineEdit" name="inserisci_nome"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLineEdit" name="inserisci_acronimo"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLineEdit" name="inserisci_editore"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="QSpinBox" name="id_rivista">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>9999</number>
              </property>
             </widget>
            </item>
@@ -511,14 +528,61 @@ esempio (ciao, sono una, afferenza)</string>
        </item>
        <item row="1" column="0">
         <layout class="QGridLayout" name="gridLayout_6">
-         <item row="1" column="0">
+         <item row="2" column="0">
           <widget class="QLabel" name="label_acronimo_conf">
            <property name="text">
             <string>Acronimo</string>
            </property>
           </widget>
          </item>
+         <item row="5" column="1">
+          <widget class="QPlainTextEdit" name="organizzatori_plaintext">
+           <property name="plainText">
+            <string>Inserire qui i nomi degli organizzatori separati da una virgola
+
+(esempio : giovanni, martino, vanessa, luana)
+</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="linea_nome_conferenza"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="num_partecipanti_conferenza">
+           <property name="maximum">
+            <number>999999999</number>
+           </property>
+          </widget>
+         </item>
          <item row="3" column="0">
+          <widget class="QLabel" name="label_luogo_conf">
+           <property name="text">
+            <string>Luogo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="linea_acronimo_conferenza"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="linea_luogo_conferenza"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_nome_conf">
+           <property name="text">
+            <string>Nome</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_organizzatori">
+           <property name="text">
+            <string>Organizzatori</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
           <widget class="QLabel" name="label_part_conf">
            <property name="text">
             <string>Partecipanti</string>
@@ -526,49 +590,19 @@ esempio (ciao, sono una, afferenza)</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="linea_nome_conferenza"/>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="linea_luogo_conferenza"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="linea_acronimo_conferenza"/>
+          <widget class="QSpinBox" name="id_conferenza">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>9999</number>
+           </property>
+          </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_nome_conf">
+          <widget class="QLabel" name="label_17">
            <property name="text">
-            <string>Nome</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_luogo_conf">
-           <property name="text">
-            <string>Luogo</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QSpinBox" name="num_partecipanti_conferenza">
-           <property name="maximum">
-            <number>999999999</number>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_organizzatori">
-           <property name="text">
-            <string>Organizzatori</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QPlainTextEdit" name="organizzatori_plaintext">
-           <property name="plainText">
-            <string>Inserire qui i nomi degli organizzatori separati da una virgola
-
-(esempio : giovanni, martino, vanessa, luana)
-</string>
+            <string>ID</string>
            </property>
           </widget>
          </item>
@@ -637,7 +671,7 @@ esempio (ciao, sono una, afferenza)</string>
        <item row="2" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Identificativo</string>
+          <string>ID Articolo</string>
          </property>
         </widget>
        </item>
@@ -658,7 +692,7 @@ esempio (ciao, sono una, afferenza)</string>
        <item row="1" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Nome Conferenza/Rivista in cui pubblicarlo</string>
+          <string>ID Conferenza/Rivista in cui pubblicarlo</string>
          </property>
         </widget>
        </item>
@@ -678,9 +712,6 @@ esempio (ciao, sono una, afferenza)</string>
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="titolo_articolo_linedit"/>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="nome_pubblicazione_articolo_linedit"/>
        </item>
        <item row="2" column="1">
         <widget class="QSpinBox" name="identificativo_articolo_linedit">
@@ -730,6 +761,9 @@ esempio : 1  2   3   4
 esempio : 1 2 3 4</string>
          </property>
         </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="Articolo_ID_pubblicazione_dove_pubblicarlo"/>
        </item>
       </layout>
      </widget>
@@ -834,12 +868,12 @@ esempio : 1 2 3 4</string>
          <item row="0" column="0">
           <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>Nome conferenza</string>
+            <string>ID conferenza</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="SEZIONE_B_nome_conferenza"/>
+          <widget class="QSpinBox" name="SEZIONE_B_ID_CONFERENZA"/>
          </item>
         </layout>
        </item>
@@ -848,12 +882,12 @@ esempio : 1 2 3 4</string>
          <item row="0" column="0">
           <widget class="QLabel" name="label_11">
            <property name="text">
-            <string>Nome rivista</string>
+            <string>ID rivista</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="SEZIONE_B_nome_rivista"/>
+          <widget class="QSpinBox" name="SEZIONE_B_ID_RIVISTA"/>
          </item>
         </layout>
        </item>
@@ -1163,12 +1197,12 @@ esempio : 1 2 3 4</string>
        <item row="0" column="0">
         <widget class="QLabel" name="label_15">
          <property name="text">
-          <string>Nome conferenza</string>
+          <string>ID conferenza</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="PAGINA_F_NOME_CONFERENZA"/>
+        <widget class="QSpinBox" name="PAGINA_F_ID_CONFERENZA"/>
        </item>
       </layout>
      </widget>

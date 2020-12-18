@@ -73,15 +73,17 @@ public:
     QGridLayout *gridLayout_18;
     QGridLayout *gridLayout_5;
     QGridLayout *gridLayout_3;
-    QLabel *nome_rivista;
-    QLabel *acronimo_rivista;
-    QLabel *editore_rivista;
     QLabel *volume_rivista;
+    QLabel *editore_rivista;
+    QLabel *acronimo_rivista;
+    QLabel *nome_rivista;
+    QLabel *label_16;
     QGridLayout *gridLayout_4;
+    QSpinBox *inserisci_volume;
     QLineEdit *inserisci_nome;
     QLineEdit *inserisci_acronimo;
     QLineEdit *inserisci_editore;
-    QSpinBox *inserisci_volume;
+    QSpinBox *id_rivista;
     QCalendarWidget *calendario_rivista;
     QWidget *pagina_conferenze;
     QPushButton *vai_al_menu_principale;
@@ -91,15 +93,17 @@ public:
     QCalendarWidget *calendario_conferenze;
     QGridLayout *gridLayout_6;
     QLabel *label_acronimo_conf;
-    QLabel *label_part_conf;
-    QLineEdit *linea_nome_conferenza;
-    QLineEdit *linea_luogo_conferenza;
-    QLineEdit *linea_acronimo_conferenza;
-    QLabel *label_nome_conf;
-    QLabel *label_luogo_conf;
-    QSpinBox *num_partecipanti_conferenza;
-    QLabel *label_organizzatori;
     QPlainTextEdit *organizzatori_plaintext;
+    QLineEdit *linea_nome_conferenza;
+    QSpinBox *num_partecipanti_conferenza;
+    QLabel *label_luogo_conf;
+    QLineEdit *linea_acronimo_conferenza;
+    QLineEdit *linea_luogo_conferenza;
+    QLabel *label_nome_conf;
+    QLabel *label_organizzatori;
+    QLabel *label_part_conf;
+    QSpinBox *id_conferenza;
+    QLabel *label_17;
     QWidget *pagina_articoli;
     QPushButton *pulsante_torna_al_menu;
     QPushButton *pushButton;
@@ -114,13 +118,13 @@ public:
     QLabel *label;
     QLabel *label_4;
     QLineEdit *titolo_articolo_linedit;
-    QLineEdit *nome_pubblicazione_articolo_linedit;
     QSpinBox *identificativo_articolo_linedit;
     QSpinBox *numpagine_articolo_linedit;
     QDoubleSpinBox *prezzoarticolo_linedit;
     QPlainTextEdit *plaintext_autori_di_articolo;
     QPlainTextEdit *plaintext_keyword_di_articolo;
     QPlainTextEdit *plaintext_articoli_correlati_di_articolo;
+    QSpinBox *Articolo_ID_pubblicazione_dove_pubblicarlo;
     QWidget *PAG_SEZIONE_B;
     QPushButton *sezioneB_to_menu;
     QPushButton *SEZIONEB_PULSANTE_VISUALIZZA;
@@ -135,10 +139,10 @@ public:
     QSpinBox *sezioneB_id_autore;
     QGridLayout *gridLayout_8;
     QLabel *label_10;
-    QLineEdit *SEZIONE_B_nome_conferenza;
+    QSpinBox *SEZIONE_B_ID_CONFERENZA;
     QGridLayout *gridLayout_10;
     QLabel *label_11;
-    QLineEdit *SEZIONE_B_nome_rivista;
+    QSpinBox *SEZIONE_B_ID_RIVISTA;
     QWidget *PAG_SEZIONE_C;
     QPushButton *SEZIONE_C_TORNAMENU;
     QListWidget *SEZIONE_C_LISTWIDGET;
@@ -176,7 +180,7 @@ public:
     QWidget *layoutWidget8;
     QGridLayout *gridLayout_17;
     QLabel *label_15;
-    QLineEdit *PAGINA_F_NOME_CONFERENZA;
+    QSpinBox *PAGINA_F_ID_CONFERENZA;
     QWidget *PAG_VISUALIZZA_AUTORI;
     QPushButton *PAG_VISUALIZZA_AUTORI_PULSANTE_MENU;
     QListWidget *PAG_VISUALIZZA_AUTORI_LISTA;
@@ -397,56 +401,68 @@ public:
         gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
-        nome_rivista = new QLabel(layoutWidget2);
-        nome_rivista->setObjectName(QString::fromUtf8("nome_rivista"));
-        nome_rivista->setStyleSheet(QString::fromUtf8(""));
+        volume_rivista = new QLabel(layoutWidget2);
+        volume_rivista->setObjectName(QString::fromUtf8("volume_rivista"));
+        volume_rivista->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout_3->addWidget(nome_rivista, 0, 0, 1, 1);
-
-        acronimo_rivista = new QLabel(layoutWidget2);
-        acronimo_rivista->setObjectName(QString::fromUtf8("acronimo_rivista"));
-        acronimo_rivista->setStyleSheet(QString::fromUtf8(""));
-
-        gridLayout_3->addWidget(acronimo_rivista, 1, 0, 1, 1);
+        gridLayout_3->addWidget(volume_rivista, 4, 0, 1, 1);
 
         editore_rivista = new QLabel(layoutWidget2);
         editore_rivista->setObjectName(QString::fromUtf8("editore_rivista"));
         editore_rivista->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout_3->addWidget(editore_rivista, 2, 0, 1, 1);
+        gridLayout_3->addWidget(editore_rivista, 3, 0, 1, 1);
 
-        volume_rivista = new QLabel(layoutWidget2);
-        volume_rivista->setObjectName(QString::fromUtf8("volume_rivista"));
-        volume_rivista->setStyleSheet(QString::fromUtf8(""));
+        acronimo_rivista = new QLabel(layoutWidget2);
+        acronimo_rivista->setObjectName(QString::fromUtf8("acronimo_rivista"));
+        acronimo_rivista->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout_3->addWidget(volume_rivista, 3, 0, 1, 1);
+        gridLayout_3->addWidget(acronimo_rivista, 2, 0, 1, 1);
+
+        nome_rivista = new QLabel(layoutWidget2);
+        nome_rivista->setObjectName(QString::fromUtf8("nome_rivista"));
+        nome_rivista->setStyleSheet(QString::fromUtf8(""));
+
+        gridLayout_3->addWidget(nome_rivista, 1, 0, 1, 1);
+
+        label_16 = new QLabel(layoutWidget2);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+
+        gridLayout_3->addWidget(label_16, 0, 0, 1, 1);
 
 
         gridLayout_5->addLayout(gridLayout_3, 0, 0, 1, 1);
 
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
-        inserisci_nome = new QLineEdit(layoutWidget2);
-        inserisci_nome->setObjectName(QString::fromUtf8("inserisci_nome"));
-
-        gridLayout_4->addWidget(inserisci_nome, 0, 0, 1, 1);
-
-        inserisci_acronimo = new QLineEdit(layoutWidget2);
-        inserisci_acronimo->setObjectName(QString::fromUtf8("inserisci_acronimo"));
-
-        gridLayout_4->addWidget(inserisci_acronimo, 1, 0, 1, 1);
-
-        inserisci_editore = new QLineEdit(layoutWidget2);
-        inserisci_editore->setObjectName(QString::fromUtf8("inserisci_editore"));
-
-        gridLayout_4->addWidget(inserisci_editore, 2, 0, 1, 1);
-
         inserisci_volume = new QSpinBox(layoutWidget2);
         inserisci_volume->setObjectName(QString::fromUtf8("inserisci_volume"));
         inserisci_volume->setMinimum(1);
         inserisci_volume->setMaximum(999999999);
 
-        gridLayout_4->addWidget(inserisci_volume, 3, 0, 1, 1);
+        gridLayout_4->addWidget(inserisci_volume, 4, 0, 1, 1);
+
+        inserisci_nome = new QLineEdit(layoutWidget2);
+        inserisci_nome->setObjectName(QString::fromUtf8("inserisci_nome"));
+
+        gridLayout_4->addWidget(inserisci_nome, 1, 0, 1, 1);
+
+        inserisci_acronimo = new QLineEdit(layoutWidget2);
+        inserisci_acronimo->setObjectName(QString::fromUtf8("inserisci_acronimo"));
+
+        gridLayout_4->addWidget(inserisci_acronimo, 2, 0, 1, 1);
+
+        inserisci_editore = new QLineEdit(layoutWidget2);
+        inserisci_editore->setObjectName(QString::fromUtf8("inserisci_editore"));
+
+        gridLayout_4->addWidget(inserisci_editore, 3, 0, 1, 1);
+
+        id_rivista = new QSpinBox(layoutWidget2);
+        id_rivista->setObjectName(QString::fromUtf8("id_rivista"));
+        id_rivista->setMinimum(1);
+        id_rivista->setMaximum(9999);
+
+        gridLayout_4->addWidget(id_rivista, 0, 0, 1, 1);
 
 
         gridLayout_5->addLayout(gridLayout_4, 0, 1, 1, 1);
@@ -490,53 +506,65 @@ public:
         label_acronimo_conf = new QLabel(layoutWidget3);
         label_acronimo_conf->setObjectName(QString::fromUtf8("label_acronimo_conf"));
 
-        gridLayout_6->addWidget(label_acronimo_conf, 1, 0, 1, 1);
+        gridLayout_6->addWidget(label_acronimo_conf, 2, 0, 1, 1);
 
-        label_part_conf = new QLabel(layoutWidget3);
-        label_part_conf->setObjectName(QString::fromUtf8("label_part_conf"));
+        organizzatori_plaintext = new QPlainTextEdit(layoutWidget3);
+        organizzatori_plaintext->setObjectName(QString::fromUtf8("organizzatori_plaintext"));
 
-        gridLayout_6->addWidget(label_part_conf, 3, 0, 1, 1);
+        gridLayout_6->addWidget(organizzatori_plaintext, 5, 1, 1, 1);
 
         linea_nome_conferenza = new QLineEdit(layoutWidget3);
         linea_nome_conferenza->setObjectName(QString::fromUtf8("linea_nome_conferenza"));
 
-        gridLayout_6->addWidget(linea_nome_conferenza, 0, 1, 1, 1);
-
-        linea_luogo_conferenza = new QLineEdit(layoutWidget3);
-        linea_luogo_conferenza->setObjectName(QString::fromUtf8("linea_luogo_conferenza"));
-
-        gridLayout_6->addWidget(linea_luogo_conferenza, 2, 1, 1, 1);
-
-        linea_acronimo_conferenza = new QLineEdit(layoutWidget3);
-        linea_acronimo_conferenza->setObjectName(QString::fromUtf8("linea_acronimo_conferenza"));
-
-        gridLayout_6->addWidget(linea_acronimo_conferenza, 1, 1, 1, 1);
-
-        label_nome_conf = new QLabel(layoutWidget3);
-        label_nome_conf->setObjectName(QString::fromUtf8("label_nome_conf"));
-
-        gridLayout_6->addWidget(label_nome_conf, 0, 0, 1, 1);
-
-        label_luogo_conf = new QLabel(layoutWidget3);
-        label_luogo_conf->setObjectName(QString::fromUtf8("label_luogo_conf"));
-
-        gridLayout_6->addWidget(label_luogo_conf, 2, 0, 1, 1);
+        gridLayout_6->addWidget(linea_nome_conferenza, 1, 1, 1, 1);
 
         num_partecipanti_conferenza = new QSpinBox(layoutWidget3);
         num_partecipanti_conferenza->setObjectName(QString::fromUtf8("num_partecipanti_conferenza"));
         num_partecipanti_conferenza->setMaximum(999999999);
 
-        gridLayout_6->addWidget(num_partecipanti_conferenza, 3, 1, 1, 1);
+        gridLayout_6->addWidget(num_partecipanti_conferenza, 4, 1, 1, 1);
+
+        label_luogo_conf = new QLabel(layoutWidget3);
+        label_luogo_conf->setObjectName(QString::fromUtf8("label_luogo_conf"));
+
+        gridLayout_6->addWidget(label_luogo_conf, 3, 0, 1, 1);
+
+        linea_acronimo_conferenza = new QLineEdit(layoutWidget3);
+        linea_acronimo_conferenza->setObjectName(QString::fromUtf8("linea_acronimo_conferenza"));
+
+        gridLayout_6->addWidget(linea_acronimo_conferenza, 2, 1, 1, 1);
+
+        linea_luogo_conferenza = new QLineEdit(layoutWidget3);
+        linea_luogo_conferenza->setObjectName(QString::fromUtf8("linea_luogo_conferenza"));
+
+        gridLayout_6->addWidget(linea_luogo_conferenza, 3, 1, 1, 1);
+
+        label_nome_conf = new QLabel(layoutWidget3);
+        label_nome_conf->setObjectName(QString::fromUtf8("label_nome_conf"));
+
+        gridLayout_6->addWidget(label_nome_conf, 1, 0, 1, 1);
 
         label_organizzatori = new QLabel(layoutWidget3);
         label_organizzatori->setObjectName(QString::fromUtf8("label_organizzatori"));
 
-        gridLayout_6->addWidget(label_organizzatori, 4, 0, 1, 1);
+        gridLayout_6->addWidget(label_organizzatori, 5, 0, 1, 1);
 
-        organizzatori_plaintext = new QPlainTextEdit(layoutWidget3);
-        organizzatori_plaintext->setObjectName(QString::fromUtf8("organizzatori_plaintext"));
+        label_part_conf = new QLabel(layoutWidget3);
+        label_part_conf->setObjectName(QString::fromUtf8("label_part_conf"));
 
-        gridLayout_6->addWidget(organizzatori_plaintext, 4, 1, 1, 1);
+        gridLayout_6->addWidget(label_part_conf, 4, 0, 1, 1);
+
+        id_conferenza = new QSpinBox(layoutWidget3);
+        id_conferenza->setObjectName(QString::fromUtf8("id_conferenza"));
+        id_conferenza->setMinimum(1);
+        id_conferenza->setMaximum(9999);
+
+        gridLayout_6->addWidget(id_conferenza, 0, 1, 1, 1);
+
+        label_17 = new QLabel(layoutWidget3);
+        label_17->setObjectName(QString::fromUtf8("label_17"));
+
+        gridLayout_6->addWidget(label_17, 0, 0, 1, 1);
 
 
         gridLayout_19->addLayout(gridLayout_6, 1, 0, 1, 1);
@@ -603,11 +631,6 @@ public:
 
         gridLayout_7->addWidget(titolo_articolo_linedit, 0, 1, 1, 1);
 
-        nome_pubblicazione_articolo_linedit = new QLineEdit(layoutWidget4);
-        nome_pubblicazione_articolo_linedit->setObjectName(QString::fromUtf8("nome_pubblicazione_articolo_linedit"));
-
-        gridLayout_7->addWidget(nome_pubblicazione_articolo_linedit, 1, 1, 1, 1);
-
         identificativo_articolo_linedit = new QSpinBox(layoutWidget4);
         identificativo_articolo_linedit->setObjectName(QString::fromUtf8("identificativo_articolo_linedit"));
         identificativo_articolo_linedit->setMinimum(1);
@@ -641,6 +664,11 @@ public:
         plaintext_articoli_correlati_di_articolo->setObjectName(QString::fromUtf8("plaintext_articoli_correlati_di_articolo"));
 
         gridLayout_7->addWidget(plaintext_articoli_correlati_di_articolo, 7, 1, 1, 1);
+
+        Articolo_ID_pubblicazione_dove_pubblicarlo = new QSpinBox(layoutWidget4);
+        Articolo_ID_pubblicazione_dove_pubblicarlo->setObjectName(QString::fromUtf8("Articolo_ID_pubblicazione_dove_pubblicarlo"));
+
+        gridLayout_7->addWidget(Articolo_ID_pubblicazione_dove_pubblicarlo, 1, 1, 1, 1);
 
         stackedWidget->addWidget(pagina_articoli);
         PAG_SEZIONE_B = new QWidget();
@@ -701,10 +729,10 @@ public:
 
         gridLayout_8->addWidget(label_10, 0, 0, 1, 1);
 
-        SEZIONE_B_nome_conferenza = new QLineEdit(layoutWidget5);
-        SEZIONE_B_nome_conferenza->setObjectName(QString::fromUtf8("SEZIONE_B_nome_conferenza"));
+        SEZIONE_B_ID_CONFERENZA = new QSpinBox(layoutWidget5);
+        SEZIONE_B_ID_CONFERENZA->setObjectName(QString::fromUtf8("SEZIONE_B_ID_CONFERENZA"));
 
-        gridLayout_8->addWidget(SEZIONE_B_nome_conferenza, 0, 1, 1, 1);
+        gridLayout_8->addWidget(SEZIONE_B_ID_CONFERENZA, 0, 1, 1, 1);
 
 
         gridLayout_11->addLayout(gridLayout_8, 0, 1, 1, 1);
@@ -716,10 +744,10 @@ public:
 
         gridLayout_10->addWidget(label_11, 0, 0, 1, 1);
 
-        SEZIONE_B_nome_rivista = new QLineEdit(layoutWidget5);
-        SEZIONE_B_nome_rivista->setObjectName(QString::fromUtf8("SEZIONE_B_nome_rivista"));
+        SEZIONE_B_ID_RIVISTA = new QSpinBox(layoutWidget5);
+        SEZIONE_B_ID_RIVISTA->setObjectName(QString::fromUtf8("SEZIONE_B_ID_RIVISTA"));
 
-        gridLayout_10->addWidget(SEZIONE_B_nome_rivista, 0, 1, 1, 1);
+        gridLayout_10->addWidget(SEZIONE_B_ID_RIVISTA, 0, 1, 1, 1);
 
 
         gridLayout_11->addLayout(gridLayout_10, 0, 2, 1, 1);
@@ -877,10 +905,10 @@ public:
 
         gridLayout_17->addWidget(label_15, 0, 0, 1, 1);
 
-        PAGINA_F_NOME_CONFERENZA = new QLineEdit(layoutWidget8);
-        PAGINA_F_NOME_CONFERENZA->setObjectName(QString::fromUtf8("PAGINA_F_NOME_CONFERENZA"));
+        PAGINA_F_ID_CONFERENZA = new QSpinBox(layoutWidget8);
+        PAGINA_F_ID_CONFERENZA->setObjectName(QString::fromUtf8("PAGINA_F_ID_CONFERENZA"));
 
-        gridLayout_17->addWidget(PAGINA_F_NOME_CONFERENZA, 0, 1, 1, 1);
+        gridLayout_17->addWidget(PAGINA_F_ID_CONFERENZA, 0, 1, 1, 1);
 
         stackedWidget->addWidget(PAG_SEZIONE_F);
         PAG_VISUALIZZA_AUTORI = new QWidget();
@@ -968,29 +996,31 @@ public:
         pulsante_torna_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pulsante_aggiungi_rivista->setText(QCoreApplication::translate("MainWindow", "Aggiungi Rivista", nullptr));
         pulsante_tornaalmenu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
-        nome_rivista->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
-        acronimo_rivista->setText(QCoreApplication::translate("MainWindow", "Acronimo", nullptr));
-        editore_rivista->setText(QCoreApplication::translate("MainWindow", "Editore", nullptr));
         volume_rivista->setText(QCoreApplication::translate("MainWindow", "Volume", nullptr));
+        editore_rivista->setText(QCoreApplication::translate("MainWindow", "Editore", nullptr));
+        acronimo_rivista->setText(QCoreApplication::translate("MainWindow", "Acronimo", nullptr));
+        nome_rivista->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "ID", nullptr));
         vai_al_menu_principale->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pulsante_aggiungi_conferenza->setText(QCoreApplication::translate("MainWindow", "Aggiungi conferenza", nullptr));
         label_acronimo_conf->setText(QCoreApplication::translate("MainWindow", "Acronimo", nullptr));
-        label_part_conf->setText(QCoreApplication::translate("MainWindow", "Partecipanti", nullptr));
-        label_nome_conf->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
-        label_luogo_conf->setText(QCoreApplication::translate("MainWindow", "Luogo", nullptr));
-        label_organizzatori->setText(QCoreApplication::translate("MainWindow", "Organizzatori", nullptr));
         organizzatori_plaintext->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui i nomi degli organizzatori separati da una virgola\n"
 "\n"
 "(esempio : giovanni, martino, vanessa, luana)\n"
 "", nullptr));
+        label_luogo_conf->setText(QCoreApplication::translate("MainWindow", "Luogo", nullptr));
+        label_nome_conf->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
+        label_organizzatori->setText(QCoreApplication::translate("MainWindow", "Organizzatori", nullptr));
+        label_part_conf->setText(QCoreApplication::translate("MainWindow", "Partecipanti", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "ID", nullptr));
         pulsante_torna_al_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Aggiungi articolo", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Prezzo", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Articoli correlati", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "Identificativo", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "ID Articolo", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "Autori", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "Keyword", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "Nome Conferenza/Rivista in cui pubblicarlo", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "ID Conferenza/Rivista in cui pubblicarlo", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Titolo", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Num. Pagine", nullptr));
         plaintext_autori_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui gli ID degli autori separati da uno o pi\303\271 spazi. (se l' ID non esiste l'autore non verr\303\240 considerato)\n"
@@ -1006,8 +1036,8 @@ public:
         SEZIONE_B_pulsante_visualizz_articoli_di_conferenza->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli di quella conferenza", nullptr));
         SEZIONE_B_pulsante_visualizz_articoli_di_rivista->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli di quella rivista", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));
-        label_10->setText(QCoreApplication::translate("MainWindow", "Nome conferenza", nullptr));
-        label_11->setText(QCoreApplication::translate("MainWindow", "Nome rivista", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "ID conferenza", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "ID rivista", nullptr));
         SEZIONE_C_TORNAMENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         SEZIONE_C_PULSANTE_CONFERMA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
         SEZIONE_C_ARTICOLI_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo max", nullptr));
@@ -1024,7 +1054,7 @@ public:
         PAG_E_pulsante_key->setText(QCoreApplication::translate("MainWindow", "5 keyword pi\303\271 diffuse", nullptr));
         PAG_F_TORNA_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_F_CERCA_CONFERENZE_COMUN->setText(QCoreApplication::translate("MainWindow", "Conferenze comuni", nullptr));
-        label_15->setText(QCoreApplication::translate("MainWindow", "Nome conferenza", nullptr));
+        label_15->setText(QCoreApplication::translate("MainWindow", "ID conferenza", nullptr));
         PAG_VISUALIZZA_AUTORI_PULSANTE_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_VISUALIZZA_RIVISTE_PULSANTE_MENU_->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_VISUALIZZA_CONFERENZE_PULSANTE_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));

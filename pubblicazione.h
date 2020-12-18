@@ -8,15 +8,17 @@ class Pubblicazione
 
 public:
 
-    Pubblicazione(): nome("Non definito"), acronimo("Non definito"), data("Non definita") {}
+    Pubblicazione(): identificativo(1), nome("Non definito"), acronimo("Non definito"), data("Non definita") {}
 
-    Pubblicazione(QString n, QString a, QString d, bool conf): nome(n), acronimo(a), data(d), conferenza(conf){}
+    Pubblicazione(int id, QString n, QString a, QString d, bool conf): identificativo(id), nome(n), acronimo(a), data(d), conferenza(conf){}
 
     QString get_nome() const { return nome; }
 
     QString get_acronimo() const { return acronimo; }
 
     QString get_data() const { return data; }
+
+    int get_id() const { return identificativo; }
 
     virtual bool is_conferenza() const { return conferenza; }
 
@@ -25,6 +27,8 @@ public:
     void set_acronimo(QString a) { acronimo = a; }
 
     void set_data(QString d) { data = d; }
+
+    void set_id(int id) { identificativo = id; }
 
     // metodo che viene usato per fare il costruttore di copia e operator =
     // nel gestore perché usiamo l'ereditarietà
@@ -35,6 +39,7 @@ public:
 
 private:
 
+    int identificativo;
     QString nome;
     QString acronimo;       // nome abbreviato
     QString data;

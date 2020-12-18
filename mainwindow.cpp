@@ -112,6 +112,7 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
     QString acronimo = ui->inserisci_acronimo->text();
     QString editore = ui->inserisci_editore->text();
     int volume = ui->inserisci_volume->value();
+    int id = ui->id_rivista->value();
     QDate data = ui->calendario_rivista->selectedDate();
 
     if(nome.isEmpty() || acronimo.isEmpty() || editore.isEmpty()){
@@ -120,14 +121,14 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
         return;
     }
 
-    if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
-        QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
+    if(gestore.Is_ID_pubblicazione_alreadytaken(id)){
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "ID inserito già occupato da un altra rivista/confereza (gli ID devono essere unici).", QMessageBox::Ok,this);
         mess_due.exec();
         return;
     }
 
-    gestore.aggiungi_rivista(nome,acronimo,data.toString(Qt::DateFormat::ISODate),editore,volume);
-    ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("NOME : " + nome + "    ACRONIMO : " + acronimo + "    EDITORE : " + editore + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    VOLUME : " + QString::number(volume));
+    gestore.aggiungi_rivista(id,nome,acronimo,data.toString(Qt::DateFormat::ISODate),editore,volume);
+    ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("ID : " + QString::number(id) + "    NOME : " + nome + "    ACRONIMO : " + acronimo + "    EDITORE : " + editore + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    VOLUME : " + QString::number(volume));
 }
 
 void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
@@ -135,6 +136,7 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
     QString nome = ui->linea_nome_conferenza->text();
     QString acronimo = ui->linea_acronimo_conferenza->text();
     QString luogo = ui->linea_luogo_conferenza->text();
+    int id = ui->id_conferenza->value();
     int part = ui->num_partecipanti_conferenza->value();
     QDate data = ui->calendario_conferenze->selectedDate();
 
@@ -180,14 +182,14 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
         return;
     }
 
-    if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
-        QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
+    if(gestore.Is_ID_pubblicazione_alreadytaken(id)){
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "ID inserito già occupato da un altra rivista/confereza (gli ID devono essere unici).", QMessageBox::Ok,this);
         mess_due.exec();
         return;
     }
 
-    gestore.aggiungi_conferenza(nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part,org);
-    ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("NOME : " + nome + "    ACRONIMO : " + acronimo + "    LUOGO : " + luogo + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    PARTECIPANTI : " + QString::number(part) + "    ORGANIZZATORI : " + visualizza_organizzatori );
+    gestore.aggiungi_conferenza(id,nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part,org);
+    ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem( "ID : " + QString::number(id) +"    NOME : " + nome + "    ACRONIMO : " + acronimo + "    LUOGO : " + luogo + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    PARTECIPANTI : " + QString::number(part) + "    ORGANIZZATORI : " + visualizza_organizzatori );
 }
 
 void MainWindow::on_go_pag_conferenze_clicked()
@@ -207,7 +209,7 @@ void MainWindow::on_pulsante_pag_aggiungiArticolo_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     QString titolo = ui->titolo_articolo_linedit->text();
-    QString nome_pubblicazione = ui->nome_pubblicazione_articolo_linedit->text();
+    int id_pubblicazione = ui->Articolo_ID_pubblicazione_dove_pubblicarlo->value();
     int id = ui->identificativo_articolo_linedit->value();
     int pagine = ui->numpagine_articolo_linedit->value();
     double prezzo = ui->prezzoarticolo_linedit->value();
@@ -319,8 +321,8 @@ void MainWindow::on_pushButton_clicked()
         visualizza_keyword[last_char] = '.';
     }
 
-    if(titolo.isEmpty() || autori.empty() || keyword.empty() || articoli_correlati.empty()){
-        QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
+    if(titolo.isEmpty() || autori.empty() || keyword.empty()){
+        QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/ non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
         mess.exec();
         return;
     }
@@ -332,14 +334,14 @@ void MainWindow::on_pushButton_clicked()
     }
 
 
-    if(gestore.get_pubblicazione(nome_pubblicazione) == nullptr){
+    if(gestore.get_pubblicazione(id_pubblicazione) == nullptr){
         QMessageBox mess_tre(QMessageBox::Critical, "Errore", "La conferenza/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
         mess_tre.exec();
         return;
     }
 
-    gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(nome_pubblicazione),articoli_correlati,autori,keyword);
-    ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    CONFERENZA/RIVISTA ASSOCIATA : " + nome_pubblicazione + "    ID AUTORI :" +visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " +visualizza_keyword);
+    gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(id_pubblicazione),articoli_correlati,autori,keyword);
+    ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione)  + "    ID AUTORI :" +visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " +visualizza_keyword);
 }
 
 void MainWindow::on_SEZIONE_B_clicked()
@@ -359,32 +361,32 @@ void MainWindow::on_SEZIONEB_PULSANTE_VISUALIZZA_clicked()
         gestore.get_articoli_autore(id,lista_articoli);
 
         for(auto& i : lista_articoli){
-            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
 
     }
 
     if(ui->SEZIONE_B_pulsante_visualizz_articoli_di_conferenza->isChecked()){
-        gestore.get_articoli_conferenza_or_rivista(ui->SEZIONE_B_nome_conferenza->text(),lista_articoli);
+        gestore.get_articoli_conferenza_or_rivista(ui->SEZIONE_B_ID_CONFERENZA->value(),lista_articoli);
         for(auto& i : lista_articoli){
             if(i->get_pubblicazione()->is_conferenza() == false){
-                QMessageBox mess(QMessageBox::Critical, "Errore", "Il nome che hai inserito corrisponde ad una RIVISTA.", QMessageBox::Ok,this);
+                QMessageBox mess(QMessageBox::Critical, "Errore", "L'ID che hai inserito corrisponde ad una RIVISTA.", QMessageBox::Ok,this);
                 mess.exec();
                 return;
             }
-            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
     }
 
     if(ui->SEZIONE_B_pulsante_visualizz_articoli_di_rivista->isChecked()){
-        gestore.get_articoli_conferenza_or_rivista(ui->SEZIONE_B_nome_rivista->text(),lista_articoli);
+        gestore.get_articoli_conferenza_or_rivista(ui->SEZIONE_B_ID_RIVISTA->value(),lista_articoli);
         for(auto& i : lista_articoli){
             if(i->get_pubblicazione()->is_conferenza() == true){
-                QMessageBox mess(QMessageBox::Critical, "Errore", "Il nome che hai inserito corrisponde ad una CONFERENZA.", QMessageBox::Ok,this);
+                QMessageBox mess(QMessageBox::Critical, "Errore", "L'ID che hai inserito corrisponde ad una CONFERENZA.", QMessageBox::Ok,this);
                 mess.exec();
                 return;
             }
-            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+            ui->SEZIONE_B_visualizzazione_articoli->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
     }
 
@@ -410,14 +412,14 @@ void MainWindow::on_SEZIONE_C_PULSANTE_CONFERMA_clicked()
                                                         // con 1 come ultimo parametro del metodo trovo gli articoli con prezzo min
         gestore.get_articoli_autore_prezzo_max_or_min(ui->SEZIONE_C_ID_AUTORE->value(),lista_articoli,1);
         for(auto& i : lista_articoli){
-            ui->SEZIONE_C_LISTWIDGET->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+            ui->SEZIONE_C_LISTWIDGET->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
     }
     if(ui->SEZIONE_C_ARTICOLI_MAX->isChecked()){
                                                      // con 2 come ultimo parametro del metodo trovo gli articoli con prezzo max
         gestore.get_articoli_autore_prezzo_max_or_min(ui->SEZIONE_C_ID_AUTORE->value(),lista_articoli,2);
         for(auto& i : lista_articoli){
-            ui->SEZIONE_C_LISTWIDGET->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+            ui->SEZIONE_C_LISTWIDGET->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
     }
     if(ui->SEZIONE_C_KEYWORD_MAX->isChecked()){
@@ -447,14 +449,14 @@ void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
     if(ui->PAG_D_RADIO_VISUALIZZA_AUTORE->isChecked()){
         gestore.articoli_autore_sorted(ui->PAG_D_ID_AUTORE->value(),lista_articoli);
         for(auto& i : lista_articoli){
-            ui->PAG_D_LISTA->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+            ui->PAG_D_LISTA->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
     }
 
     if(ui->PAG_D_RADIO_VISUALIZZA_KEYWORD->isChecked()){
         gestore.articoli_keyword_sorted(ui->PAG_D_KEYWORD->text(),lista_articoli);
         for(auto& i : lista_articoli){
-            ui->PAG_D_LISTA->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
+            ui->PAG_D_LISTA->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
     }
 
@@ -498,9 +500,9 @@ void MainWindow::on_PAG_F_CERCA_CONFERENZE_COMUN_clicked()
     list<Pubblicazione*> comuni;
 
     ui->PAG_F_LISTA->clear();
-    gestore.get_conferenze_simili(ui->PAGINA_F_NOME_CONFERENZA->text(),comuni);
+    gestore.get_conferenze_simili(ui->PAGINA_F_ID_CONFERENZA->value(),comuni);
     for(auto& i : comuni){
-        ui->PAG_F_LISTA->addItem("Nome : " +i->get_nome() + "  Acronimo : " + i->get_acronimo() + "  Data : " + i->get_data());
+        ui->PAG_F_LISTA->addItem("ID : "+ QString::number(i->get_id()) + "    Nome : " +i->get_nome() + "  Acronimo : " + i->get_acronimo() + "  Data : " + i->get_data());
     }
     comuni.clear();
 }
@@ -613,7 +615,7 @@ void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
 {
    QString testo_file = readFile("conferenze.txt");
 
-       int i = 0, cont = 0;
+       int i = 0, cont = 0, id;
        QString nome, acronimo, visualizza_orgnizzatori, org, luogo, partecipanti,data;
        list<QString> organizzatori;
 
@@ -650,17 +652,10 @@ void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
            if(cont == 6){
                organizzatori.push_back(org.simplified());
                visualizza_orgnizzatori += org.simplified();
+               id = gestore.get_first_free_id_pubblicazione();
 
-
-
-               if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
-                   QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
-                   mess_due.exec();
-                   return;
-                   }
-
-               gestore.aggiungi_conferenza(nome.simplified(),acronimo.simplified(),data.simplified(),luogo.simplified(),partecipanti.toInt(),organizzatori);
-               ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    LUOGO : " + luogo.simplified() + "    DATA : " + data + "    PARTECIPANTI : " + QString::number(partecipanti.toInt())  + "    ORGANIZZATORI : " + visualizza_orgnizzatori);
+               gestore.aggiungi_conferenza(id,nome.simplified(),acronimo.simplified(),data.simplified(),luogo.simplified(),partecipanti.toInt(),organizzatori);
+               ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("ID : " +  QString::number(id)    + "    NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    LUOGO : " + luogo.simplified() + "    DATA : " + data + "    PARTECIPANTI : " + QString::number(partecipanti.toInt())  + "    ORGANIZZATORI : " + visualizza_orgnizzatori);
 
                cont = 0;
                nome.clear();
@@ -680,7 +675,7 @@ void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
 {
     QString testo_file =readFile("riviste.txt");
 
-    int i = 0, cont = 0;
+    int i = 0, cont = 0, id;
     QString nome, acronimo, data, editore, volume;
 
     while(i!=testo_file.size()){
@@ -705,15 +700,9 @@ void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
 
         if(cont == 5){
 
-
-            if(gestore.Is_Nome_pubblicazione_alreadytaken(nome)){
-                QMessageBox mess_due(QMessageBox::Critical, "Errore", "Nome inserito già occupato da un altra rivista/confereza (i nomi devono essere unici).", QMessageBox::Ok,this);
-                mess_due.exec();
-                return;
-                }
-
-            gestore.aggiungi_rivista(nome.simplified(),acronimo.simplified(),data.simplified(),editore.simplified(),volume.toInt());
-            ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    EDITORE : " + editore.simplified() + "    DATA : " + data + "    VOLUME : " + QString::number(volume.toInt()));
+            id = gestore.get_first_free_id_pubblicazione();
+            gestore.aggiungi_rivista(id,nome.simplified(),acronimo.simplified(),data.simplified(),editore.simplified(),volume.toInt());
+            ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("ID : " + QString::number(id)   + "    NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    EDITORE : " + editore.simplified() + "    DATA : " + data + "    VOLUME : " + QString::number(volume.toInt()));
 
             cont = 0;
             nome.clear();
@@ -730,7 +719,7 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
 {
     QString testo_file =readFile("articoli.txt");
 
-    QString titolo, nome_pubblicazione, num_pagine, prezzo, id_autore, keyword, id_correlato;
+    QString titolo, num_pagine, id_pubblicazione,  prezzo, id_autore, keyword, id_correlato;
     int cont = 0, i = 0, id;
 
     QString visualizza_autori, visualizza_keyword,visualizza_correlati;
@@ -746,7 +735,7 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
             titolo.push_back(testo_file[i]);
         }
         if(testo_file[i]!='|' && cont == 1){
-            nome_pubblicazione.push_back(testo_file[i]);
+            id_pubblicazione.push_back(testo_file[i]);
         }
         if(testo_file[i]!='|' && cont == 2){
             num_pagine.push_back(testo_file[i]);
@@ -798,23 +787,23 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
 
             id = gestore.get_first_free_id_articolo();
 
-            if(titolo.isEmpty() || autori.empty() || keys.empty() || articoli_correlati.empty()){
-                QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
+            if(titolo.isEmpty() || autori.empty() || keys.empty()){
+                QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
                 mess.exec();
                 return;
             }
-            if(gestore.get_pubblicazione(nome_pubblicazione.simplified()) == nullptr){
+            if(gestore.get_pubblicazione(id_pubblicazione.toInt()) == nullptr){
                 QMessageBox mess_tre(QMessageBox::Critical, "Errore", "La conferenza/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
                 mess_tre.exec();
                 return;
             }
 
-            gestore.aggiungi_articolo(id,num_pagine.toInt(),prezzo.toDouble(),titolo.simplified(),gestore.get_pubblicazione(nome_pubblicazione.simplified()),articoli_correlati,autori,keys);
-            ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID : " + QString::number(id) + "    TITOLO : " + titolo.simplified() + "    PAGINE : " + QString::number(num_pagine.toInt()) + "    PREZZO : " + QString::number(prezzo.toDouble()) + "    CONFERENZA/RIVISTA ASSOCIATA : " + nome_pubblicazione.simplified() + "    ID AUTORI :" + visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " + visualizza_keyword);
+            gestore.aggiungi_articolo(id,num_pagine.toInt(),prezzo.toDouble(),titolo.simplified(),gestore.get_pubblicazione(id_pubblicazione.toInt()),articoli_correlati,autori,keys);
+            ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo.simplified() + "    PAGINE : " + QString::number(num_pagine.toInt()) + "    PREZZO : " + QString::number(prezzo.toDouble()) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione.toInt()) + "    ID AUTORI :" + visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " + visualizza_keyword);
 
             cont = 0;
+            id_pubblicazione.clear();
             titolo.clear();
-            nome_pubblicazione.clear();
             num_pagine.clear();
             prezzo.clear();
             id_autore.clear();

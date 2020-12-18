@@ -23,9 +23,9 @@ public:
 
     void aggiungi_autore(QString n, QString c, int id, list<QString> a);
 
-    void aggiungi_conferenza(QString n, QString a, QString d, QString l, int num, list<QString> o);
+    void aggiungi_conferenza(int id, QString n, QString a, QString d, QString l, int num, list<QString> o);
 
-    void aggiungi_rivista(QString n, QString a, QString d, QString e, int v);
+    void aggiungi_rivista(int id, QString n, QString a, QString d, QString e, int v);
 
     void aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, list<int> corr, list<Autore*> aut, list<QString> key);
 
@@ -40,12 +40,12 @@ public:
     Gestore& operator=(const Gestore& g);
 
     // ritorna un puntatore alla pubblicazione se è presente, altrimenti ritorna nullptr
-    Pubblicazione* get_pubblicazione(QString nome) const ;
+    Pubblicazione* get_pubblicazione(int id) const ;
 
     // se l'id è stato preso torna true
     bool Is_ID_autore_alreadytaken(int id) const ;
 
-    bool Is_Nome_pubblicazione_alreadytaken(QString nome) const ;
+    bool Is_ID_pubblicazione_alreadytaken(int id) const ;
 
     //se l'id è stato preso torna true
     bool Is_ID_articolo_alreadytaken(int id) const;
@@ -57,7 +57,7 @@ public:
     void get_articoli_autore(int id, list<Articolo*>& lista) const;
 
     // SEZIONE B METODO 4 E 5 TROVA GLI ARTICOLI DI UNA CONFERENZA/RIVSTA PRESA PER NOME
-    void get_articoli_conferenza_or_rivista(QString nome, list<Articolo*>& lista) const;
+    void get_articoli_conferenza_or_rivista(int id, list<Articolo*>& lista) const;
 
     // SEZIONE C METODO 1 E 2 , TROVA GLI ARTICOLI DI UN AUTORE CON PREZZO MAX O MIN
     void get_articoli_autore_prezzo_max_or_min(int id, list<Articolo*>& lista, int scelta) const;
@@ -78,11 +78,13 @@ public:
     void get_5_most_common_key(list<QString>& chiavi) const;
 
     // SEZIONE F METODO 5
-    void get_conferenze_simili(QString nome, list<Pubblicazione*>& lista) const;
+    void get_conferenze_simili(int id, list<Pubblicazione*>& lista) const;
 
     int get_first_free_id_autore() const;
 
     int get_first_free_id_articolo() const;
+
+    int get_first_free_id_pubblicazione() const;
 
 private:
 
