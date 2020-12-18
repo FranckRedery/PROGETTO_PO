@@ -53,6 +53,7 @@ void MainWindow::on_aggiungi_autore_clicked()
     QString visualizza_afferenze;
 
     // prendo ogni afferenza dalla stringa e le inserisco nella lista
+    // analizzo char per char e quando trovo una virgola salvo un afferenza
     for(int i = 0; i!=afferenze.size();i++){
         if(afferenze[i] != ',' && !parola.isEmpty()){
             parola.push_back(afferenze[i]);
@@ -74,6 +75,8 @@ void MainWindow::on_aggiungi_autore_clicked()
         }
     }
 
+    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
+    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
     if(visualizza_afferenze.size()>=2){
         int last_char = visualizza_afferenze.size()-2;
         visualizza_afferenze[last_char] = '.';
@@ -142,6 +145,7 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
     QString visualizza_organizzatori;
 
     // prendo ogni afferenza dalla stringa e le inserisco nella lista
+    // analizzo char per char e ogni volta che trovo una virgola aggiungo l'organizzatore
     for(int i = 0; i!=stringa_di_organizzatori.size();i++){
         if(stringa_di_organizzatori[i] != ',' && !organizzatore.isEmpty()){
             organizzatore.push_back(stringa_di_organizzatori[i]);
@@ -163,6 +167,8 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
         }
     }
 
+    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
+    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
     if(visualizza_organizzatori.size()>=2){
         int last_char = visualizza_organizzatori.size()-2;
         visualizza_organizzatori[last_char] = '.';
@@ -212,6 +218,9 @@ void MainWindow::on_pushButton_clicked()
     list<Autore*> autori;
     QString id_autore;
 
+    //analizzo char per char la sezione degli autori
+    // prendo gli id degli autori separati da spazio
+
     for(int i = 0 ; i!=stringa_di_autori.size();i++){
         if(stringa_di_autori[i] != ' '){
             id_autore.push_back(stringa_di_autori[i]);
@@ -233,6 +242,8 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 
+    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
+    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
     int last_char;
     if(visualizza_autori.size()>= 2){
         last_char = visualizza_autori.size() -2;
@@ -244,6 +255,8 @@ void MainWindow::on_pushButton_clicked()
     list<int> articoli_correlati;
     QString art;
 
+    //analizzo char per char la sezione degli articoli
+    // qprendo gli id degli articoli che vengono separati da uno spazio
     for(int i = 0 ; i!=stringa_articoli.size();i++){
         if(stringa_articoli[i] != ' '){
             art.push_back(stringa_articoli[i]);
@@ -263,6 +276,8 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 
+    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
+    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
     if(visualizza_correlati.size()>=2){
         last_char = visualizza_correlati.size()-2;
         visualizza_correlati[last_char] = '.';
@@ -273,6 +288,8 @@ void MainWindow::on_pushButton_clicked()
     list<QString> keyword;
     QString chiave;
 
+    //analizzo char per char la sezione delle keyword
+    // quando trovo una virgola ',' aggiungo una keyword
     for(int i = 0 ; i!=stringa_keyword.size();i++){
         if(stringa_keyword[i] != ',' && !chiave.isEmpty()){
             chiave.push_back(stringa_keyword[i]);
@@ -295,6 +312,8 @@ void MainWindow::on_pushButton_clicked()
 
     }
 
+    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
+    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
     if(visualizza_keyword.size()>=2){
         last_char = visualizza_keyword.size()-2;
         visualizza_keyword[last_char] = '.';
@@ -331,7 +350,10 @@ void MainWindow::on_SEZIONE_B_clicked()
 void MainWindow::on_SEZIONEB_PULSANTE_VISUALIZZA_clicked()
 {
     ui->SEZIONE_B_visualizzazione_articoli->clear();
+
+    // questa è la lista di articoli che riempirò chiamando i metodi di questa sezione
     list<Articolo*> lista_articoli;
+
     if(ui->SezioneB_scelta_visualizza_articoli_per_autore->isChecked()){
         int id = ui->sezioneB_id_autore->value();
         gestore.get_articoli_autore(id,lista_articoli);
@@ -377,18 +399,22 @@ void MainWindow::on_SEZIONEB_PULSANTE_VISUALIZZA_clicked()
 void MainWindow::on_SEZIONE_C_PULSANTE_CONFERMA_clicked()
 {
     ui->SEZIONE_C_LISTWIDGET->clear();
+
+    // questa è la lista di articoli e di keyword che riempirò chiamando i metodi
+    // che richiede la sezione
+
     list<Articolo*> lista_articoli;
     list<QString> keyword_max;
 
     if(ui->SEZIONE_C_ARTICOLI_MIN->isChecked()){
-
+                                                        // con 1 come ultimo parametro del metodo trovo gli articoli con prezzo min
         gestore.get_articoli_autore_prezzo_max_or_min(ui->SEZIONE_C_ID_AUTORE->value(),lista_articoli,1);
         for(auto& i : lista_articoli){
             ui->SEZIONE_C_LISTWIDGET->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
         }
     }
     if(ui->SEZIONE_C_ARTICOLI_MAX->isChecked()){
-
+                                                     // con 2 come ultimo parametro del metodo trovo gli articoli con prezzo max
         gestore.get_articoli_autore_prezzo_max_or_min(ui->SEZIONE_C_ID_AUTORE->value(),lista_articoli,2);
         for(auto& i : lista_articoli){
             ui->SEZIONE_C_LISTWIDGET->addItem("ID :  " + QString::number(i->get_identificativo()) + "  Titolo :  " + i->get_titolo() + "  Pagine : " + QString::number(i->get_num_pagine()) + "  Prezzo : " + QString::number(i->get_prezzo()) + "  Conferenza/Rivista associata :  " + i->get_pubblicazione()->get_nome());
@@ -414,6 +440,8 @@ void MainWindow::on_SEZIONE_C_clicked()
 void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
 {
     ui->PAG_D_LISTA->clear();
+
+    // lista che riempio con gli articoli presi dai metodi della sezione
     list<Articolo*> lista_articoli;
 
     if(ui->PAG_D_RADIO_VISUALIZZA_AUTORE->isChecked()){
@@ -446,6 +474,8 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_PAG_E_pulsante_key_clicked()
 {
     ui->PAG_E_LISTA->clear();
+
+    // lista che riempirò attraverso il metodo della sezione
     list<QString> chiavi_diffuse;
 
     gestore.get_5_most_common_key(chiavi_diffuse);
@@ -464,7 +494,9 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_PAG_F_CERCA_CONFERENZE_COMUN_clicked()
 {
+    // lista che riempirò con le conferenze comuni prese dal metodo
     list<Pubblicazione*> comuni;
+
     ui->PAG_F_LISTA->clear();
     gestore.get_conferenze_simili(ui->PAGINA_F_NOME_CONFERENZA->text(),comuni);
     for(auto& i : comuni){
@@ -495,14 +527,33 @@ void MainWindow::on_pulsante_visualizza_Articoli_clicked()
 
 
 /*SEZIONE F METODO 4 : AGGIUNGERE GLI INPUT DA FILE DI TESTO
-L'ID DA FILE DI TESTO LO SETTO IN AUTOMATICO, PER SEMPLIFICARE L'INSERIMENTO ALL'UTENTE,
-DOVE è RICHIESTO. PER QUANTO RIGUARDA LA MODALITà DI INSERIMENTO,
-IN GENERALE BISOGNA INSERIRE OGNI CAMPO E POI QUANDO SI FINISCE DI
-INSERIRLO SCRIVERE '|' SE CI SONO CAMPI COME LE KEYWORD CHE POSSONO
-ESSERE DIVERSE BISOGNA SEPARARLE UNA DALL'ALTRA CON ','
-IN PARTICOLARE LE MODALITà DI INSERIMENTO SONO SPIEGATE DENTRO I FILE
-DI TESTO SPECIFICI PER ESSERE PIù CHIARI
-                                                                */
+
+L'ID RELATIVO AD AUTORI E ARTICOLI VERRA' SETTATO IN AUTOMATICO
+PER SEMPLIFICARE L'INSERIMENTO ALL'UTENTE
+
+PER QUANTO RIGUARDA LA MODALITA' DI INSERIMENTO,
+IN GENERALE BISOGNA INSERIRE OGNI CAMPO RICHIESTO E POI QUANDO SI FINISCE DI
+INSERIRLO SCRIVERE '|'.
+SE CI SONO CAMPI COME LE KEYWORD CHE POSSONO ESSERE PIU' DI UNA (LISTE)
+BISOGNA SEPARARE I DIVERSI ATTRIBUTI (KEYWORD/AFFERENZE ... ECC) UNA DALL'ALTRA CON ','
+
+NEL DETTAGLIO LE MODALITA' DI INSERIMENTO SONO SPIEGATE
+DENTRO I FILE DI TESTO SPECIFICI PER ESSERE PIU' CHIARI
+E CON DEI RELATIVI ESEMPI
+
+L'INPUT DA FILE DI TESTO E' GESTITO IN MODO CHE SE SI RISPETTANO  I CRITERI DI INSERIMENTO
+SI POSSONO INSERIRE VOLENDO ANCHE IN MODO "ALTERNATO" INPUT DA INTERFACCIA E DA FILE DI TESTO
+SENZA ALCUN PROBLEMA
+*/
+
+
+/* IN GENERALE L'INPUT DA CODICE VIENE PRESO IN UN LOOP WHILE IN CUI SI ANALIZZANO CHAR
+   PER CHAR E VENGONO INSERITI NELL'OPPORTUNO CAMPO , OGNI VOLTA CHE SI INCONTRA UNA '|'
+   SI INCREMENTA UN CONTATORE PER FAR CAPIRE CHE SI E' PASSATI AD INSERIRE IL PROSSIMO CAMPO
+   E INVECE NEL CASO DI LISTE DI PIU' ELEMENTI OGNI VOLTA CHE SI TROVA UNA ',' SI SALVA
+   QUELL'ELEMENTO E SI PROCEDE CON PRENDERE IL PROSSIMO FINCHE' NON VIENE TERMINATO L'INSERIMENTO
+   CON IL CARATTERE '|'
+*/
 void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
 {
     QString testo_file = readFile("autori.txt");
@@ -744,7 +795,7 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
 
             id = gestore.get_first_free_id_articolo();
 
-            if(titolo.isEmpty() || autori.empty() || keys.empty() || articoli_correlati.empty()){
+            if(titolo.isEmpty() || visualizza_autori.isEmpty() || keys.empty() || articoli_correlati.empty()){
                 QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/Articoli correlati non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
                 mess.exec();
                 return;
@@ -779,7 +830,8 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
 }
 
 
-
+//FUNZIONE CHE PERMETTE DI LEGGERE UN FILE DI TESTO PASSANDOGLI IL NOME
+// E RITORNA UNA QSTRING CONTENENTE TUTTO CIO' CHE E' SCRITTO NEL FILE
 
 QString MainWindow::readFile(QString filename)
 {

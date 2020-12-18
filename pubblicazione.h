@@ -13,14 +13,21 @@ public:
     Pubblicazione(QString n, QString a, QString d, bool conf): nome(n), acronimo(a), data(d), conferenza(conf){}
 
     QString get_nome() const { return nome; }
+
     QString get_acronimo() const { return acronimo; }
+
     QString get_data() const { return data; }
+
     virtual bool is_conferenza() const { return conferenza; }
 
     void set_nome(QString n) { nome = n; }
+
     void set_acronimo(QString a) { acronimo = a; }
+
     void set_data(QString d) { data = d; }
 
+    // metodo che viene usato per fare il costruttore di copia e operator =
+    // nel gestore perché usiamo l'ereditarietà
     virtual Pubblicazione* clone() const { return new Pubblicazione(*this); }
 
     virtual ~Pubblicazione(){}

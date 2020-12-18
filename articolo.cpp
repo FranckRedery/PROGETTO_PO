@@ -8,6 +8,8 @@ void Articolo::aggiungi_keyword(QString k){
     keyword.push_back(k);
 }
 
+// ritorna una lista di interi che contiene
+// gli id di tutti gli autori dell'articolo
 list<int> Articolo::get_id_autori() const{
     list<int> id_autori;
     for(auto& i : autori){

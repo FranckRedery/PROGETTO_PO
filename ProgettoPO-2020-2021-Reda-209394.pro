@@ -10,7 +10,6 @@ CONFIG += c++11
 
 SOURCES += \
     articolo.cpp \
-    autore.cpp \
     gestore.cpp \
     main.cpp \
     mainwindow.cpp
