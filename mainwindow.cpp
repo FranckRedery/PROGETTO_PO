@@ -762,8 +762,8 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
                 autori.push_back(gestore.get_autore(id_autore.toInt()));
                 visualizza_autori += id_autore.simplified();
                 visualizza_autori += ", ";
-                id_autore.clear();
             }
+            id_autore.clear();
         }
         if(testo_file[i]!= ',' && testo_file[i]!='|' && cont == 5){
             keyword.push_back(testo_file[i]);
