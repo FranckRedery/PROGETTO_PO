@@ -89,7 +89,7 @@ private slots:
 
     void on_pulsante_aggiungi_articolo_file_clicked();
 
-    void on_rivista_aggiungi_autore_clicked();
+    void on_articolo_add_autore_clicked();
 
 private:
     Ui::MainWindow *ui;
