@@ -6,7 +6,7 @@
 #include "autore.h"
 #include "conferenza.h"
 #include "rivista.h"
-using namespace std;
+
 
 class Articolo
 {
@@ -15,7 +15,7 @@ public:
 
     Articolo(){}
 
-    Articolo(int id, int n, double p, QString t, Pubblicazione* pub, list<int> corr, list<Autore*> aut, list<QString> key) : identificativo(id), num_pagine(n), prezzo(p), titolo(t) , destinata(pub), articoli_correlati(corr), autori(aut), keyword(key) {}
+    Articolo(int id, int n, double p, QString t, Pubblicazione* pub, std::list<int> corr, std::list<Autore*> aut, std::list<QString> key) : identificativo(id), num_pagine(n), prezzo(p), titolo(t) , destinata(pub), articoli_correlati(corr), autori(aut), keyword(key) {}
 
     int get_identificativo() const { return identificativo; }
 
@@ -27,9 +27,9 @@ public:
 
     Pubblicazione* get_pubblicazione() const { return destinata; }
 
-    list<QString> get_keywords() const { return keyword; }
+    std::list<QString> get_keywords() const { return keyword; }
 
-    list<int> get_id_autori() const;
+    std::list<int> get_id_autori() const;
 
     // due metodi get che servono per il sort dei metodi della sezione D
     QString get_prima_key() const { return keyword.front(); }
@@ -57,9 +57,9 @@ private:
     int num_pagine;
     double prezzo;
     QString titolo;
-    list<int> articoli_correlati; // racchiude gli ID degli articoli correlati
-    list<Autore*> autori;
-    list<QString> keyword;
+    std::list<int> articoli_correlati; // racchiude gli ID degli articoli correlati
+    std::list<Autore*> autori;
+    std::list<QString> keyword;
     Pubblicazione* destinata; // la pubblicazioni a cui è destinato l'articolo (può essere  per una rivista o per una conferenza)
 
 };

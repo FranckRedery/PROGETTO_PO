@@ -2,14 +2,14 @@
 #include <algorithm>
 #include <iostream>
 
-void Gestore::aggiungi_autore(QString n, QString c, int id, list<QString> a){
+void Gestore::aggiungi_autore(QString n, QString c, int id, std::list<QString> a){
 
     Autore* nuovo = new Autore(n,c,id,a);
     autori.push_back(nuovo);
 
 }
 
-void Gestore::aggiungi_conferenza(int id, QString n, QString a, QString d, QString l, int num, list<QString> o){
+void Gestore::aggiungi_conferenza(int id, QString n, QString a, QString d, QString l, int num, std::list<QString> o){
 
     Pubblicazione* conf = new Conferenza(id,n,a,d,l,num,o);
     pubblicazioni.push_back(conf);
@@ -23,7 +23,7 @@ void Gestore::aggiungi_rivista(int id,QString n, QString a, QString d, QString e
 
 }
 
-void Gestore::aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, list<int> corr, list<Autore*> aut, list<QString> key){
+void Gestore::aggiungi_articolo(int id, int n, double p, QString t, Pubblicazione* pub, std::list<int> corr, std::list<Autore*> aut, std::list<QString> key){
 
     Articolo* art = new Articolo(id,n,p,t,pub,corr,aut,key);
     articoli.push_back(art);
@@ -139,9 +139,9 @@ bool Gestore::Is_ID_articolo_alreadytaken(int id) const{
 }
 
 // SEZIONE B METODO 1
-void Gestore::get_articoli_autore(int id, list<Articolo*>& lista) const {
+void Gestore::get_articoli_autore(int id, std::list<Articolo*>& lista) const {
 
-    list<int> id_da_controllare;
+    std::list<int> id_da_controllare;
 
     for(auto& i : articoli){
         id_da_controllare = i->get_id_autori();
@@ -159,7 +159,7 @@ void Gestore::get_articoli_autore(int id, list<Articolo*>& lista) const {
 }
 
 // SEZIONE B METODO 4 E 5 (FUNZIONA PER ENTRAMBI)
-void Gestore::get_articoli_conferenza_or_rivista(int id, list<Articolo *> &lista) const{
+void Gestore::get_articoli_conferenza_or_rivista(int id, std::list<Articolo *> &lista) const{
 
     for(auto& i : articoli){
         if(i->get_pubblicazione()->get_id() == id){
@@ -170,9 +170,9 @@ void Gestore::get_articoli_conferenza_or_rivista(int id, list<Articolo *> &lista
 
 // SEZIONE C METODO 1 E 2 (FUNZIONA PER ENTRAMBI INSERENDO IL TIPO DI SCELTA)
 // Scegliendo 1 si prendono gli articoli con prezzo min , scegliendo 2 quelli con prezzo max
-void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &lista, int scelta) const{
+void Gestore::get_articoli_autore_prezzo_max_or_min(int id, std::list<Articolo *> &lista, int scelta) const{
 
-    list<Articolo*> articoli_autore;
+    std::list<Articolo*> articoli_autore;
 
      // trovo tutti gli articoli di quell'autore
     get_articoli_autore(id,articoli_autore);
@@ -205,10 +205,10 @@ void Gestore::get_articoli_autore_prezzo_max_or_min(int id, list<Articolo *> &li
 }
 
 // SEZIONE C METODO 6
-void Gestore::get_keywords_guadagno_max(list<QString> &lista) const{
+void Gestore::get_keywords_guadagno_max(std::list<QString> &lista) const{
 
-    list<QString> keywords;
-    list<QString> nuove_key;
+    std::list<QString> keywords;
+    std::list<QString> nuove_key;
 
       // prendo le keyword di tutti gli articoli
     for(auto& i : articoli){
@@ -223,7 +223,7 @@ void Gestore::get_keywords_guadagno_max(list<QString> &lista) const{
 
     // utilizzo un vector di double per conservare i prezzi totali degli articoli contenenti quella keyword
     // il suo size deve essere uguale a quelle delle keyword
-    vector<double> valore_key;
+    std::vector<double> valore_key;
     valore_key.resize(keywords.size());
 
     double max = INT_MIN;
@@ -267,7 +267,7 @@ bool sort_autore(const Articolo* a , const Articolo* b){
 }
 
 // SEZIONE D METODO 6, prendo gli articoli dell'autore e li ordino secondo i criteri
-void Gestore::articoli_autore_sorted(int id, list<Articolo *> &lista) const {
+void Gestore::articoli_autore_sorted(int id, std::list<Articolo *> &lista) const {
 
     get_articoli_autore(id,lista);
     lista.sort(sort_autore);
@@ -287,15 +287,15 @@ bool sort_key(const Articolo* a, const Articolo* b){
 }
 
 // SEZIONE D METODO 5 prendo gli articoli con quella keyword e li ordino secondo i criteri
-void Gestore::articoli_keyword_sorted(QString key, list<Articolo*> &lista) const{
+void Gestore::articoli_keyword_sorted(QString key, std::list<Articolo*> &lista) const{
 
     get_articoli_keyword(key,lista);
     lista.sort(sort_key);
 }
 
-void Gestore::get_articoli_keyword(QString key, list<Articolo*> &lista) const{
+void Gestore::get_articoli_keyword(QString key, std::list<Articolo*> &lista) const{
 
-    list<QString> key_da_controllare;
+    std::list<QString> key_da_controllare;
     for(auto& i : articoli){
         key_da_controllare = i->get_keywords();
          // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche
@@ -311,10 +311,10 @@ void Gestore::get_articoli_keyword(QString key, list<Articolo*> &lista) const{
 }
 
 // SEZIONE E METODO 3
-void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
+void Gestore::get_5_most_common_key(std::list<QString> &chiavi) const{
 
-    list<QString> contenitore_chiavi;
-    list<QString> nuove_chiavi;
+    std::list<QString> contenitore_chiavi;
+    std::list<QString> nuove_chiavi;
 
      // prendo le key di ogni articolo
     for(auto& i : articoli){
@@ -330,7 +330,7 @@ void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
     }
 
     // uso questo vector per contare quante volte la chiave è presente
-    vector<int> quant;
+    std::vector<int> quant;
     quant.resize(contenitore_chiavi.size());
     int ind = 0, max = INT_MIN;
 
@@ -374,9 +374,9 @@ void Gestore::get_5_most_common_key(list<QString> &chiavi) const{
 }
 
 
-list<QString> get_key_comuni(list<QString>& a, list<QString>& b){
+std::list<QString> get_key_comuni(std::list<QString>& a, std::list<QString>& b){
 
-    list<QString> comuni;
+    std::list<QString> comuni;
     // se trovo chiavi comuni che non sono presente nella list comuni le aggiungo
     for(auto& i : a){
         for(auto& j : b){
@@ -390,9 +390,9 @@ list<QString> get_key_comuni(list<QString>& a, list<QString>& b){
     return  comuni;
 }
 
-list<QString> get_key_unione(list<QString>& a, list<QString>& b){
+std::list<QString> get_key_unione(std::list<QString>& a, std::list<QString>& b){
 
-    list<QString> unione = a;
+    std::list<QString> unione = a;
     for(auto& i : b){
         unione.push_back(i);
     }
@@ -403,10 +403,10 @@ list<QString> get_key_unione(list<QString>& a, list<QString>& b){
 }
 
 // SEZIONE F METODO 5
-void Gestore::get_conferenze_simili(int id, list<Pubblicazione*> &lista) const{
+void Gestore::get_conferenze_simili(int id, std::list<Pubblicazione*> &lista) const{
 
-    list<QString> key;
-    list<QString> nuove_key;
+    std::list<QString> key;
+    std::list<QString> nuove_key;
 
     // in questo for prendo tutte le chiavi relative alla conferenza scelta da input
     for(auto& i : articoli){
@@ -420,9 +420,9 @@ void Gestore::get_conferenze_simili(int id, list<Pubblicazione*> &lista) const{
     key.sort();
     key.unique();
 
-    list<QString> key_comuni;
-    list<QString> key_seconda_conf;
-    list<QString> key_unione;
+    std::list<QString> key_comuni;
+    std::list<QString> key_seconda_conf;
+    std::list<QString> key_unione;
 
     // assumo che una conferenza uguale a se stessa sia anche simile quindi voglio visualizzare anche quella scelta
     for(auto& i : articoli){

@@ -2,12 +2,13 @@
 #include "ui_mainwindow.h"
 #include "autore.h"
 #include "gestore.h"
+#include "pubblicazione.h"
+#include "rivista.h"
+#include "conferenza.h"
 #include <QMessageBox>
 #include <iostream>
 #include <QFile>
 #include <QTextStream>
-
-using namespace std;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -48,7 +49,7 @@ void MainWindow::on_aggiungi_autore_clicked()
     QString cognome = ui->linea_cognome->text();
     QString afferenze = ui->afferenze_plaintext->toPlainText();
 
-    list<QString> aff;
+    std::list<QString> aff;
     QString parola;
     QString visualizza_afferenze;
 
@@ -148,7 +149,7 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
 
     QString stringa_di_organizzatori = ui->organizzatori_plaintext->toPlainText();
 
-    list<QString> org;
+    std::list<QString> org;
     QString organizzatore;
     QString visualizza_organizzatori;
 
@@ -229,7 +230,7 @@ void MainWindow::on_pushButton_clicked()
     QString stringa_di_autori = ui->plaintext_autori_di_articolo->toPlainText();
     QString visualizza_autori;
 
-    list<Autore*> autori;
+    std::list<Autore*> autori;
     QString id_autore;
 
     //analizzo char per char la sezione degli autori
@@ -266,7 +267,7 @@ void MainWindow::on_pushButton_clicked()
 
     QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
     QString visualizza_correlati;
-    list<int> articoli_correlati;
+    std::list<int> articoli_correlati;
     QString art;
 
     //analizzo char per char la sezione degli articoli
@@ -299,7 +300,7 @@ void MainWindow::on_pushButton_clicked()
 
     QString stringa_keyword = ui->plaintext_keyword_di_articolo->toPlainText();
     QString visualizza_keyword;
-    list<QString> keyword;
+    std::list<QString> keyword;
     QString chiave;
 
     //analizzo char per char la sezione delle keyword
@@ -366,7 +367,7 @@ void MainWindow::on_SEZIONEB_PULSANTE_VISUALIZZA_clicked()
     ui->SEZIONE_B_visualizzazione_articoli->clear();
 
     // questa è la lista di articoli che riempirò chiamando i metodi di questa sezione
-    list<Articolo*> lista_articoli;
+    std::list<Articolo*> lista_articoli;
 
     if(ui->SezioneB_scelta_visualizza_articoli_per_autore->isChecked()){
         int id = ui->sezioneB_id_autore->value();
@@ -417,8 +418,8 @@ void MainWindow::on_SEZIONE_C_PULSANTE_CONFERMA_clicked()
     // questa è la lista di articoli e di keyword che riempirò chiamando i metodi
     // che richiede la sezione
 
-    list<Articolo*> lista_articoli;
-    list<QString> keyword_max;
+    std::list<Articolo*> lista_articoli;
+    std::list<QString> keyword_max;
 
     if(ui->SEZIONE_C_ARTICOLI_MIN->isChecked()){
                                                         // con 1 come ultimo parametro del metodo trovo gli articoli con prezzo min
@@ -456,7 +457,7 @@ void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
     ui->PAG_D_LISTA->clear();
 
     // lista che riempio con gli articoli presi dai metodi della sezione
-    list<Articolo*> lista_articoli;
+    std::list<Articolo*> lista_articoli;
 
     if(ui->PAG_D_RADIO_VISUALIZZA_AUTORE->isChecked()){
         gestore.articoli_autore_sorted(ui->PAG_D_ID_AUTORE->value(),lista_articoli);
@@ -490,7 +491,7 @@ void MainWindow::on_PAG_E_pulsante_key_clicked()
     ui->PAG_E_LISTA->clear();
 
     // lista che riempirò attraverso il metodo della sezione
-    list<QString> chiavi_diffuse;
+    std::list<QString> chiavi_diffuse;
 
     gestore.get_5_most_common_key(chiavi_diffuse);
 
@@ -509,7 +510,7 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_PAG_F_CERCA_CONFERENZE_COMUN_clicked()
 {
     // lista che riempirò con le conferenze comuni prese dal metodo
-    list<Pubblicazione*> comuni;
+    std::list<Pubblicazione*> comuni;
 
     ui->PAG_F_LISTA->clear();
     gestore.get_conferenze_simili(ui->PAGINA_F_ID_CONFERENZA->value(),comuni);
@@ -574,7 +575,7 @@ void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
 
         int i = 0, cont = 0, id;
         QString nome, cognome, visualizza_afferenze, parola;
-        list<QString> aff;
+        std::list<QString> aff;
 
         while(i != testo_file.size()){
 
@@ -629,7 +630,7 @@ void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
 
        int i = 0, cont = 0, id;
        QString nome, acronimo, visualizza_orgnizzatori, org, luogo, partecipanti,data;
-       list<QString> organizzatori;
+       std::list<QString> organizzatori;
 
        while(i!=testo_file.size()){
            if(testo_file[i] == '|'){
@@ -747,9 +748,9 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
     int cont = 0, i = 0, id;
 
     QString visualizza_autori, visualizza_keyword,visualizza_correlati;
-    list<int> articoli_correlati;
-    list<Autore*> autori;
-    list<QString> keys;
+    std::list<int> articoli_correlati;
+    std::list<Autore*> autori;
+    std::list<QString> keys;
 
     while(i!=testo_file.size()){
         if(testo_file[i] == '|'){
@@ -854,7 +855,7 @@ QString MainWindow::readFile(QString filename)
     QFile file(filename);
 
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        cout<<"File open failed";
+        std::cout<<"File open failed";
     }
 
     QTextStream in(&file);

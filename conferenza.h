@@ -1,9 +1,10 @@
 #ifndef CONFERENZA_H
 #define CONFERENZA_H
+
 #include "pubblicazione.h"
 #include <list>
 #include <QString>
-using namespace std;
+
 
 class Conferenza : public Pubblicazione
 {
@@ -12,7 +13,7 @@ public:
 
     Conferenza() : Pubblicazione(), luogo("Non definito"), num_partecipanti(0) {}
 
-    Conferenza(int id, QString n, QString a, QString d, QString l, int num, list<QString> o): Pubblicazione(id,n,a,d,true) , luogo(l), num_partecipanti(num), organizzatori(o) {}
+    Conferenza(int id, QString n, QString a, QString d, QString l, int num, std::list<QString> o): Pubblicazione(id,n,a,d,true) , luogo(l), num_partecipanti(num), organizzatori(o) {}
 
     // metodo che viene usato per fare il costruttore di copia e operator =
     // nel gestore perché usiamo l'ereditarietà
@@ -34,7 +35,7 @@ public:
 private:
 
     QString luogo;
-    list<QString> organizzatori;
+    std::list<QString> organizzatori;
     int num_partecipanti;
 
 };
