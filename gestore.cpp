@@ -498,14 +498,9 @@ void Gestore::get_conferenze_simili(int id, std::list<Pubblicazione*> &lista) co
     // in questo for prendo tutte le chiavi relative alla conferenza scelta da input
     for(auto& i : articoli){
         if(i->get_pubblicazione()->get_id() == id && i->get_pubblicazione()->is_conferenza() == true){
-            nuove_key = i->get_keywords();
-            for(auto& j: nuove_key){
-                key.push_back(j);
-            }
+            get_all_keyword_by_ID(i->get_pubblicazione()->get_id(),key);
         }
     }
-    key.sort();
-    key.unique();
 
     std::list<QString> key_comuni;
     std::list<QString> key_seconda_conf;
@@ -520,17 +515,7 @@ void Gestore::get_conferenze_simili(int id, std::list<Pubblicazione*> &lista) co
         // se trovo un altra pubblicazione che è una conferenza prendo tutte le keywords di quella conferenza
 
         if(i->get_pubblicazione()->is_conferenza()){
-            int id_conf = i->get_pubblicazione()->get_id();
-            for(auto & j : articoli){
-                if(j->get_pubblicazione()->get_id() == id_conf){
-                    nuove_key = j->get_keywords();
-                    for(auto& k: nuove_key){
-                        key_seconda_conf.push_back(k);
-                    }
-                }
-            }
-            key_seconda_conf.sort();
-            key_seconda_conf.unique();
+            get_all_keyword_by_ID(i->get_pubblicazione()->get_id(),key_seconda_conf);
 
             // faccio l'unione delle key delle due conferenze e anche l'intersezione
             //dopodiché faccio size di intersezione / size di unione , se è >=0,8 aggiungo alla lista di quelle comuni la pubblicazione attuale
