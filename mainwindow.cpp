@@ -118,6 +118,7 @@ void MainWindow::on_aggiungi_autore_clicked()
 
     gestore.aggiungi_autore(nome,cognome,id,aff);
     ui->PAG_VISUALIZZA_AUTORI_LISTA->addItem("ID : " + QString::number(id) + "    NOME : "+ nome + "    COGNOME : " + cognome + "    AFFERENZE : " + visualizza_afferenze);
+    ui->articolo_lista_add_autori->addItem(QString::number(id));
 
 }
 
@@ -155,6 +156,7 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
 
     gestore.aggiungi_rivista(id,nome,acronimo,data.toString(Qt::DateFormat::ISODate),editore,volume);
     ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("ID : " + QString::number(id) + "    NOME : " + nome + "    ACRONIMO : " + acronimo + "    EDITORE : " + editore + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    VOLUME : " + QString::number(volume));
+    ui->articolo_lista_id_pubb->addItem(QString::number(id));
 }
 
 void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
@@ -222,6 +224,7 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
 
     gestore.aggiungi_conferenza(id,nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part,org);
     ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem( "ID : " + QString::number(id) +"    NOME : " + nome + "    ACRONIMO : " + acronimo + "    LUOGO : " + luogo + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    PARTECIPANTI : " + QString::number(part) + "    ORGANIZZATORI : " + visualizza_organizzatori );
+    ui->articolo_lista_id_pubb->addItem(QString::number(id));
 }
 
 void MainWindow::on_go_pag_conferenze_clicked()
@@ -351,13 +354,6 @@ void MainWindow::on_pushButton_clicked()
     if(gestore.Is_ID_articolo_alreadytaken(id)){
         QMessageBox mess_due(QMessageBox::Critical, "Errore", "L'ID richiesto è già occupato da un articolo.", QMessageBox::Ok,this);
         mess_due.exec();
-        return;
-    }
-
-
-    if(gestore.get_pubblicazione(id_pubblicazione) == nullptr){
-        QMessageBox mess_tre(QMessageBox::Critical, "Errore", "La conferenza/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
-        mess_tre.exec();
         return;
     }
 
