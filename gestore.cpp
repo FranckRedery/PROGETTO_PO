@@ -268,6 +268,18 @@ void Gestore::get_keywords_guadagno_max(std::list<QString> &lista) const{
     }
 }
 
+bool sort_anno(const Articolo* a , const Articolo* b){
+    if(a->get_pubblicazione()->get_data() > b->get_pubblicazione()->get_data()){
+        return false;
+    }
+    return true;
+}
+
+// SEZIONE D METODO 1 , prendo gli articoli dell'autore e li ordino per anno :)))
+void Gestore::articoli_autore_sorted_anno(int id, std::list<Articolo *> &lista) const{
+    get_articoli_autore(id,lista);
+    lista.sort();
+}
 
 bool sort_autore(const Articolo* a , const Articolo* b){
     if(a->get_pubblicazione()->get_data() > b->get_pubblicazione()->get_data()){
@@ -389,6 +401,65 @@ void Gestore::get_5_most_common_key(std::list<QString> &chiavi) const{
     }
 }
 
+void Gestore::get_all_keyword_by_ID(int id, std::list<QString> &lista) const{
+
+    std::list<QString> nuove_key;
+    for(auto& i : articoli){
+        if(i->get_pubblicazione()->get_id() == id){
+            nuove_key = i->get_keywords();
+            for(auto& j : nuove_key){
+                lista.push_back(j);
+            }
+        }
+    }
+    lista.sort();
+    lista.unique();
+}
+
+bool Gestore::sottoinsieme(std::list<QString> &first, std::list<QString> &second) const{
+
+    int cont = 0 ;
+    for(auto& i : first){
+        for(auto& j : second){
+            if(i == j){
+                cont++;
+            }
+        }
+        if(cont == 0){
+            return false;
+        }
+        cont = 0;
+    }
+    return true;
+}
+
+//SEZIONE E METODO 6
+void Gestore::get_riviste_specialistiche(std::list<Pubblicazione *> &lista) const{
+
+    std::list<QString> key;
+    std::list<QString> key_seconda;
+
+    for(auto& i : articoli){
+        if(i->get_pubblicazione()->is_conferenza() == false){
+            get_all_keyword_by_ID(i->get_pubblicazione()->get_id(),key);
+        }
+        for(auto& j : articoli){
+            if(j->get_pubblicazione()->is_conferenza() == false && j->get_pubblicazione()->get_id() != i->get_pubblicazione()->get_id()){
+
+                get_all_keyword_by_ID(j->get_pubblicazione()->get_id(),key_seconda);
+
+                if(sottoinsieme(key,key_seconda) && find(lista.begin(),lista.end(),i->get_pubblicazione()) == lista.end()){
+                    lista.push_back(i->get_pubblicazione());
+                }
+            }
+            key_seconda.clear();
+        }
+    key.clear();
+    }
+
+
+}
+
 
 std::list<QString> get_key_comuni(std::list<QString>& a, std::list<QString>& b){
 
@@ -426,7 +497,7 @@ void Gestore::get_conferenze_simili(int id, std::list<Pubblicazione*> &lista) co
 
     // in questo for prendo tutte le chiavi relative alla conferenza scelta da input
     for(auto& i : articoli){
-        if(i->get_pubblicazione()->get_id() == id && i->get_pubblicazione()->is_conferenza()){
+        if(i->get_pubblicazione()->get_id() == id && i->get_pubblicazione()->is_conferenza() == true){
             nuove_key = i->get_keywords();
             for(auto& j: nuove_key){
                 key.push_back(j);

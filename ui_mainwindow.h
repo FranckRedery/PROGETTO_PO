@@ -73,15 +73,15 @@ public:
     QGridLayout *gridLayout_18;
     QGridLayout *gridLayout_5;
     QGridLayout *gridLayout_3;
-    QLabel *volume_rivista;
     QLabel *editore_rivista;
-    QLabel *acronimo_rivista;
-    QLabel *nome_rivista;
     QLabel *label_16;
+    QLabel *acronimo_rivista;
+    QLabel *volume_rivista;
+    QLabel *nome_rivista;
     QGridLayout *gridLayout_4;
-    QSpinBox *inserisci_volume;
-    QLineEdit *inserisci_nome;
     QLineEdit *inserisci_acronimo;
+    QLineEdit *inserisci_nome;
+    QSpinBox *inserisci_volume;
     QLineEdit *inserisci_editore;
     QSpinBox *id_rivista;
     QCalendarWidget *calendario_rivista;
@@ -92,39 +92,39 @@ public:
     QGridLayout *gridLayout_19;
     QCalendarWidget *calendario_conferenze;
     QGridLayout *gridLayout_6;
-    QLabel *label_acronimo_conf;
+    QSpinBox *id_conferenza;
+    QLineEdit *linea_luogo_conferenza;
+    QLabel *label_luogo_conf;
     QPlainTextEdit *organizzatori_plaintext;
     QLineEdit *linea_nome_conferenza;
     QSpinBox *num_partecipanti_conferenza;
-    QLabel *label_luogo_conf;
     QLineEdit *linea_acronimo_conferenza;
-    QLineEdit *linea_luogo_conferenza;
-    QLabel *label_nome_conf;
     QLabel *label_organizzatori;
     QLabel *label_part_conf;
-    QSpinBox *id_conferenza;
+    QLabel *label_acronimo_conf;
+    QLabel *label_nome_conf;
     QLabel *label_17;
     QWidget *pagina_articoli;
     QPushButton *pulsante_torna_al_menu;
     QPushButton *pushButton;
     QWidget *layoutWidget4;
     QGridLayout *gridLayout_7;
-    QLabel *label_3;
-    QLineEdit *titolo_articolo_linedit;
     QListWidget *articolo_lista_add_autori;
     QSpinBox *numpagine_articolo_linedit;
-    QDoubleSpinBox *prezzoarticolo_linedit;
-    QLabel *label_8;
-    QLabel *label_2;
-    QSpinBox *identificativo_articolo_linedit;
-    QLabel *label_5;
-    QLabel *label_7;
     QPlainTextEdit *plaintext_keyword_di_articolo;
-    QPlainTextEdit *plaintext_articoli_correlati_di_articolo;
+    QLabel *label_8;
     QListWidget *articolo_lista_id_pubb;
+    QLabel *label_2;
+    QLabel *label_7;
+    QDoubleSpinBox *prezzoarticolo_linedit;
+    QLabel *label_5;
     QLabel *label;
     QLabel *label_6;
+    QLineEdit *titolo_articolo_linedit;
+    QPlainTextEdit *plaintext_articoli_correlati_di_articolo;
     QLabel *label_4;
+    QLabel *label_3;
+    QSpinBox *identificativo_articolo_linedit;
     QPushButton *articolo_add_autore;
     QWidget *PAG_SEZIONE_B;
     QPushButton *sezioneB_to_menu;
@@ -402,68 +402,68 @@ public:
         gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
-        volume_rivista = new QLabel(layoutWidget2);
-        volume_rivista->setObjectName(QString::fromUtf8("volume_rivista"));
-        volume_rivista->setStyleSheet(QString::fromUtf8(""));
-
-        gridLayout_3->addWidget(volume_rivista, 4, 0, 1, 1);
-
         editore_rivista = new QLabel(layoutWidget2);
         editore_rivista->setObjectName(QString::fromUtf8("editore_rivista"));
         editore_rivista->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout_3->addWidget(editore_rivista, 3, 0, 1, 1);
+        gridLayout_3->addWidget(editore_rivista, 4, 0, 1, 1);
+
+        label_16 = new QLabel(layoutWidget2);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+
+        gridLayout_3->addWidget(label_16, 1, 0, 1, 1);
 
         acronimo_rivista = new QLabel(layoutWidget2);
         acronimo_rivista->setObjectName(QString::fromUtf8("acronimo_rivista"));
         acronimo_rivista->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout_3->addWidget(acronimo_rivista, 2, 0, 1, 1);
+        gridLayout_3->addWidget(acronimo_rivista, 3, 0, 1, 1);
+
+        volume_rivista = new QLabel(layoutWidget2);
+        volume_rivista->setObjectName(QString::fromUtf8("volume_rivista"));
+        volume_rivista->setStyleSheet(QString::fromUtf8(""));
+
+        gridLayout_3->addWidget(volume_rivista, 5, 0, 1, 1);
 
         nome_rivista = new QLabel(layoutWidget2);
         nome_rivista->setObjectName(QString::fromUtf8("nome_rivista"));
         nome_rivista->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout_3->addWidget(nome_rivista, 1, 0, 1, 1);
-
-        label_16 = new QLabel(layoutWidget2);
-        label_16->setObjectName(QString::fromUtf8("label_16"));
-
-        gridLayout_3->addWidget(label_16, 0, 0, 1, 1);
+        gridLayout_3->addWidget(nome_rivista, 0, 0, 1, 1);
 
 
         gridLayout_5->addLayout(gridLayout_3, 0, 0, 1, 1);
 
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        inserisci_acronimo = new QLineEdit(layoutWidget2);
+        inserisci_acronimo->setObjectName(QString::fromUtf8("inserisci_acronimo"));
+
+        gridLayout_4->addWidget(inserisci_acronimo, 4, 0, 1, 1);
+
+        inserisci_nome = new QLineEdit(layoutWidget2);
+        inserisci_nome->setObjectName(QString::fromUtf8("inserisci_nome"));
+
+        gridLayout_4->addWidget(inserisci_nome, 2, 0, 1, 1);
+
         inserisci_volume = new QSpinBox(layoutWidget2);
         inserisci_volume->setObjectName(QString::fromUtf8("inserisci_volume"));
         inserisci_volume->setMinimum(1);
         inserisci_volume->setMaximum(999999999);
 
-        gridLayout_4->addWidget(inserisci_volume, 4, 0, 1, 1);
-
-        inserisci_nome = new QLineEdit(layoutWidget2);
-        inserisci_nome->setObjectName(QString::fromUtf8("inserisci_nome"));
-
-        gridLayout_4->addWidget(inserisci_nome, 1, 0, 1, 1);
-
-        inserisci_acronimo = new QLineEdit(layoutWidget2);
-        inserisci_acronimo->setObjectName(QString::fromUtf8("inserisci_acronimo"));
-
-        gridLayout_4->addWidget(inserisci_acronimo, 2, 0, 1, 1);
+        gridLayout_4->addWidget(inserisci_volume, 6, 0, 1, 1);
 
         inserisci_editore = new QLineEdit(layoutWidget2);
         inserisci_editore->setObjectName(QString::fromUtf8("inserisci_editore"));
 
-        gridLayout_4->addWidget(inserisci_editore, 3, 0, 1, 1);
+        gridLayout_4->addWidget(inserisci_editore, 5, 0, 1, 1);
 
         id_rivista = new QSpinBox(layoutWidget2);
         id_rivista->setObjectName(QString::fromUtf8("id_rivista"));
         id_rivista->setMinimum(1);
         id_rivista->setMaximum(9999);
 
-        gridLayout_4->addWidget(id_rivista, 0, 0, 1, 1);
+        gridLayout_4->addWidget(id_rivista, 3, 0, 1, 1);
 
 
         gridLayout_5->addLayout(gridLayout_4, 0, 1, 1, 1);
@@ -491,7 +491,7 @@ public:
         pulsante_aggiungi_conferenza->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         layoutWidget3 = new QWidget(pagina_conferenze);
         layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
-        layoutWidget3->setGeometry(QRect(170, 70, 401, 391));
+        layoutWidget3->setGeometry(QRect(170, 70, 401, 409));
         gridLayout_19 = new QGridLayout(layoutWidget3);
         gridLayout_19->setObjectName(QString::fromUtf8("gridLayout_19"));
         gridLayout_19->setContentsMargins(0, 0, 0, 0);
@@ -504,15 +504,27 @@ public:
 
         gridLayout_6 = new QGridLayout();
         gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
-        label_acronimo_conf = new QLabel(layoutWidget3);
-        label_acronimo_conf->setObjectName(QString::fromUtf8("label_acronimo_conf"));
+        id_conferenza = new QSpinBox(layoutWidget3);
+        id_conferenza->setObjectName(QString::fromUtf8("id_conferenza"));
+        id_conferenza->setMinimum(1);
+        id_conferenza->setMaximum(9999);
 
-        gridLayout_6->addWidget(label_acronimo_conf, 2, 0, 1, 1);
+        gridLayout_6->addWidget(id_conferenza, 2, 1, 1, 1);
+
+        linea_luogo_conferenza = new QLineEdit(layoutWidget3);
+        linea_luogo_conferenza->setObjectName(QString::fromUtf8("linea_luogo_conferenza"));
+
+        gridLayout_6->addWidget(linea_luogo_conferenza, 4, 1, 1, 1);
+
+        label_luogo_conf = new QLabel(layoutWidget3);
+        label_luogo_conf->setObjectName(QString::fromUtf8("label_luogo_conf"));
+
+        gridLayout_6->addWidget(label_luogo_conf, 4, 0, 1, 1);
 
         organizzatori_plaintext = new QPlainTextEdit(layoutWidget3);
         organizzatori_plaintext->setObjectName(QString::fromUtf8("organizzatori_plaintext"));
 
-        gridLayout_6->addWidget(organizzatori_plaintext, 5, 1, 1, 1);
+        gridLayout_6->addWidget(organizzatori_plaintext, 6, 1, 1, 1);
 
         linea_nome_conferenza = new QLineEdit(layoutWidget3);
         linea_nome_conferenza->setObjectName(QString::fromUtf8("linea_nome_conferenza"));
@@ -523,49 +535,37 @@ public:
         num_partecipanti_conferenza->setObjectName(QString::fromUtf8("num_partecipanti_conferenza"));
         num_partecipanti_conferenza->setMaximum(999999999);
 
-        gridLayout_6->addWidget(num_partecipanti_conferenza, 4, 1, 1, 1);
-
-        label_luogo_conf = new QLabel(layoutWidget3);
-        label_luogo_conf->setObjectName(QString::fromUtf8("label_luogo_conf"));
-
-        gridLayout_6->addWidget(label_luogo_conf, 3, 0, 1, 1);
+        gridLayout_6->addWidget(num_partecipanti_conferenza, 5, 1, 1, 1);
 
         linea_acronimo_conferenza = new QLineEdit(layoutWidget3);
         linea_acronimo_conferenza->setObjectName(QString::fromUtf8("linea_acronimo_conferenza"));
 
-        gridLayout_6->addWidget(linea_acronimo_conferenza, 2, 1, 1, 1);
+        gridLayout_6->addWidget(linea_acronimo_conferenza, 3, 1, 1, 1);
 
-        linea_luogo_conferenza = new QLineEdit(layoutWidget3);
-        linea_luogo_conferenza->setObjectName(QString::fromUtf8("linea_luogo_conferenza"));
+        label_organizzatori = new QLabel(layoutWidget3);
+        label_organizzatori->setObjectName(QString::fromUtf8("label_organizzatori"));
 
-        gridLayout_6->addWidget(linea_luogo_conferenza, 3, 1, 1, 1);
+        gridLayout_6->addWidget(label_organizzatori, 6, 0, 1, 1);
+
+        label_part_conf = new QLabel(layoutWidget3);
+        label_part_conf->setObjectName(QString::fromUtf8("label_part_conf"));
+
+        gridLayout_6->addWidget(label_part_conf, 5, 0, 1, 1);
+
+        label_acronimo_conf = new QLabel(layoutWidget3);
+        label_acronimo_conf->setObjectName(QString::fromUtf8("label_acronimo_conf"));
+
+        gridLayout_6->addWidget(label_acronimo_conf, 3, 0, 1, 1);
 
         label_nome_conf = new QLabel(layoutWidget3);
         label_nome_conf->setObjectName(QString::fromUtf8("label_nome_conf"));
 
         gridLayout_6->addWidget(label_nome_conf, 1, 0, 1, 1);
 
-        label_organizzatori = new QLabel(layoutWidget3);
-        label_organizzatori->setObjectName(QString::fromUtf8("label_organizzatori"));
-
-        gridLayout_6->addWidget(label_organizzatori, 5, 0, 1, 1);
-
-        label_part_conf = new QLabel(layoutWidget3);
-        label_part_conf->setObjectName(QString::fromUtf8("label_part_conf"));
-
-        gridLayout_6->addWidget(label_part_conf, 4, 0, 1, 1);
-
-        id_conferenza = new QSpinBox(layoutWidget3);
-        id_conferenza->setObjectName(QString::fromUtf8("id_conferenza"));
-        id_conferenza->setMinimum(1);
-        id_conferenza->setMaximum(9999);
-
-        gridLayout_6->addWidget(id_conferenza, 0, 1, 1, 1);
-
         label_17 = new QLabel(layoutWidget3);
         label_17->setObjectName(QString::fromUtf8("label_17"));
 
-        gridLayout_6->addWidget(label_17, 0, 0, 1, 1);
+        gridLayout_6->addWidget(label_17, 2, 0, 1, 1);
 
 
         gridLayout_19->addLayout(gridLayout_6, 1, 0, 1, 1);
@@ -583,78 +583,56 @@ public:
         pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         layoutWidget4 = new QWidget(pagina_articoli);
         layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
-        layoutWidget4->setGeometry(QRect(100, 80, 461, 391));
+        layoutWidget4->setGeometry(QRect(130, 80, 461, 412));
         gridLayout_7 = new QGridLayout(layoutWidget4);
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(layoutWidget4);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        gridLayout_7->addWidget(label_3, 2, 0, 1, 1);
-
-        titolo_articolo_linedit = new QLineEdit(layoutWidget4);
-        titolo_articolo_linedit->setObjectName(QString::fromUtf8("titolo_articolo_linedit"));
-
-        gridLayout_7->addWidget(titolo_articolo_linedit, 0, 1, 1, 1);
-
         articolo_lista_add_autori = new QListWidget(layoutWidget4);
         articolo_lista_add_autori->setObjectName(QString::fromUtf8("articolo_lista_add_autori"));
 
-        gridLayout_7->addWidget(articolo_lista_add_autori, 5, 1, 1, 1);
+        gridLayout_7->addWidget(articolo_lista_add_autori, 6, 1, 1, 1);
 
         numpagine_articolo_linedit = new QSpinBox(layoutWidget4);
         numpagine_articolo_linedit->setObjectName(QString::fromUtf8("numpagine_articolo_linedit"));
         numpagine_articolo_linedit->setMaximum(99999);
 
-        gridLayout_7->addWidget(numpagine_articolo_linedit, 3, 1, 1, 1);
+        gridLayout_7->addWidget(numpagine_articolo_linedit, 4, 1, 1, 1);
+
+        plaintext_keyword_di_articolo = new QPlainTextEdit(layoutWidget4);
+        plaintext_keyword_di_articolo->setObjectName(QString::fromUtf8("plaintext_keyword_di_articolo"));
+
+        gridLayout_7->addWidget(plaintext_keyword_di_articolo, 7, 1, 1, 1);
+
+        label_8 = new QLabel(layoutWidget4);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+
+        gridLayout_7->addWidget(label_8, 8, 0, 1, 1);
+
+        articolo_lista_id_pubb = new QListWidget(layoutWidget4);
+        articolo_lista_id_pubb->setObjectName(QString::fromUtf8("articolo_lista_id_pubb"));
+
+        gridLayout_7->addWidget(articolo_lista_id_pubb, 2, 1, 1, 1);
+
+        label_2 = new QLabel(layoutWidget4);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        gridLayout_7->addWidget(label_2, 2, 0, 1, 1);
+
+        label_7 = new QLabel(layoutWidget4);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        gridLayout_7->addWidget(label_7, 7, 0, 1, 1);
 
         prezzoarticolo_linedit = new QDoubleSpinBox(layoutWidget4);
         prezzoarticolo_linedit->setObjectName(QString::fromUtf8("prezzoarticolo_linedit"));
         prezzoarticolo_linedit->setMaximum(99999999.989999994635582);
 
-        gridLayout_7->addWidget(prezzoarticolo_linedit, 4, 1, 1, 1);
-
-        label_8 = new QLabel(layoutWidget4);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-
-        gridLayout_7->addWidget(label_8, 7, 0, 1, 1);
-
-        label_2 = new QLabel(layoutWidget4);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        gridLayout_7->addWidget(label_2, 1, 0, 1, 1);
-
-        identificativo_articolo_linedit = new QSpinBox(layoutWidget4);
-        identificativo_articolo_linedit->setObjectName(QString::fromUtf8("identificativo_articolo_linedit"));
-        identificativo_articolo_linedit->setMinimum(1);
-        identificativo_articolo_linedit->setMaximum(999999999);
-
-        gridLayout_7->addWidget(identificativo_articolo_linedit, 2, 1, 1, 1);
+        gridLayout_7->addWidget(prezzoarticolo_linedit, 5, 1, 1, 1);
 
         label_5 = new QLabel(layoutWidget4);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
-        gridLayout_7->addWidget(label_5, 4, 0, 1, 1);
-
-        label_7 = new QLabel(layoutWidget4);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-
-        gridLayout_7->addWidget(label_7, 6, 0, 1, 1);
-
-        plaintext_keyword_di_articolo = new QPlainTextEdit(layoutWidget4);
-        plaintext_keyword_di_articolo->setObjectName(QString::fromUtf8("plaintext_keyword_di_articolo"));
-
-        gridLayout_7->addWidget(plaintext_keyword_di_articolo, 6, 1, 1, 1);
-
-        plaintext_articoli_correlati_di_articolo = new QPlainTextEdit(layoutWidget4);
-        plaintext_articoli_correlati_di_articolo->setObjectName(QString::fromUtf8("plaintext_articoli_correlati_di_articolo"));
-
-        gridLayout_7->addWidget(plaintext_articoli_correlati_di_articolo, 7, 1, 1, 1);
-
-        articolo_lista_id_pubb = new QListWidget(layoutWidget4);
-        articolo_lista_id_pubb->setObjectName(QString::fromUtf8("articolo_lista_id_pubb"));
-
-        gridLayout_7->addWidget(articolo_lista_id_pubb, 1, 1, 1, 1);
+        gridLayout_7->addWidget(label_5, 5, 0, 1, 1);
 
         label = new QLabel(layoutWidget4);
         label->setObjectName(QString::fromUtf8("label"));
@@ -664,16 +642,38 @@ public:
         label_6 = new QLabel(layoutWidget4);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
-        gridLayout_7->addWidget(label_6, 5, 0, 1, 1);
+        gridLayout_7->addWidget(label_6, 6, 0, 1, 1);
+
+        titolo_articolo_linedit = new QLineEdit(layoutWidget4);
+        titolo_articolo_linedit->setObjectName(QString::fromUtf8("titolo_articolo_linedit"));
+
+        gridLayout_7->addWidget(titolo_articolo_linedit, 0, 1, 1, 1);
+
+        plaintext_articoli_correlati_di_articolo = new QPlainTextEdit(layoutWidget4);
+        plaintext_articoli_correlati_di_articolo->setObjectName(QString::fromUtf8("plaintext_articoli_correlati_di_articolo"));
+
+        gridLayout_7->addWidget(plaintext_articoli_correlati_di_articolo, 8, 1, 1, 1);
 
         label_4 = new QLabel(layoutWidget4);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
-        gridLayout_7->addWidget(label_4, 3, 0, 1, 1);
+        gridLayout_7->addWidget(label_4, 4, 0, 1, 1);
+
+        label_3 = new QLabel(layoutWidget4);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        gridLayout_7->addWidget(label_3, 1, 0, 1, 1);
+
+        identificativo_articolo_linedit = new QSpinBox(layoutWidget4);
+        identificativo_articolo_linedit->setObjectName(QString::fromUtf8("identificativo_articolo_linedit"));
+        identificativo_articolo_linedit->setMinimum(1);
+        identificativo_articolo_linedit->setMaximum(999999999);
+
+        gridLayout_7->addWidget(identificativo_articolo_linedit, 1, 1, 1, 1);
 
         articolo_add_autore = new QPushButton(pagina_articoli);
         articolo_add_autore->setObjectName(QString::fromUtf8("articolo_add_autore"));
-        articolo_add_autore->setGeometry(QRect(570, 270, 121, 41));
+        articolo_add_autore->setGeometry(QRect(600, 270, 121, 41));
         articolo_add_autore->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         stackedWidget->addWidget(pagina_articoli);
         PAG_SEZIONE_B = new QWidget();
@@ -964,7 +964,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1001,37 +1001,37 @@ public:
         pulsante_torna_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pulsante_aggiungi_rivista->setText(QCoreApplication::translate("MainWindow", "Aggiungi Rivista", nullptr));
         pulsante_tornaalmenu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
-        volume_rivista->setText(QCoreApplication::translate("MainWindow", "Volume", nullptr));
         editore_rivista->setText(QCoreApplication::translate("MainWindow", "Editore", nullptr));
-        acronimo_rivista->setText(QCoreApplication::translate("MainWindow", "Acronimo", nullptr));
-        nome_rivista->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "ID", nullptr));
+        acronimo_rivista->setText(QCoreApplication::translate("MainWindow", "Acronimo", nullptr));
+        volume_rivista->setText(QCoreApplication::translate("MainWindow", "Volume", nullptr));
+        nome_rivista->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
         vai_al_menu_principale->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pulsante_aggiungi_conferenza->setText(QCoreApplication::translate("MainWindow", "Aggiungi conferenza", nullptr));
-        label_acronimo_conf->setText(QCoreApplication::translate("MainWindow", "Acronimo", nullptr));
+        label_luogo_conf->setText(QCoreApplication::translate("MainWindow", "Luogo", nullptr));
         organizzatori_plaintext->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui i nomi degli organizzatori separati da una virgola\n"
 "\n"
 "(esempio : giovanni, martino, vanessa, luana)\n"
 "", nullptr));
-        label_luogo_conf->setText(QCoreApplication::translate("MainWindow", "Luogo", nullptr));
-        label_nome_conf->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
         label_organizzatori->setText(QCoreApplication::translate("MainWindow", "Organizzatori", nullptr));
         label_part_conf->setText(QCoreApplication::translate("MainWindow", "Partecipanti", nullptr));
+        label_acronimo_conf->setText(QCoreApplication::translate("MainWindow", "Acronimo", nullptr));
+        label_nome_conf->setText(QCoreApplication::translate("MainWindow", "Nome", nullptr));
         label_17->setText(QCoreApplication::translate("MainWindow", "ID", nullptr));
         pulsante_torna_al_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Aggiungi articolo", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "ID Articolo", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "Articoli correlati", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "ID Conferenza/Rivista in cui pubblicarlo", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "Prezzo", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "Keyword", nullptr));
         plaintext_keyword_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui le keywords separate da una virgola \",\" \n"
 "", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "Articoli correlati", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "ID Conferenza/Rivista in cui pubblicarlo", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "Keyword", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "Prezzo", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Titolo", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "ID Autori", nullptr));
         plaintext_articoli_correlati_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui gli ID degli articoli correlati separati da uno o pi\303\271 spazi.\n"
 "esempio : 1 2 3 4", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Titolo", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "Autori", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Num. Pagine", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "ID Articolo", nullptr));
         articolo_add_autore->setText(QCoreApplication::translate("MainWindow", "Aggiungi", nullptr));
         sezioneB_to_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         SEZIONEB_PULSANTE_VISUALIZZA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));

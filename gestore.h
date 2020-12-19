@@ -79,6 +79,9 @@ public:
     // SEZIONE C METODO 6
     void get_keywords_guadagno_max(std::list<QString>& lista) const;
 
+    //SEZIONE D METODO 1
+    void articoli_autore_sorted_anno(int id, std::list<Articolo*>& lista) const;
+
     // SEZIONE D METODO 6
     void articoli_autore_sorted(int id, std::list<Articolo*>& lista) const;
 
@@ -91,6 +94,9 @@ public:
     // SEZIONE E METODO 3
     void get_5_most_common_key(std::list<QString>& chiavi) const;
 
+    //SEZIONE E METODO 6
+    void get_riviste_specialistiche(std::list<Pubblicazione*>& lista) const;
+
     // SEZIONE F METODO 5
     void get_conferenze_simili(int id, std::list<Pubblicazione*>& lista) const;
 
@@ -101,6 +107,10 @@ public:
     int get_first_free_id_pubblicazione() const;
 
     bool is_pubblicazione_unique(QString data, QString nome, bool is_conf) const;
+
+    void get_all_keyword_by_ID(int id, std::list<QString>& lista) const;
+
+    bool sottoinsieme(std::list<QString>& first , std::list<QString>& second) const;
 
 private:
 

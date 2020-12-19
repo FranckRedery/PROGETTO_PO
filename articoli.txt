@@ -1,3 +1,7 @@
-Cazzo in fiamme| 1 | 54| 32.18|   1 | sesso, orgasmo, incredibile| 1, 2 , 3|
-Godo| 2 | 32| 12.65|       2 ,3| che bello, assurdo, wow| 2, 3, 4|
+A1 | 1 | 33 | 12.66 | 1,2 | artificial intelligence, machine learning, deep learning | 1 ,2|
+A2 | 1 | 12 |9.77 | 2,3 | artificial intelligence, knowledge representation | 1 , 2|
+A1 | 2 | 10 | 8.77 | 1 | artificial intelligence, natural language processing, deep learning | 1|
+A2 | 2 | 9 | 6.77 | 2 | artificial intelligence, knowledge representation | 1 |
+Cazzo in fiamme| 5 | 54| 32.18|   1 | sesso, orgasmo, incredibile| 1, 2 , 3|
+Godo| 3 | 32| 12.65|       2 ,3| che bello, assurdo, wow| 2, 3, 4|
 Funziona| 4 | 12| 9.88|    1, 2| si si si , dai forza| 1 , 2 |
