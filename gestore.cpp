@@ -487,3 +487,12 @@ int Gestore::get_first_free_id_pubblicazione() const {
     }
     return id;
 }
+
+bool Gestore::is_pubblicazione_unique(QString data, QString nome, bool is_conf) const{
+    for(auto& i : pubblicazioni){
+        if(i->get_data() == data && i->get_nome() == nome && i->is_conferenza() == is_conf){
+            return false;
+        }
+    }
+    return true;
+}

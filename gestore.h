@@ -86,6 +86,8 @@ public:
 
     int get_first_free_id_pubblicazione() const;
 
+    bool is_pubblicazione_unique(QString data, QString nome, bool is_conf) const;
+
 private:
 
     list<Autore*> autori;

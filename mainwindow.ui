@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
      <widget class="QWidget" name="layoutWidget">
@@ -763,7 +763,14 @@ esempio : 1 2 3 4</string>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QSpinBox" name="Articolo_ID_pubblicazione_dove_pubblicarlo"/>
+        <widget class="QSpinBox" name="Articolo_ID_pubblicazione_dove_pubblicarlo">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>9999</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

@@ -667,6 +667,8 @@ public:
 
         Articolo_ID_pubblicazione_dove_pubblicarlo = new QSpinBox(layoutWidget4);
         Articolo_ID_pubblicazione_dove_pubblicarlo->setObjectName(QString::fromUtf8("Articolo_ID_pubblicazione_dove_pubblicarlo"));
+        Articolo_ID_pubblicazione_dove_pubblicarlo->setMinimum(1);
+        Articolo_ID_pubblicazione_dove_pubblicarlo->setMaximum(9999);
 
         gridLayout_7->addWidget(Articolo_ID_pubblicazione_dove_pubblicarlo, 1, 1, 1, 1);
 
@@ -959,7 +961,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

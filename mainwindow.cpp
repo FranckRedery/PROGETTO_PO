@@ -122,8 +122,14 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
     }
 
     if(gestore.Is_ID_pubblicazione_alreadytaken(id)){
-        QMessageBox mess_due(QMessageBox::Critical, "Errore", "ID inserito già occupato da un altra rivista/confereza (gli ID devono essere unici).", QMessageBox::Ok,this);
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "ID inserito già occupato da un altra rivista/conferenza (gli ID devono essere unici).", QMessageBox::Ok,this);
         mess_due.exec();
+        return;
+    }
+
+    if(!gestore.is_pubblicazione_unique(data.toString(Qt::DateFormat::ISODate).simplified(),nome.simplified(),false)){
+        QMessageBox mess_err(QMessageBox::Critical, "Errore", "Nome e data già occupate da un altra rivista (Non possono esistere riviste con stesso nome e data).", QMessageBox::Ok,this);
+        mess_err.exec();
         return;
     }
 
@@ -185,6 +191,12 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
     if(gestore.Is_ID_pubblicazione_alreadytaken(id)){
         QMessageBox mess_due(QMessageBox::Critical, "Errore", "ID inserito già occupato da un altra rivista/confereza (gli ID devono essere unici).", QMessageBox::Ok,this);
         mess_due.exec();
+        return;
+    }
+
+    if(!gestore.is_pubblicazione_unique(data.toString(Qt::DateFormat::ISODate).simplified(),nome.simplified(),true)){
+        QMessageBox mess_err(QMessageBox::Critical, "Errore", "Nome e data già occupate da un altra confereza (Non possono esistere conferenze con stesso nome e data).", QMessageBox::Ok,this);
+        mess_err.exec();
         return;
     }
 
@@ -654,6 +666,12 @@ void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
                visualizza_orgnizzatori += org.simplified();
                id = gestore.get_first_free_id_pubblicazione();
 
+               if(!gestore.is_pubblicazione_unique(data.simplified(),nome.simplified(),true)){
+                   QMessageBox mess_err(QMessageBox::Critical, "Errore", "Nome e data già occupate da un altra confereza (Non possono esistere conferenze con stesso nome e data).", QMessageBox::Ok,this);
+                   mess_err.exec();
+                   return;
+               }
+
                gestore.aggiungi_conferenza(id,nome.simplified(),acronimo.simplified(),data.simplified(),luogo.simplified(),partecipanti.toInt(),organizzatori);
                ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("ID : " +  QString::number(id)    + "    NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    LUOGO : " + luogo.simplified() + "    DATA : " + data + "    PARTECIPANTI : " + QString::number(partecipanti.toInt())  + "    ORGANIZZATORI : " + visualizza_orgnizzatori);
 
@@ -701,6 +719,12 @@ void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
         if(cont == 5){
 
             id = gestore.get_first_free_id_pubblicazione();
+
+            if(!gestore.is_pubblicazione_unique(data.simplified(),nome.simplified(),false)){
+                QMessageBox mess_err(QMessageBox::Critical, "Errore", "Nome e data già occupate da un altra rivista (Non possono esistere riviste con stesso nome e data).", QMessageBox::Ok,this);
+                mess_err.exec();
+                return;
+            }
             gestore.aggiungi_rivista(id,nome.simplified(),acronimo.simplified(),data.simplified(),editore.simplified(),volume.toInt());
             ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("ID : " + QString::number(id)   + "    NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    EDITORE : " + editore.simplified() + "    DATA : " + data + "    VOLUME : " + QString::number(volume.toInt()));
 
