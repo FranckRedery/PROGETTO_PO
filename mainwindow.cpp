@@ -25,7 +25,10 @@ along with Nome-Programma.  If not, see <http://www.gnu.org/licenses/>.*/
 #include <iostream>
 #include <QFile>
 #include <QTextStream>
+#include <sstream>
+#include <string>
 
+std::list<int> id_autori;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -115,7 +118,7 @@ void MainWindow::on_aggiungi_autore_clicked()
 
     gestore.aggiungi_autore(nome,cognome,id,aff);
     ui->PAG_VISUALIZZA_AUTORI_LISTA->addItem("ID : " + QString::number(id) + "    NOME : "+ nome + "    COGNOME : " + cognome + "    AFFERENZE : " + visualizza_afferenze);
-
+    ui->Articolo_lista_ID_autori->addItem(QString::number(id));
 }
 
 void MainWindow::on_go_pag_riviste_clicked()
@@ -152,6 +155,7 @@ void MainWindow::on_pulsante_aggiungi_rivista_clicked()
 
     gestore.aggiungi_rivista(id,nome,acronimo,data.toString(Qt::DateFormat::ISODate),editore,volume);
     ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("ID : " + QString::number(id) + "    NOME : " + nome + "    ACRONIMO : " + acronimo + "    EDITORE : " + editore + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    VOLUME : " + QString::number(volume));
+    ui->Articolo_lista_ID_pubblicazioni->addItem(QString::number(id));
 }
 
 void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
@@ -219,6 +223,7 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
 
     gestore.aggiungi_conferenza(id,nome,acronimo,data.toString(Qt::DateFormat::ISODate),luogo,part,org);
     ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem( "ID : " + QString::number(id) +"    NOME : " + nome + "    ACRONIMO : " + acronimo + "    LUOGO : " + luogo + "    DATA : " + data.toString(Qt::DateFormat::ISODate) + "    PARTECIPANTI : " + QString::number(part) + "    ORGANIZZATORI : " + visualizza_organizzatori );
+    ui->Articolo_lista_ID_pubblicazioni->addItem(QString::number(id));
 }
 
 void MainWindow::on_go_pag_conferenze_clicked()
@@ -238,48 +243,31 @@ void MainWindow::on_pulsante_pag_aggiungiArticolo_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     QString titolo = ui->titolo_articolo_linedit->text();
-    int id_pubblicazione = ui->Articolo_ID_pubblicazione_dove_pubblicarlo->value();
     int id = ui->identificativo_articolo_linedit->value();
     int pagine = ui->numpagine_articolo_linedit->value();
     double prezzo = ui->prezzoarticolo_linedit->value();
-
-    QString stringa_di_autori = ui->plaintext_autori_di_articolo->toPlainText();
-    QString visualizza_autori;
-
-    std::list<Autore*> autori;
-    QString id_autore;
-
-    //analizzo char per char la sezione degli autori
-    // prendo gli id degli autori separati da spazio
-
-    for(int i = 0 ; i!=stringa_di_autori.size();i++){
-        if(stringa_di_autori[i] != ' '){
-            id_autore.push_back(stringa_di_autori[i]);
-            if(i+1 == stringa_di_autori.size() && gestore.get_autore(id_autore.toInt())!=nullptr){
-                autori.push_back(gestore.get_autore(id_autore.toInt()));
-                visualizza_autori += id_autore;
-                visualizza_autori += ", ";
-                id_autore.clear();
-            }
-        }
-
-        if(stringa_di_autori[i] == ' ' && !id_autore.isEmpty()){
-            if(gestore.get_autore(id_autore.toInt())!=nullptr){
-                autori.push_back(gestore.get_autore(id_autore.toInt()));
-                visualizza_autori += id_autore;
-                visualizza_autori += ", ";
-            }
-            id_autore.clear();
-        }
-    }
-
-    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
-    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
+    int id_pubblicazione = ui->Articolo_lista_ID_pubblicazioni->currentItem()->text().toInt();
+    std::string visualizza_autori;
+    std::ostringstream str1;
     int last_char;
-    if(visualizza_autori.size()>= 2){
-        last_char = visualizza_autori.size() -2;
-        visualizza_autori[last_char] = '.';
+    std::list<Autore*> autori;
+
+
+    id_autori.sort();
+    id_autori.unique();
+    for(auto& i : id_autori){
+        std::cout<<i<<" ";
+        if(gestore.get_autore(i) != nullptr){
+            autori.push_back(gestore.get_autore(i));
+            str1 << i;
+            visualizza_autori += str1.str();
+            visualizza_autori += "  ";
+            str1.str("");
+            str1.clear();
+
+        }
     }
+
 
     QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
     QString visualizza_correlati;
@@ -362,7 +350,6 @@ void MainWindow::on_pushButton_clicked()
         return;
     }
 
-
     if(gestore.get_pubblicazione(id_pubblicazione) == nullptr){
         QMessageBox mess_tre(QMessageBox::Critical, "Errore", "La conferenza/rivista in cui pubblicare l'articolo non esiste.", QMessageBox::Ok,this);
         mess_tre.exec();
@@ -370,7 +357,9 @@ void MainWindow::on_pushButton_clicked()
     }
 
     gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(id_pubblicazione),articoli_correlati,autori,keyword);
-    ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione)  + "    ID AUTORI :" +visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " +visualizza_keyword);
+    ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione)  + "    ID AUTORI : " + QString::fromStdString(visualizza_autori) +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " +visualizza_keyword);
+    id_autori.clear();
+    autori.clear();
 }
 
 void MainWindow::on_SEZIONE_B_clicked()
@@ -626,7 +615,7 @@ void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
                 id = gestore.get_first_free_id_autore();
                 gestore.aggiungi_autore(nome.simplified(),cognome.simplified(),id,aff);
                 ui->PAG_VISUALIZZA_AUTORI_LISTA->addItem("ID : " + QString::number(id) + "    NOME : "+ nome.simplified() + "    COGNOME : " + cognome.simplified() + "    AFFERENZE : " + visualizza_afferenze.simplified());
-
+                ui->Articolo_lista_ID_autori->addItem(QString::number(id));
                 id++;
                 cont = 0;
                 nome.clear();
@@ -691,7 +680,7 @@ void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
 
                gestore.aggiungi_conferenza(id,nome.simplified(),acronimo.simplified(),data.simplified(),luogo.simplified(),partecipanti.toInt(),organizzatori);
                ui->PAG_VISUALIZZA_CONFERENZE_LISTA->addItem("ID : " +  QString::number(id)    + "    NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    LUOGO : " + luogo.simplified() + "    DATA : " + data + "    PARTECIPANTI : " + QString::number(partecipanti.toInt())  + "    ORGANIZZATORI : " + visualizza_orgnizzatori);
-
+               ui->Articolo_lista_ID_pubblicazioni->addItem(QString::number(id));
                cont = 0;
                nome.clear();
                acronimo.clear();
@@ -744,7 +733,7 @@ void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
             }
             gestore.aggiungi_rivista(id,nome.simplified(),acronimo.simplified(),data.simplified(),editore.simplified(),volume.toInt());
             ui->PAG_VISUALIZZA_RIVISTE_LISTA->addItem("ID : " + QString::number(id)   + "    NOME : " + nome.simplified() + "    ACRONIMO : " + acronimo.simplified() + "    EDITORE : " + editore.simplified() + "    DATA : " + data + "    VOLUME : " + QString::number(volume.toInt()));
-
+            ui->Articolo_lista_ID_pubblicazioni->addItem(QString::number(id));
             cont = 0;
             nome.clear();
             acronimo.clear();
@@ -877,4 +866,9 @@ QString MainWindow::readFile(QString filename)
     QTextStream in(&file);
     QString testo_file = in.readAll();
     return testo_file;
+}
+
+void MainWindow::on_rivista_aggiungi_autore_clicked()
+{
+    id_autori.push_back(ui->Articolo_lista_ID_autori->currentItem()->text().toInt());
 }

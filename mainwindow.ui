@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="pagina_principale">
      <widget class="QWidget" name="layoutWidget">
@@ -632,7 +632,7 @@ esempio (ciao, sono una, afferenza)</string>
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>490</y>
+        <y>510</y>
         <width>151</width>
         <height>51</height>
        </rect>
@@ -649,18 +649,11 @@ esempio (ciao, sono una, afferenza)</string>
        <rect>
         <x>100</x>
         <y>80</y>
-        <width>611</width>
-        <height>381</height>
+        <width>511</width>
+        <height>412</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Prezzo</string>
-         </property>
-        </widget>
-       </item>
        <item row="7" column="0">
         <widget class="QLabel" name="label_8">
          <property name="text">
@@ -675,74 +668,10 @@ esempio (ciao, sono una, afferenza)</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Autori</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Keyword</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>ID Conferenza/Rivista in cui pubblicarlo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Titolo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Num. Pagine</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="titolo_articolo_linedit"/>
-       </item>
-       <item row="2" column="1">
-        <widget class="QSpinBox" name="identificativo_articolo_linedit">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>999999999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="numpagine_articolo_linedit">
-         <property name="maximum">
-          <number>99999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="prezzoarticolo_linedit">
-         <property name="maximum">
-          <double>99999999.989999994635582</double>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QPlainTextEdit" name="plaintext_autori_di_articolo">
-         <property name="plainText">
-          <string>Inserire qui gli ID degli autori separati da uno o più spazi. (se l' ID non esiste l'autore non verrà considerato)
-esempio : 1  2   3   4 
-</string>
          </property>
         </widget>
        </item>
@@ -762,17 +691,91 @@ esempio : 1 2 3 4</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="Articolo_ID_pubblicazione_dove_pubblicarlo">
+       <item row="5" column="1">
+        <widget class="QListWidget" name="Articolo_lista_ID_autori"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Prezzo</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="identificativo_articolo_linedit">
          <property name="minimum">
           <number>1</number>
          </property>
          <property name="maximum">
-          <number>9999</number>
+          <number>999999999</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="prezzoarticolo_linedit">
+         <property name="maximum">
+          <double>99999999.989999994635582</double>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Num. Pagine</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QListWidget" name="Articolo_lista_ID_pubblicazioni"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Keyword</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Titolo</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="titolo_articolo_linedit"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Autori (Scegli l'id e clicca aggiungi)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="numpagine_articolo_linedit">
+         <property name="maximum">
+          <number>99999</number>
          </property>
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QPushButton" name="rivista_aggiungi_autore">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>270</y>
+        <width>84</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(15,138,8); </string>
+      </property>
+      <property name="text">
+       <string>Aggiungi autore</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="PAG_SEZIONE_B">
