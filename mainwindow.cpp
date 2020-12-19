@@ -346,7 +346,7 @@ void MainWindow::on_pushButton_clicked()
     }
 
     if(titolo.isEmpty() || autori.empty() || keyword.empty()){
-        QMessageBox mess(QMessageBox::Critical, "Errore", "Nome Articolo/Keyword/Autori/ non possono essere vuoti. (NB gli autori vengono presi solo se precedentemente creati!)", QMessageBox::Ok,this);
+        QMessageBox mess(QMessageBox::Critical, "Errore", "Hai lasciato uno o più di questi campio vuoto Nome articolo/Keyword/Autori.", QMessageBox::Ok,this);
         mess.exec();
         return;
     }
