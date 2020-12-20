@@ -244,10 +244,21 @@ void MainWindow::on_pulsante_pag_aggiungiArticolo_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     QString titolo = ui->titolo_articolo_linedit->text();
-    int id_pubblicazione = ui->articolo_lista_id_pubb->currentItem()->text().toInt();
+    int id_pubblicazione;
     int id = ui->identificativo_articolo_linedit->value();
     int pagine = ui->numpagine_articolo_linedit->value();
     double prezzo = ui->prezzoarticolo_linedit->value();
+
+    if(ui->articolo_lista_id_pubb->selectedItems().size() != 0){
+            id_pubblicazione = ui->articolo_lista_id_pubb->currentItem()->text().toInt();
+    }
+
+    else{
+
+        QMessageBox mess_quattro(QMessageBox::Critical, "Errore", "Devi obbligatoriamente selezionare una rivista/conferenza in cui pubblicare l'articolo", QMessageBox::Ok,this);
+        mess_quattro.exec();
+        return;
+    }
 
     std::string visualizza_autori;
     std::list<Autore*> autori;
@@ -355,7 +366,7 @@ void MainWindow::on_pushButton_clicked()
         QMessageBox mess_due(QMessageBox::Critical, "Errore", "L'ID richiesto è già occupato da un articolo.", QMessageBox::Ok,this);
         mess_due.exec();
         return;
-    }
+   }
 
     gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(id_pubblicazione),articoli_correlati,autori,keyword);
     ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione)  + "    ID AUTORI : " + QString::fromStdString(visualizza_autori) +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " + visualizza_keyword);

@@ -583,7 +583,7 @@ public:
         pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         layoutWidget4 = new QWidget(pagina_articoli);
         layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
-        layoutWidget4->setGeometry(QRect(130, 80, 461, 412));
+        layoutWidget4->setGeometry(QRect(130, 80, 461, 401));
         gridLayout_7 = new QGridLayout(layoutWidget4);
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -964,7 +964,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
