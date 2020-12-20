@@ -650,7 +650,7 @@ Esempio : &quot;giovanni, martino, vanessa, luana&quot;
         <x>130</x>
         <y>80</y>
         <width>461</width>
-        <height>412</height>
+        <height>414</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
@@ -676,7 +676,7 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
        <item row="8" column="0">
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>Articoli correlati</string>
+          <string>ID art. correlati (seleziona l'ID e clicca aggiungi)</string>
          </property>
         </widget>
        </item>
@@ -728,15 +728,6 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
        <item row="0" column="1">
         <widget class="QLineEdit" name="titolo_articolo_linedit"/>
        </item>
-       <item row="8" column="1">
-        <widget class="QPlainTextEdit" name="plaintext_articoli_correlati_di_articolo">
-         <property name="plainText">
-          <string>Inserire qui gli ID degli articoli correlati separati da uno o più spazi. Questo campo può essere vuoto!
-
-Esempio : &quot;1 2 3 4&quot;</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
@@ -761,6 +752,9 @@ Esempio : &quot;1 2 3 4&quot;</string>
          </property>
         </widget>
        </item>
+       <item row="8" column="1">
+        <widget class="QListWidget" name="articoli_lista_correlati"/>
+       </item>
       </layout>
      </widget>
      <widget class="QPushButton" name="articolo_add_autore">
@@ -768,6 +762,22 @@ Esempio : &quot;1 2 3 4&quot;</string>
        <rect>
         <x>600</x>
         <y>280</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(15,138,8); </string>
+      </property>
+      <property name="text">
+       <string>Aggiungi</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="articoli_aggiungi_correlato">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>430</y>
         <width>121</width>
         <height>41</height>
        </rect>

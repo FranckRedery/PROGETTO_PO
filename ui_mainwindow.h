@@ -121,11 +121,12 @@ public:
     QLabel *label;
     QLabel *label_6;
     QLineEdit *titolo_articolo_linedit;
-    QPlainTextEdit *plaintext_articoli_correlati_di_articolo;
     QLabel *label_4;
     QLabel *label_3;
     QSpinBox *identificativo_articolo_linedit;
+    QListWidget *articoli_lista_correlati;
     QPushButton *articolo_add_autore;
+    QPushButton *articoli_aggiungi_correlato;
     QWidget *PAG_SEZIONE_B;
     QPushButton *sezioneB_to_menu;
     QPushButton *SEZIONEB_PULSANTE_VISUALIZZA;
@@ -583,7 +584,7 @@ public:
         pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         layoutWidget4 = new QWidget(pagina_articoli);
         layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
-        layoutWidget4->setGeometry(QRect(130, 80, 461, 412));
+        layoutWidget4->setGeometry(QRect(130, 80, 461, 414));
         gridLayout_7 = new QGridLayout(layoutWidget4);
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -649,11 +650,6 @@ public:
 
         gridLayout_7->addWidget(titolo_articolo_linedit, 0, 1, 1, 1);
 
-        plaintext_articoli_correlati_di_articolo = new QPlainTextEdit(layoutWidget4);
-        plaintext_articoli_correlati_di_articolo->setObjectName(QString::fromUtf8("plaintext_articoli_correlati_di_articolo"));
-
-        gridLayout_7->addWidget(plaintext_articoli_correlati_di_articolo, 8, 1, 1, 1);
-
         label_4 = new QLabel(layoutWidget4);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
@@ -671,10 +667,19 @@ public:
 
         gridLayout_7->addWidget(identificativo_articolo_linedit, 1, 1, 1, 1);
 
+        articoli_lista_correlati = new QListWidget(layoutWidget4);
+        articoli_lista_correlati->setObjectName(QString::fromUtf8("articoli_lista_correlati"));
+
+        gridLayout_7->addWidget(articoli_lista_correlati, 8, 1, 1, 1);
+
         articolo_add_autore = new QPushButton(pagina_articoli);
         articolo_add_autore->setObjectName(QString::fromUtf8("articolo_add_autore"));
         articolo_add_autore->setGeometry(QRect(600, 280, 121, 41));
         articolo_add_autore->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
+        articoli_aggiungi_correlato = new QPushButton(pagina_articoli);
+        articoli_aggiungi_correlato->setObjectName(QString::fromUtf8("articoli_aggiungi_correlato"));
+        articoli_aggiungi_correlato->setGeometry(QRect(600, 430, 121, 41));
+        articoli_aggiungi_correlato->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         stackedWidget->addWidget(pagina_articoli);
         PAG_SEZIONE_B = new QWidget();
         PAG_SEZIONE_B->setObjectName(QString::fromUtf8("PAG_SEZIONE_B"));
@@ -1023,18 +1028,16 @@ public:
         plaintext_keyword_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui le keywords separate da una virgola \",\" \n"
 "\n"
 "Esempio : \"ciao, ho moltissime, keyword \"", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "Articoli correlati", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "ID art. correlati (seleziona l'ID e clicca aggiungi)", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "ID Conferenza/Rivista in cui pubblicarlo", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "Keyword", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Prezzo", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Titolo", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "ID Autori (seleziona l'ID e clicca aggiungi)", nullptr));
-        plaintext_articoli_correlati_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui gli ID degli articoli correlati separati da uno o pi\303\271 spazi. Questo campo pu\303\262 essere vuoto!\n"
-"\n"
-"Esempio : \"1 2 3 4\"", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Num. Pagine", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "ID Articolo", nullptr));
         articolo_add_autore->setText(QCoreApplication::translate("MainWindow", "Aggiungi", nullptr));
+        articoli_aggiungi_correlato->setText(QCoreApplication::translate("MainWindow", "Aggiungi", nullptr));
         sezioneB_to_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         SEZIONEB_PULSANTE_VISUALIZZA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
         SezioneB_scelta_visualizza_articoli_per_autore->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli di quell'autore", nullptr));
