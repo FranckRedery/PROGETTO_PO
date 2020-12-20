@@ -268,17 +268,17 @@ void Gestore::get_keywords_guadagno_max(std::list<QString> &lista) const{
     }
 }
 
-bool sort_anno(const Articolo* a , const Articolo* b){
-    if(a->get_pubblicazione()->get_data() > b->get_pubblicazione()->get_data()){
+bool sort_prezzo(const Articolo* a , const Articolo* b){
+    if(a->get_prezzo() > b->get_prezzo()){
         return false;
     }
     return true;
 }
 
-// SEZIONE D METODO 1 , prendo gli articoli dell'autore e li ordino per anno :)))
+// SEZIONE D METODO 2 , prendo gli articoli dell'autore e li ordino per prezzo
 void Gestore::articoli_autore_sorted_anno(int id, std::list<Articolo *> &lista) const{
     get_articoli_autore(id,lista);
-    lista.sort();
+    lista.sort(sort_prezzo);
 }
 
 bool sort_autore(const Articolo* a , const Articolo* b){
@@ -527,8 +527,6 @@ void Gestore::get_conferenze_simili(int id, std::list<Pubblicazione*> &lista) co
             }
         }
     }
-    lista.sort();
-    lista.unique();
 }
 
 
