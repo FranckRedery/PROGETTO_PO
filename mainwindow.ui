@@ -306,7 +306,7 @@
          <property name="plainText">
           <string>Inserire qui le afferenze di ogni autore separate da una virgola
 
-esempio (ciao, sono una, afferenza)</string>
+Esempio : &quot;ciao, sono una, afferenza&quot;</string>
          </property>
         </widget>
        </item>
@@ -553,7 +553,7 @@ esempio (ciao, sono una, afferenza)</string>
            <property name="plainText">
             <string>Inserire qui i nomi degli organizzatori separati da una virgola
 
-(esempio : giovanni, martino, vanessa, luana)
+Esempio : &quot;giovanni, martino, vanessa, luana&quot;
 </string>
            </property>
           </widget>
@@ -631,8 +631,8 @@ esempio (ciao, sono una, afferenza)</string>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>490</y>
+        <x>310</x>
+        <y>500</y>
         <width>151</width>
         <height>51</height>
        </rect>
@@ -650,7 +650,7 @@ esempio (ciao, sono una, afferenza)</string>
         <x>130</x>
         <y>80</y>
         <width>461</width>
-        <height>401</height>
+        <height>412</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
@@ -668,7 +668,8 @@ esempio (ciao, sono una, afferenza)</string>
         <widget class="QPlainTextEdit" name="plaintext_keyword_di_articolo">
          <property name="plainText">
           <string>Inserire qui le keywords separate da una virgola &quot;,&quot; 
-</string>
+
+Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
          </property>
         </widget>
        </item>
@@ -720,7 +721,7 @@ esempio (ciao, sono una, afferenza)</string>
        <item row="6" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>ID Autori</string>
+          <string>ID Autori (seleziona l'ID e clicca aggiungi)</string>
          </property>
         </widget>
        </item>
@@ -730,8 +731,9 @@ esempio (ciao, sono una, afferenza)</string>
        <item row="8" column="1">
         <widget class="QPlainTextEdit" name="plaintext_articoli_correlati_di_articolo">
          <property name="plainText">
-          <string>Inserire qui gli ID degli articoli correlati separati da uno o più spazi.
-esempio : 1 2 3 4</string>
+          <string>Inserire qui gli ID degli articoli correlati separati da uno o più spazi. Questo campo può essere vuoto!
+
+Esempio : &quot;1 2 3 4&quot;</string>
          </property>
         </widget>
        </item>
@@ -765,7 +767,7 @@ esempio : 1 2 3 4</string>
       <property name="geometry">
        <rect>
         <x>600</x>
-        <y>270</y>
+        <y>280</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -960,7 +962,7 @@ esempio : 1 2 3 4</string>
        <item row="0" column="2">
         <widget class="QRadioButton" name="SEZIONE_C_ARTICOLI_MAX">
          <property name="text">
-          <string>Visualizza articoli con prezzo max</string>
+          <string>Visualizza articoli con prezzo max dell'autore</string>
          </property>
         </widget>
        </item>
@@ -988,7 +990,7 @@ esempio : 1 2 3 4</string>
        <item row="0" column="1">
         <widget class="QRadioButton" name="SEZIONE_C_ARTICOLI_MIN">
          <property name="text">
-          <string>Visualizza articoli con prezzo min</string>
+          <string>Visualizza articoli con prezzo min dell'autore</string>
          </property>
         </widget>
        </item>

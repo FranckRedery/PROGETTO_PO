@@ -579,11 +579,11 @@ public:
         pulsante_torna_al_menu->setStyleSheet(QString::fromUtf8("background-color: rgb(24,119,242);"));
         pushButton = new QPushButton(pagina_articoli);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(300, 490, 151, 51));
+        pushButton->setGeometry(QRect(310, 500, 151, 51));
         pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         layoutWidget4 = new QWidget(pagina_articoli);
         layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
-        layoutWidget4->setGeometry(QRect(130, 80, 461, 401));
+        layoutWidget4->setGeometry(QRect(130, 80, 461, 412));
         gridLayout_7 = new QGridLayout(layoutWidget4);
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -673,7 +673,7 @@ public:
 
         articolo_add_autore = new QPushButton(pagina_articoli);
         articolo_add_autore->setObjectName(QString::fromUtf8("articolo_add_autore"));
-        articolo_add_autore->setGeometry(QRect(600, 270, 121, 41));
+        articolo_add_autore->setGeometry(QRect(600, 280, 121, 41));
         articolo_add_autore->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         stackedWidget->addWidget(pagina_articoli);
         PAG_SEZIONE_B = new QWidget();
@@ -964,7 +964,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
