@@ -51,8 +51,8 @@ public:
 private:
 
     QString luogo;
-    std::list<QString> organizzatori;
     int num_partecipanti;
+    std::list<QString> organizzatori;
 
 };
 

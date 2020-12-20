@@ -73,10 +73,10 @@ private:
     int num_pagine;
     double prezzo;
     QString titolo;
+    Pubblicazione* destinata; // la pubblicazioni a cui è destinato l'articolo (può essere  per una rivista o per una conferenza)
     std::list<int> articoli_correlati; // racchiude gli ID degli articoli correlati
     std::list<Autore*> autori;
     std::list<QString> keyword;
-    Pubblicazione* destinata; // la pubblicazioni a cui è destinato l'articolo (può essere  per una rivista o per una conferenza)
 
 };
 

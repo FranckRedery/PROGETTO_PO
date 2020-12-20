@@ -246,7 +246,7 @@ void Gestore::get_keywords_guadagno_max(std::list<QString> &lista) const{
     auto it = keywords.begin();
 
     // se la keyword corrispondente alla posizione del vector dei prezzi è presente nell'articolo, aggiungo il prezzo dell'articolo al totale
-    for(int i = 0 ; i!=valore_key.size();i++){
+    for(unsigned int i = 0 ; i!=valore_key.size();i++){
         for(auto& j : articoli){
             nuove_key = j->get_keywords();
             if(find(nuove_key.begin(),nuove_key.end(),*it) != nuove_key.end()){
@@ -381,7 +381,7 @@ void Gestore::get_5_most_common_key(std::list<QString> &chiavi) const{
     // esco dal while se trovo 5 chiavi oppure se il max scende a 0 dunque non ci sono più chiavi da controllare
     // aggiunto come condizione max!=INT_MIN perché se non erano presenti chiavi si genereva un loop infinito
     while(chiavi.size()!=5 && max != 0 && max!=INT_MIN){
-        for(int i = 0 ; i<quant.size();i++){
+        for(unsigned int i = 0 ; i<quant.size();i++){
 
             // se la chiave corrispondente alla pos è uguale al max e non è presente la aggiungo
             // perché chiaramente nel contenitore che ho creato ci sono più chiavi uguali!

@@ -45,9 +45,9 @@ public:
 
 private:
 
-    int identificativo;
     QString nome;
     QString cognome;
+    int identificativo;
     std::list<QString> afferenze;       // struttura pubblica o privata in cui ha lavorato
 };
 

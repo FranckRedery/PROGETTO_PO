@@ -964,7 +964,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -997,7 +997,7 @@ public:
         label_afferenze->setText(QCoreApplication::translate("MainWindow", "Afferenze", nullptr));
         afferenze_plaintext->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui le afferenze di ogni autore separate da una virgola\n"
 "\n"
-"esempio (ciao, sono una, afferenza)", nullptr));
+"Esempio : \"ciao, sono una, afferenza\"", nullptr));
         pulsante_torna_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pulsante_aggiungi_rivista->setText(QCoreApplication::translate("MainWindow", "Aggiungi Rivista", nullptr));
         pulsante_tornaalmenu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
@@ -1011,7 +1011,7 @@ public:
         label_luogo_conf->setText(QCoreApplication::translate("MainWindow", "Luogo", nullptr));
         organizzatori_plaintext->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui i nomi degli organizzatori separati da una virgola\n"
 "\n"
-"(esempio : giovanni, martino, vanessa, luana)\n"
+"Esempio : \"giovanni, martino, vanessa, luana\"\n"
 "", nullptr));
         label_organizzatori->setText(QCoreApplication::translate("MainWindow", "Organizzatori", nullptr));
         label_part_conf->setText(QCoreApplication::translate("MainWindow", "Partecipanti", nullptr));
@@ -1021,15 +1021,17 @@ public:
         pulsante_torna_al_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Aggiungi articolo", nullptr));
         plaintext_keyword_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui le keywords separate da una virgola \",\" \n"
-"", nullptr));
+"\n"
+"Esempio : \"ciao, ho moltissime, keyword \"", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Articoli correlati", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "ID Conferenza/Rivista in cui pubblicarlo", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "Keyword", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Prezzo", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Titolo", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "ID Autori", nullptr));
-        plaintext_articoli_correlati_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui gli ID degli articoli correlati separati da uno o pi\303\271 spazi.\n"
-"esempio : 1 2 3 4", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "ID Autori (seleziona l'ID e clicca aggiungi)", nullptr));
+        plaintext_articoli_correlati_di_articolo->setPlainText(QCoreApplication::translate("MainWindow", "Inserire qui gli ID degli articoli correlati separati da uno o pi\303\271 spazi. Questo campo pu\303\262 essere vuoto!\n"
+"\n"
+"Esempio : \"1 2 3 4\"", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Num. Pagine", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "ID Articolo", nullptr));
         articolo_add_autore->setText(QCoreApplication::translate("MainWindow", "Aggiungi", nullptr));
@@ -1043,9 +1045,9 @@ public:
         label_11->setText(QCoreApplication::translate("MainWindow", "ID rivista", nullptr));
         SEZIONE_C_TORNAMENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         SEZIONE_C_PULSANTE_CONFERMA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
-        SEZIONE_C_ARTICOLI_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo max", nullptr));
+        SEZIONE_C_ARTICOLI_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo max dell'autore", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));
-        SEZIONE_C_ARTICOLI_MIN->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo min", nullptr));
+        SEZIONE_C_ARTICOLI_MIN->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo min dell'autore", nullptr));
         SEZIONE_C_KEYWORD_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza keyword che hanno il guadagno max (NON RIFERITE ALL'AUTORE)", nullptr));
         PAG_D_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_D_PULSANTE_CONFERMA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
