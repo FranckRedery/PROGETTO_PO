@@ -29,6 +29,7 @@ along with Nome-Programma.  If not, see <http://www.gnu.org/licenses/>.*/
 #include <string>
 
 std::list<int> id_autori;
+std::list<int> id_correlati;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -277,48 +278,23 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 
-    //analizzo char per char la sezione degli autori
-    // prendo gli id degli autori separati da spazio
-
-
+    std::string visualizza_correlati;
+    std::list<int> articoli_correlati;
+    QString art;
+    id_correlati.sort();
+    id_correlati.unique();
+    for(auto& i : id_correlati){
+        articoli_correlati.push_back(i);
+        str1<< i;
+        visualizza_correlati += str1.str();
+        visualizza_correlati += " ";
+        str1.str("");
+        str1.clear();
+    }
 
     //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
     // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
     int last_char;
-
-
-    QString stringa_articoli = ui->plaintext_articoli_correlati_di_articolo->toPlainText();
-    QString visualizza_correlati;
-    std::list<int> articoli_correlati;
-    QString art;
-
-    //analizzo char per char la sezione degli articoli
-    // qprendo gli id degli articoli che vengono separati da uno spazio
-    for(int i = 0 ; i!=stringa_articoli.size();i++){
-        if(stringa_articoli[i] != ' '){
-            art.push_back(stringa_articoli[i]);
-            if(i+1 == stringa_articoli.size()){
-                articoli_correlati.push_back(art.toInt());
-                visualizza_correlati += art;
-                visualizza_correlati += ", ";
-                art.clear();
-            }
-        }
-
-        if(stringa_articoli[i] == ' ' && !art.isEmpty()){
-            articoli_correlati.push_back(art.toInt());
-            visualizza_correlati += art;
-            visualizza_correlati += ", ";
-            art.clear();
-        }
-    }
-
-    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
-    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
-    if(visualizza_correlati.size()>=2){
-        last_char = visualizza_correlati.size()-2;
-        visualizza_correlati[last_char] = '.';
-    }
 
     QString stringa_keyword = ui->plaintext_keyword_di_articolo->toPlainText();
     QString visualizza_keyword;
@@ -369,8 +345,10 @@ void MainWindow::on_pushButton_clicked()
    }
 
     gestore.aggiungi_articolo(id,pagine,prezzo,titolo,gestore.get_pubblicazione(id_pubblicazione),articoli_correlati,autori,keyword);
-    ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione)  + "    ID AUTORI : " + QString::fromStdString(visualizza_autori) +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " + visualizza_keyword);
+    ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo + "    PAGINE : " + QString::number(pagine) + "    PREZZO : " + QString::number(prezzo) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione)  + "    ID AUTORI : " + QString::fromStdString(visualizza_autori) +"    ID ARTICOLI CORRELATI : " + QString::fromStdString(visualizza_correlati) + "    KEYWORDS : " + visualizza_keyword);
     id_autori.clear();
+    id_correlati.clear();
+    ui->articoli_lista_correlati->addItem(QString::number(id));
 }
 
 void MainWindow::on_SEZIONE_B_clicked()
@@ -841,7 +819,7 @@ void MainWindow::on_pulsante_aggiungi_articolo_file_clicked()
 
             gestore.aggiungi_articolo(id,num_pagine.toInt(),prezzo.toDouble(),titolo.simplified(),gestore.get_pubblicazione(id_pubblicazione.toInt()),articoli_correlati,autori,keys);
             ui->PAG_VISUALIZZA_ARTICOLI_LISTA->addItem("ID ARTICOLO : " + QString::number(id) + "    TITOLO : " + titolo.simplified() + "    PAGINE : " + QString::number(num_pagine.toInt()) + "    PREZZO : " + QString::number(prezzo.toDouble()) + "    ID CONFERENZA/RIVISTA ASSOCIATA : " + QString::number(id_pubblicazione.toInt()) + "    ID AUTORI :" + visualizza_autori +"    ID ARTICOLI CORRELATI : " + visualizza_correlati + "    KEYWORDS : " + visualizza_keyword);
-
+            ui->articoli_lista_correlati->addItem(QString::number(id));
             cont = 0;
             id_pubblicazione.clear();
             titolo.clear();
@@ -882,4 +860,9 @@ QString MainWindow::readFile(QString filename)
 void MainWindow::on_articolo_add_autore_clicked()
 {
     id_autori.push_back(ui->articolo_lista_add_autori->currentItem()->text().toInt());
+}
+
+void MainWindow::on_articoli_aggiungi_correlato_clicked()
+{
+    id_correlati.push_back(ui->articoli_lista_correlati->currentItem()->text().toInt());
 }

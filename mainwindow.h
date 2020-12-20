@@ -91,6 +91,8 @@ private slots:
 
     void on_articolo_add_autore_clicked();
 
+    void on_articoli_aggiungi_correlato_clicked();
+
 private:
     Ui::MainWindow *ui;
     Gestore gestore;
