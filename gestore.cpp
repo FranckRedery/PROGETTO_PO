@@ -356,28 +356,27 @@ void Gestore::get_riviste_specialistiche(std::list<Pubblicazione *> &lista) cons
     std::list<QString> key;
     std::list<QString> key_seconda;
 
-    //prendo tutte le keyword per l'id di quell'articolo
+    //prendo tutte le keyword per l'id di quella rivista
     for(auto& i : articoli){
         if(i->get_pubblicazione()->is_conferenza() == false){
             get_all_keyword_by_ID(i->get_pubblicazione()->get_id(),key);
-        }
-        // prendo tutte le keyword per l'id di un  altro articolo che sia diverso da quello di prima
-        for(auto& j : articoli){
-            if(j->get_pubblicazione()->is_conferenza() == false && j->get_pubblicazione()->get_id() != i->get_pubblicazione()->get_id()){
 
-                get_all_keyword_by_ID(j->get_pubblicazione()->get_id(),key_seconda);
+            // prendo tutte le keyword per l'id di un  altro articolo pubblicato in una rivista che sia diverso da quello di prima
+            for(auto& j : articoli){
+                if(j->get_pubblicazione()->is_conferenza() == false && j->get_pubblicazione()->get_id() != i->get_pubblicazione()->get_id()){
 
-                //verifico se le key del primo sono un sottoinsieme del secondo e non ho già pushato nella lista l'articolo
-                if(sottoinsieme(key,key_seconda) && find(lista.begin(),lista.end(),i->get_pubblicazione()) == lista.end()){
-                    lista.push_back(i->get_pubblicazione());
+                    get_all_keyword_by_ID(j->get_pubblicazione()->get_id(),key_seconda);
+
+                    //verifico se le key del primo sono un sottoinsieme del secondo e non ho già pushato nella lista l'articolo
+                    if(sottoinsieme(key,key_seconda) && find(lista.begin(),lista.end(),i->get_pubblicazione()) == lista.end()){
+                        lista.push_back(i->get_pubblicazione());
+                    }
                 }
+                key_seconda.clear();
             }
-            key_seconda.clear();
         }
     key.clear();
     }
-
-
 }
 
 
