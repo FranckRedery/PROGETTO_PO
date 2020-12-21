@@ -163,17 +163,15 @@ public:
     QPushButton *PAG_D_PULSANTE_CONFERMA;
     QWidget *layoutWidget7;
     QGridLayout *gridLayout_16;
-    QRadioButton *PAG_D_RADIO_VISUALIZZA_KEYWORD;
     QRadioButton *PAG_D_RADIO_VISUALIZZA_AUTORE;
     QGridLayout *gridLayout_15;
     QLabel *label_13;
     QSpinBox *PAG_D_ID_AUTORE;
     QGridLayout *gridLayout_14;
-    QLabel *label_14;
-    QLineEdit *PAG_D_KEYWORD;
+    QRadioButton *PAG_D_RADIO_metodo_d2;
     QWidget *PAG_SEZIONE_E;
     QPushButton *PAG_E_BOTTONE_MENU;
-    QPushButton *PAG_E_pulsante_key;
+    QPushButton *PAG_E_pulsante_riviste_spec;
     QListWidget *PAG_E_LISTA;
     QWidget *PAG_SEZIONE_F;
     QPushButton *PAG_F_TORNA_MENU;
@@ -834,11 +832,6 @@ public:
         gridLayout_16 = new QGridLayout(layoutWidget7);
         gridLayout_16->setObjectName(QString::fromUtf8("gridLayout_16"));
         gridLayout_16->setContentsMargins(0, 0, 0, 0);
-        PAG_D_RADIO_VISUALIZZA_KEYWORD = new QRadioButton(layoutWidget7);
-        PAG_D_RADIO_VISUALIZZA_KEYWORD->setObjectName(QString::fromUtf8("PAG_D_RADIO_VISUALIZZA_KEYWORD"));
-
-        gridLayout_16->addWidget(PAG_D_RADIO_VISUALIZZA_KEYWORD, 0, 3, 1, 1);
-
         PAG_D_RADIO_VISUALIZZA_AUTORE = new QRadioButton(layoutWidget7);
         PAG_D_RADIO_VISUALIZZA_AUTORE->setObjectName(QString::fromUtf8("PAG_D_RADIO_VISUALIZZA_AUTORE"));
 
@@ -863,15 +856,10 @@ public:
 
         gridLayout_14 = new QGridLayout();
         gridLayout_14->setObjectName(QString::fromUtf8("gridLayout_14"));
-        label_14 = new QLabel(layoutWidget7);
-        label_14->setObjectName(QString::fromUtf8("label_14"));
+        PAG_D_RADIO_metodo_d2 = new QRadioButton(layoutWidget7);
+        PAG_D_RADIO_metodo_d2->setObjectName(QString::fromUtf8("PAG_D_RADIO_metodo_d2"));
 
-        gridLayout_14->addWidget(label_14, 0, 0, 1, 1);
-
-        PAG_D_KEYWORD = new QLineEdit(layoutWidget7);
-        PAG_D_KEYWORD->setObjectName(QString::fromUtf8("PAG_D_KEYWORD"));
-
-        gridLayout_14->addWidget(PAG_D_KEYWORD, 0, 1, 1, 1);
+        gridLayout_14->addWidget(PAG_D_RADIO_metodo_d2, 0, 0, 1, 1);
 
 
         gridLayout_16->addLayout(gridLayout_14, 0, 2, 1, 1);
@@ -883,10 +871,10 @@ public:
         PAG_E_BOTTONE_MENU->setObjectName(QString::fromUtf8("PAG_E_BOTTONE_MENU"));
         PAG_E_BOTTONE_MENU->setGeometry(QRect(300, 10, 151, 51));
         PAG_E_BOTTONE_MENU->setStyleSheet(QString::fromUtf8("background-color: rgb(24,119,242);"));
-        PAG_E_pulsante_key = new QPushButton(PAG_SEZIONE_E);
-        PAG_E_pulsante_key->setObjectName(QString::fromUtf8("PAG_E_pulsante_key"));
-        PAG_E_pulsante_key->setGeometry(QRect(300, 90, 151, 51));
-        PAG_E_pulsante_key->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
+        PAG_E_pulsante_riviste_spec = new QPushButton(PAG_SEZIONE_E);
+        PAG_E_pulsante_riviste_spec->setObjectName(QString::fromUtf8("PAG_E_pulsante_riviste_spec"));
+        PAG_E_pulsante_riviste_spec->setGeometry(QRect(300, 90, 151, 51));
+        PAG_E_pulsante_riviste_spec->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         PAG_E_LISTA = new QListWidget(PAG_SEZIONE_E);
         PAG_E_LISTA->setObjectName(QString::fromUtf8("PAG_E_LISTA"));
         PAG_E_LISTA->setGeometry(QRect(10, 150, 771, 192));
@@ -969,7 +957,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(8);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1054,12 +1042,11 @@ public:
         SEZIONE_C_KEYWORD_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza keyword che hanno il guadagno max (NON RIFERITE ALL'AUTORE)", nullptr));
         PAG_D_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_D_PULSANTE_CONFERMA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
-        PAG_D_RADIO_VISUALIZZA_KEYWORD->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli ordinati della keyword", nullptr));
-        PAG_D_RADIO_VISUALIZZA_AUTORE->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli ordinati dell'autore", nullptr));
+        PAG_D_RADIO_VISUALIZZA_AUTORE->setText(QCoreApplication::translate("MainWindow", "ordinati dell'autore metodo D-6", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));
-        label_14->setText(QCoreApplication::translate("MainWindow", "Keyword", nullptr));
+        PAG_D_RADIO_metodo_d2->setText(QCoreApplication::translate("MainWindow", "ordinati dell'autore metodo D-2", nullptr));
         PAG_E_BOTTONE_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
-        PAG_E_pulsante_key->setText(QCoreApplication::translate("MainWindow", "5 keyword pi\303\271 diffuse", nullptr));
+        PAG_E_pulsante_riviste_spec->setText(QCoreApplication::translate("MainWindow", "Riviste Specialistiche", nullptr));
         PAG_F_TORNA_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_F_CERCA_CONFERENZE_COMUN->setText(QCoreApplication::translate("MainWindow", "Conferenze comuni", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "ID conferenza", nullptr));

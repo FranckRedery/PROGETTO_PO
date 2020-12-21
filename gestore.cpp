@@ -301,26 +301,6 @@ void Gestore::articoli_autore_sorted(int id, std::list<Articolo *> &lista) const
     lista.sort(sort_autore);
 }
 
-bool sort_key(const Articolo* a, const Articolo* b){
-    if(a->get_pubblicazione()->get_data() < b->get_pubblicazione()->get_data()){
-        return false;
-    }
-    else if(a->get_prezzo() > b->get_prezzo() && a->get_pubblicazione()->get_data() == b->get_pubblicazione()->get_data()){
-        return false;
-    }
-    else if(a->get_primo_cognome_autore() > b->get_primo_cognome_autore() && a->get_prezzo() == b->get_prezzo() && a->get_pubblicazione()->get_data() == b->get_pubblicazione()->get_data()){
-        return false;
-    }
-    return true;
-}
-
-// SEZIONE D METODO 5 prendo gli articoli con quella keyword e li ordino secondo i criteri
-void Gestore::articoli_keyword_sorted(QString key, std::list<Articolo*> &lista) const{
-
-    get_articoli_keyword(key,lista);
-    lista.sort(sort_key);
-}
-
 void Gestore::get_articoli_keyword(QString key, std::list<Articolo*> &lista) const{
 
     std::list<QString> key_da_controllare;
@@ -335,69 +315,6 @@ void Gestore::get_articoli_keyword(QString key, std::list<Articolo*> &lista) con
                 lista.push_back(i);
             }
         }
-    }
-}
-
-// SEZIONE E METODO 3
-void Gestore::get_5_most_common_key(std::list<QString> &chiavi) const{
-
-    std::list<QString> contenitore_chiavi;
-    std::list<QString> nuove_chiavi;
-
-     // prendo le key di ogni articolo
-    for(auto& i : articoli){
-        nuove_chiavi = i->get_keywords();
-
-        // nel caso ci fossero keywords duplicate nell'articolo le rendo uniche  e le conservo nel contenitore
-        nuove_chiavi.sort();
-        nuove_chiavi.unique();
-        for(auto& j : nuove_chiavi){
-            contenitore_chiavi.push_back(j);
-        }
-        nuove_chiavi.clear();
-    }
-
-    // uso questo vector per contare quante volte la chiave è presente
-    std::vector<int> quant;
-    quant.resize(contenitore_chiavi.size());
-    int ind = 0, max = INT_MIN;
-
-    // se le key sono uguali aumenta la quantità contenuta nel vector
-    for(auto& i : contenitore_chiavi){
-        for(auto& j : contenitore_chiavi){
-            if(i == j){
-                quant[ind]++;
-            }
-        }
-    // allo stesso tempo trovo il max tra le occorrenze di una chiave
-    if(quant[ind] > max){
-        max = quant[ind];
-    }
-    ind++;
-    }
-
-    auto it = contenitore_chiavi.begin();
-
-    // esco dal while se trovo 5 chiavi oppure se il max scende a 0 dunque non ci sono più chiavi da controllare
-    // aggiunto come condizione max!=INT_MIN perché se non erano presenti chiavi si genereva un loop infinito
-    while(chiavi.size()!=5 && max != 0 && max!=INT_MIN){
-        for(unsigned int i = 0 ; i<quant.size();i++){
-
-            // se la chiave corrispondente alla pos è uguale al max e non è presente la aggiungo
-            // perché chiaramente nel contenitore che ho creato ci sono più chiavi uguali!
-            if(quant[i] == max && find(chiavi.begin(),chiavi.end(),*it) == chiavi.end()){
-                chiavi.push_back(*it);
-
-                // se ne ho già trovato 5 esco dal for loop e di conseguenza dopo anche dal while
-                if(chiavi.size() == 5){
-                    break;
-                }
-            }
-            it++;
-        }
-    //resetto l'iteratore all'inizio della lista per ogni iterazione che faccio nel while!
-    it = contenitore_chiavi.begin();
-    max--;
     }
 }
 
@@ -439,15 +356,18 @@ void Gestore::get_riviste_specialistiche(std::list<Pubblicazione *> &lista) cons
     std::list<QString> key;
     std::list<QString> key_seconda;
 
+    //prendo tutte le keyword per l'id di quell'articolo
     for(auto& i : articoli){
         if(i->get_pubblicazione()->is_conferenza() == false){
             get_all_keyword_by_ID(i->get_pubblicazione()->get_id(),key);
         }
+        // prendo tutte le keyword per l'id di un  altro articolo che sia diverso da quello di prima
         for(auto& j : articoli){
             if(j->get_pubblicazione()->is_conferenza() == false && j->get_pubblicazione()->get_id() != i->get_pubblicazione()->get_id()){
 
                 get_all_keyword_by_ID(j->get_pubblicazione()->get_id(),key_seconda);
 
+                //verifico se le key del primo sono un sottoinsieme del secondo e non ho già pushato nella lista l'articolo
                 if(sottoinsieme(key,key_seconda) && find(lista.begin(),lista.end(),i->get_pubblicazione()) == lista.end()){
                     lista.push_back(i->get_pubblicazione());
                 }

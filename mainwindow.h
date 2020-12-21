@@ -65,8 +65,6 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_PAG_E_pulsante_key_clicked();
-
     void on_pushButton_3_clicked();
 
     void on_PAG_F_CERCA_CONFERENZE_COMUN_clicked();
@@ -92,6 +90,8 @@ private slots:
     void on_articolo_add_autore_clicked();
 
     void on_articoli_aggiungi_correlato_clicked();
+
+    void on_PAG_E_pulsante_riviste_spec_clicked();
 
 private:
     Ui::MainWindow *ui;

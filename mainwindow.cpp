@@ -460,8 +460,8 @@ void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
         }
     }
 
-    if(ui->PAG_D_RADIO_VISUALIZZA_KEYWORD->isChecked()){
-        gestore.articoli_keyword_sorted(ui->PAG_D_KEYWORD->text(),lista_articoli);
+    if(ui->PAG_D_RADIO_metodo_d2->isChecked()){
+        gestore.articoli_autore_sorted_anno(ui->PAG_D_ID_AUTORE->value(),lista_articoli);
         for(auto& i : lista_articoli){
             ui->PAG_D_LISTA->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
@@ -480,26 +480,29 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_E);
 }
 
-void MainWindow::on_PAG_E_pulsante_key_clicked()
-{
-    ui->PAG_E_LISTA->clear();
-
-    // lista che riempirò attraverso il metodo della sezione
-    std::list<QString> chiavi_diffuse;
-
-    gestore.get_5_most_common_key(chiavi_diffuse);
-
-    for(auto& i : chiavi_diffuse){
-        ui->PAG_E_LISTA->addItem(i);
-    }
-    chiavi_diffuse.clear();
-}
 
 
 void MainWindow::on_pushButton_3_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->PAG_SEZIONE_F);
 }
+
+void MainWindow::on_PAG_E_pulsante_riviste_spec_clicked()
+{
+    ui->PAG_E_LISTA->clear();
+
+    // lista che riempirò attraverso il metodo della sezione
+    std::list<Pubblicazione*> riviste;
+
+    gestore.get_riviste_specialistiche(riviste);
+
+    for(auto& i : riviste){
+        ui->PAG_E_LISTA->addItem("ID : " + QString::number(i->get_id()) + "    NOME : " + i->get_nome() + "    ACRONIMO : " + i->get_acronimo() + "    DATA : " + i->get_data());
+    }
+    riviste.clear();
+}
+
+
 
 void MainWindow::on_PAG_F_CERCA_CONFERENZE_COMUN_clicked()
 {
@@ -866,3 +869,4 @@ void MainWindow::on_articoli_aggiungi_correlato_clicked()
 {
     id_correlati.push_back(ui->articoli_lista_correlati->currentItem()->text().toInt());
 }
+

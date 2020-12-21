@@ -79,20 +79,14 @@ public:
     // SEZIONE C METODO 6
     void get_keywords_guadagno_max(std::list<QString>& lista) const;
 
-    //SEZIONE D METODO 1
+    //SEZIONE D METODO 2
     void articoli_autore_sorted_anno(int id, std::list<Articolo*>& lista) const;
 
     // SEZIONE D METODO 6
     void articoli_autore_sorted(int id, std::list<Articolo*>& lista) const;
 
-    // SEZIONE D METODO 5
-    void articoli_keyword_sorted(QString key, std::list<Articolo*>& lista) const;
-
      // trova gli articoli in cui è presente quella keyword
     void get_articoli_keyword(QString key, std::list<Articolo*>& lista) const;
-
-    // SEZIONE E METODO 3
-    void get_5_most_common_key(std::list<QString>& chiavi) const;
 
     //SEZIONE E METODO 6
     void get_riviste_specialistiche(std::list<Pubblicazione*>& lista) const;
