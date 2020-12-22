@@ -151,10 +151,10 @@ public:
     QPushButton *SEZIONE_C_PULSANTE_CONFERMA;
     QWidget *layoutWidget6;
     QGridLayout *gridLayout_13;
-    QRadioButton *SEZIONE_C_ARTICOLI_MAX;
     QGridLayout *gridLayout_12;
     QLabel *label_12;
     QSpinBox *SEZIONE_C_ID_AUTORE;
+    QRadioButton *SEZIONE_C_ARTICOLI_MAX;
     QRadioButton *SEZIONE_C_ARTICOLI_MIN;
     QRadioButton *SEZIONE_C_KEYWORD_MAX;
     QWidget *PAG_SEZIONE_D;
@@ -490,7 +490,7 @@ public:
         pulsante_aggiungi_conferenza->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         layoutWidget3 = new QWidget(pagina_conferenze);
         layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
-        layoutWidget3->setGeometry(QRect(170, 70, 401, 409));
+        layoutWidget3->setGeometry(QRect(170, 70, 401, 401));
         gridLayout_19 = new QGridLayout(layoutWidget3);
         gridLayout_19->setObjectName(QString::fromUtf8("gridLayout_19"));
         gridLayout_19->setContentsMargins(0, 0, 0, 0);
@@ -739,6 +739,8 @@ public:
 
         SEZIONE_B_ID_CONFERENZA = new QSpinBox(layoutWidget5);
         SEZIONE_B_ID_CONFERENZA->setObjectName(QString::fromUtf8("SEZIONE_B_ID_CONFERENZA"));
+        SEZIONE_B_ID_CONFERENZA->setMinimum(1);
+        SEZIONE_B_ID_CONFERENZA->setMaximum(9999);
 
         gridLayout_8->addWidget(SEZIONE_B_ID_CONFERENZA, 0, 1, 1, 1);
 
@@ -754,6 +756,8 @@ public:
 
         SEZIONE_B_ID_RIVISTA = new QSpinBox(layoutWidget5);
         SEZIONE_B_ID_RIVISTA->setObjectName(QString::fromUtf8("SEZIONE_B_ID_RIVISTA"));
+        SEZIONE_B_ID_RIVISTA->setMinimum(1);
+        SEZIONE_B_ID_RIVISTA->setMaximum(9999);
 
         gridLayout_10->addWidget(SEZIONE_B_ID_RIVISTA, 0, 1, 1, 1);
 
@@ -776,15 +780,10 @@ public:
         SEZIONE_C_PULSANTE_CONFERMA->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         layoutWidget6 = new QWidget(PAG_SEZIONE_C);
         layoutWidget6->setObjectName(QString::fromUtf8("layoutWidget6"));
-        layoutWidget6->setGeometry(QRect(10, 70, 771, 51));
+        layoutWidget6->setGeometry(QRect(20, 70, 761, 51));
         gridLayout_13 = new QGridLayout(layoutWidget6);
         gridLayout_13->setObjectName(QString::fromUtf8("gridLayout_13"));
         gridLayout_13->setContentsMargins(0, 0, 0, 0);
-        SEZIONE_C_ARTICOLI_MAX = new QRadioButton(layoutWidget6);
-        SEZIONE_C_ARTICOLI_MAX->setObjectName(QString::fromUtf8("SEZIONE_C_ARTICOLI_MAX"));
-
-        gridLayout_13->addWidget(SEZIONE_C_ARTICOLI_MAX, 0, 2, 1, 1);
-
         gridLayout_12 = new QGridLayout();
         gridLayout_12->setObjectName(QString::fromUtf8("gridLayout_12"));
         label_12 = new QLabel(layoutWidget6);
@@ -801,6 +800,11 @@ public:
 
 
         gridLayout_13->addLayout(gridLayout_12, 0, 0, 1, 1);
+
+        SEZIONE_C_ARTICOLI_MAX = new QRadioButton(layoutWidget6);
+        SEZIONE_C_ARTICOLI_MAX->setObjectName(QString::fromUtf8("SEZIONE_C_ARTICOLI_MAX"));
+
+        gridLayout_13->addWidget(SEZIONE_C_ARTICOLI_MAX, 0, 2, 1, 1);
 
         SEZIONE_C_ARTICOLI_MIN = new QRadioButton(layoutWidget6);
         SEZIONE_C_ARTICOLI_MIN->setObjectName(QString::fromUtf8("SEZIONE_C_ARTICOLI_MIN"));
@@ -905,6 +909,8 @@ public:
 
         PAGINA_F_ID_CONFERENZA = new QSpinBox(layoutWidget8);
         PAGINA_F_ID_CONFERENZA->setObjectName(QString::fromUtf8("PAGINA_F_ID_CONFERENZA"));
+        PAGINA_F_ID_CONFERENZA->setMinimum(1);
+        PAGINA_F_ID_CONFERENZA->setMaximum(9999);
 
         gridLayout_17->addWidget(PAGINA_F_ID_CONFERENZA, 0, 1, 1, 1);
 
@@ -957,7 +963,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(11);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1036,15 +1042,15 @@ public:
         label_11->setText(QCoreApplication::translate("MainWindow", "ID rivista", nullptr));
         SEZIONE_C_TORNAMENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         SEZIONE_C_PULSANTE_CONFERMA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
-        SEZIONE_C_ARTICOLI_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo max dell'autore", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));
+        SEZIONE_C_ARTICOLI_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo max dell'autore", nullptr));
         SEZIONE_C_ARTICOLI_MIN->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli con prezzo min dell'autore", nullptr));
         SEZIONE_C_KEYWORD_MAX->setText(QCoreApplication::translate("MainWindow", "Visualizza keyword che hanno il guadagno max (NON RIFERITE ALL'AUTORE)", nullptr));
         PAG_D_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_D_PULSANTE_CONFERMA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
-        PAG_D_RADIO_VISUALIZZA_AUTORE->setText(QCoreApplication::translate("MainWindow", "ordinati dell'autore metodo D-6", nullptr));
+        PAG_D_RADIO_VISUALIZZA_AUTORE->setText(QCoreApplication::translate("MainWindow", "articoli ordinati dell'autore metodo D-6", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));
-        PAG_D_RADIO_metodo_d2->setText(QCoreApplication::translate("MainWindow", "ordinati dell'autore metodo D-2", nullptr));
+        PAG_D_RADIO_metodo_d2->setText(QCoreApplication::translate("MainWindow", "articoli ordinati dell'autore metodo D-2", nullptr));
         PAG_E_BOTTONE_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_E_pulsante_riviste_spec->setText(QCoreApplication::translate("MainWindow", "Riviste Specialistiche", nullptr));
         PAG_F_TORNA_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));

@@ -512,7 +512,7 @@ Esempio : &quot;ciao, sono una, afferenza&quot;</string>
         <x>170</x>
         <y>70</y>
         <width>401</width>
-        <height>409</height>
+        <height>401</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_19">
@@ -895,7 +895,14 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QSpinBox" name="SEZIONE_B_ID_CONFERENZA"/>
+          <widget class="QSpinBox" name="SEZIONE_B_ID_CONFERENZA">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>9999</number>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -909,7 +916,14 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QSpinBox" name="SEZIONE_B_ID_RIVISTA"/>
+          <widget class="QSpinBox" name="SEZIONE_B_ID_RIVISTA">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>9999</number>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -962,20 +976,13 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>70</y>
-        <width>771</width>
+        <width>761</width>
         <height>51</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_13">
-       <item row="0" column="2">
-        <widget class="QRadioButton" name="SEZIONE_C_ARTICOLI_MAX">
-         <property name="text">
-          <string>Visualizza articoli con prezzo max dell'autore</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_12">
          <item row="0" column="0">
@@ -996,6 +1003,13 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="0" column="2">
+        <widget class="QRadioButton" name="SEZIONE_C_ARTICOLI_MAX">
+         <property name="text">
+          <string>Visualizza articoli con prezzo max dell'autore</string>
+         </property>
+        </widget>
        </item>
        <item row="0" column="1">
         <widget class="QRadioButton" name="SEZIONE_C_ARTICOLI_MIN">
@@ -1070,7 +1084,7 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
        <item row="0" column="1">
         <widget class="QRadioButton" name="PAG_D_RADIO_VISUALIZZA_AUTORE">
          <property name="text">
-          <string>ordinati dell'autore metodo D-6</string>
+          <string>articoli ordinati dell'autore metodo D-6</string>
          </property>
         </widget>
        </item>
@@ -1100,7 +1114,7 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
          <item row="0" column="0">
           <widget class="QRadioButton" name="PAG_D_RADIO_metodo_d2">
            <property name="text">
-            <string>ordinati dell'autore metodo D-2</string>
+            <string>articoli ordinati dell'autore metodo D-2</string>
            </property>
           </widget>
          </item>
@@ -1214,7 +1228,14 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QSpinBox" name="PAGINA_F_ID_CONFERENZA"/>
+        <widget class="QSpinBox" name="PAGINA_F_ID_CONFERENZA">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>9999</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

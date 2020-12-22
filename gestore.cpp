@@ -441,7 +441,7 @@ void Gestore::get_conferenze_simili(int id, std::list<Pubblicazione*> &lista) co
 
             key_unione = get_key_unione(key_comuni,key_seconda_conf);
             key_comuni = get_key_comuni(key_comuni,key_seconda_conf);
-            if(static_cast<double>(key_comuni.size())/key_unione.size() >= 0.8){
+            if(static_cast<double>(key_comuni.size())/key_unione.size() >= 0.8 && find(lista.begin(), lista.end(), i->get_pubblicazione()) == lista.end()){
                 lista.push_back(i->get_pubblicazione());
             }
         }
