@@ -1187,8 +1187,8 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
      <widget class="QPushButton" name="PAG_F_CERCA_CONFERENZE_COMUN">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>120</y>
+        <x>540</x>
+        <y>100</y>
         <width>151</width>
         <height>51</height>
        </rect>
@@ -1213,8 +1213,8 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>80</y>
+        <x>500</x>
+        <y>60</y>
         <width>225</width>
         <height>22</height>
        </rect>
@@ -1229,6 +1229,51 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
        </item>
        <item row="0" column="1">
         <widget class="QSpinBox" name="PAGINA_F_ID_CONFERENZA">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>9999</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="sezione_f_articoli_influenzati">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>100</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(15,138,8); </string>
+      </property>
+      <property name="text">
+       <string>Articoli influenzati</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>60</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_20">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>ID Articolo</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="Sezione_F_ID_articolo">
          <property name="minimum">
           <number>1</number>
          </property>

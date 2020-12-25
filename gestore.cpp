@@ -485,3 +485,36 @@ bool Gestore::is_pubblicazione_unique(QString data, QString nome, bool is_conf) 
     }
     return true;
 }
+
+//SEZIONE F METODO 1
+void Gestore::get_influenzati_articolo(int id_art, std::list<Articolo *> &influenzati) const {
+    QString data = get_data_articolo(id_art);
+
+    // prendo prima tutti gli articoli influenzati direttamente dall'articolo
+    for(auto& it : articoli){
+           if(it->is_correlato(id_art) && data < it->get_pubblicazione()->get_data() && find(influenzati.begin(),influenzati.end(),it) == influenzati.end()){
+               influenzati.push_back(it);
+           }
+    }
+
+    // dopo per ogni articolo influenzato prendo quelli che influenza lui
+    for(auto& i : influenzati){
+        for(auto& j : articoli){
+            if(j->is_correlato(i->get_identificativo()) && i->get_pubblicazione()->get_data() < j->get_pubblicazione()->get_data() && find(influenzati.begin(),influenzati.end(),j) == influenzati.end()){
+                influenzati.push_back(j);
+            }
+        }
+    }
+
+}
+
+
+QString Gestore::get_data_articolo(int id) const {
+
+    for(auto& it : articoli){
+        if(it->get_identificativo() == id){
+            return it->get_pubblicazione()->get_data();
+        }
+    }
+    return "";
+}

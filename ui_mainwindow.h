@@ -181,6 +181,11 @@ public:
     QGridLayout *gridLayout_17;
     QLabel *label_15;
     QSpinBox *PAGINA_F_ID_CONFERENZA;
+    QPushButton *sezione_f_articoli_influenzati;
+    QWidget *widget;
+    QGridLayout *gridLayout_20;
+    QLabel *label_14;
+    QSpinBox *Sezione_F_ID_articolo;
     QWidget *PAG_VISUALIZZA_AUTORI;
     QPushButton *PAG_VISUALIZZA_AUTORI_PULSANTE_MENU;
     QListWidget *PAG_VISUALIZZA_AUTORI_LISTA;
@@ -891,14 +896,14 @@ public:
         PAG_F_TORNA_MENU->setStyleSheet(QString::fromUtf8("background-color: rgb(24,119,242);"));
         PAG_F_CERCA_CONFERENZE_COMUN = new QPushButton(PAG_SEZIONE_F);
         PAG_F_CERCA_CONFERENZE_COMUN->setObjectName(QString::fromUtf8("PAG_F_CERCA_CONFERENZE_COMUN"));
-        PAG_F_CERCA_CONFERENZE_COMUN->setGeometry(QRect(300, 120, 151, 51));
+        PAG_F_CERCA_CONFERENZE_COMUN->setGeometry(QRect(540, 100, 151, 51));
         PAG_F_CERCA_CONFERENZE_COMUN->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
         PAG_F_LISTA = new QListWidget(PAG_SEZIONE_F);
         PAG_F_LISTA->setObjectName(QString::fromUtf8("PAG_F_LISTA"));
         PAG_F_LISTA->setGeometry(QRect(10, 190, 771, 371));
         layoutWidget8 = new QWidget(PAG_SEZIONE_F);
         layoutWidget8->setObjectName(QString::fromUtf8("layoutWidget8"));
-        layoutWidget8->setGeometry(QRect(270, 80, 225, 22));
+        layoutWidget8->setGeometry(QRect(500, 60, 225, 22));
         gridLayout_17 = new QGridLayout(layoutWidget8);
         gridLayout_17->setObjectName(QString::fromUtf8("gridLayout_17"));
         gridLayout_17->setContentsMargins(0, 0, 0, 0);
@@ -913,6 +918,28 @@ public:
         PAGINA_F_ID_CONFERENZA->setMaximum(9999);
 
         gridLayout_17->addWidget(PAGINA_F_ID_CONFERENZA, 0, 1, 1, 1);
+
+        sezione_f_articoli_influenzati = new QPushButton(PAG_SEZIONE_F);
+        sezione_f_articoli_influenzati->setObjectName(QString::fromUtf8("sezione_f_articoli_influenzati"));
+        sezione_f_articoli_influenzati->setGeometry(QRect(70, 100, 151, 51));
+        sezione_f_articoli_influenzati->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
+        widget = new QWidget(PAG_SEZIONE_F);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(40, 60, 201, 22));
+        gridLayout_20 = new QGridLayout(widget);
+        gridLayout_20->setObjectName(QString::fromUtf8("gridLayout_20"));
+        gridLayout_20->setContentsMargins(0, 0, 0, 0);
+        label_14 = new QLabel(widget);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+
+        gridLayout_20->addWidget(label_14, 0, 0, 1, 1);
+
+        Sezione_F_ID_articolo = new QSpinBox(widget);
+        Sezione_F_ID_articolo->setObjectName(QString::fromUtf8("Sezione_F_ID_articolo"));
+        Sezione_F_ID_articolo->setMinimum(1);
+        Sezione_F_ID_articolo->setMaximum(9999);
+
+        gridLayout_20->addWidget(Sezione_F_ID_articolo, 0, 1, 1, 1);
 
         stackedWidget->addWidget(PAG_SEZIONE_F);
         PAG_VISUALIZZA_AUTORI = new QWidget();
@@ -963,7 +990,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(11);
+        stackedWidget->setCurrentIndex(9);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1056,6 +1083,8 @@ public:
         PAG_F_TORNA_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_F_CERCA_CONFERENZE_COMUN->setText(QCoreApplication::translate("MainWindow", "Conferenze comuni", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "ID conferenza", nullptr));
+        sezione_f_articoli_influenzati->setText(QCoreApplication::translate("MainWindow", "Articoli influenzati", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "ID Articolo", nullptr));
         PAG_VISUALIZZA_AUTORI_PULSANTE_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_VISUALIZZA_RIVISTE_PULSANTE_MENU_->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         PAG_VISUALIZZA_CONFERENZE_PULSANTE_MENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));

@@ -33,3 +33,12 @@ std::list<int> Articolo::get_id_autori() const{
     }
     return id_autori;
 }
+
+bool Articolo::is_correlato(int id) const {
+    for(auto& it : articoli_correlati){
+        if(id == it){
+            return true;
+        }
+    }
+    return false;
+}

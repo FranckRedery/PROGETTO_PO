@@ -212,7 +212,7 @@ void MainWindow::on_pulsante_aggiungi_conferenza_clicked()
     }
 
     if(gestore.Is_ID_pubblicazione_alreadytaken(id)){
-        QMessageBox mess_due(QMessageBox::Critical, "Errore", "ID inserito già occupato da un altra rivista/confereza (gli ID devono essere unici).", QMessageBox::Ok,this);
+        QMessageBox mess_due(QMessageBox::Critical, "Errore", "ID inserito già occupato da un altra rivista/conferenza (gli ID devono essere unici).", QMessageBox::Ok,this);
         mess_due.exec();
         return;
     }
@@ -292,10 +292,6 @@ void MainWindow::on_pushButton_clicked()
         str1.clear();
     }
 
-    //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
-    // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
-    int last_char;
-
     QString stringa_keyword = ui->plaintext_keyword_di_articolo->toPlainText();
     QString visualizza_keyword;
     std::list<QString> keyword;
@@ -327,6 +323,7 @@ void MainWindow::on_pushButton_clicked()
 
     //QUESTO SERVE SOLAMENTE PER CAMBIARE L'ULTIMO CHAR NELLA QWIDGET LIST DI VISUALIZZAZIONE
     // DA , IN . PER AVERE UNA VISUALIZZAZIONE LEGGERMENTE PIU' CARINA
+    int last_char;
     if(visualizza_keyword.size()>=2){
         last_char = visualizza_keyword.size()-2;
         visualizza_keyword[last_char] = '.';
@@ -516,6 +513,18 @@ void MainWindow::on_PAG_F_CERCA_CONFERENZE_COMUN_clicked()
     }
     comuni.clear();
 }
+
+void MainWindow::on_sezione_f_articoli_influenzati_clicked()
+{
+    std::list<Articolo*> influenzati;
+    ui->PAG_F_LISTA->clear();
+    gestore.get_influenzati_articolo(ui->Sezione_F_ID_articolo->value(),influenzati);
+
+    for(auto& i : influenzati){
+         ui->PAG_F_LISTA->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
+    }
+}
+
 
 void MainWindow::on_pulsante_visualizza_Autori_clicked()
 {

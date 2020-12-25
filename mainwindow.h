@@ -93,6 +93,8 @@ private slots:
 
     void on_PAG_E_pulsante_riviste_spec_clicked();
 
+    void on_sezione_f_articoli_influenzati_clicked();
+
 private:
     Ui::MainWindow *ui;
     Gestore gestore;

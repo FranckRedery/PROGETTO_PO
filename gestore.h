@@ -106,6 +106,11 @@ public:
 
     bool sottoinsieme(std::list<QString>& first , std::list<QString>& second) const;
 
+    //SEZIONE F METODO 1
+    void get_influenzati_articolo(int id_art, std::list<Articolo*>& influenzati) const;
+
+    QString get_data_articolo(int id) const;
+
 private:
 
     std::list<Autore*> autori;

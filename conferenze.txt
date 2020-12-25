@@ -1,5 +1,5 @@
-C1 | conf1 | 2020-08-06 | napoli | 140 | Marco, Aurelio|
-C2 | conf2 | 2018-05-04 | cosenza | 80 | Maurizio, Francesco|
-Pubblica| pb| 2020-12-20| rende| 256| Giovanni, Francesco, Pierpaolo, Mammata|
-Stampa| st| 2019-02-20| cosenza| 388| Maria, Luisa, Ciancia, Godi popolo|
-Universitaria| uni| 2018-01-28| rende| 233| Carlo, Alfredo Bressi, pierpaolo|
+C1 | conf1 | 2020-08-06 | napoli  | 140 | Marco, Aurelio         |
+C2 | conf2 | 2018-05-04 | cosenza | 80  | Maurizio, Francesco    |
+C3 | conf3 | 2020-12-20 | rende   | 256 |                        |
+C4 | conf4 | 2019-02-20 | milano  | 388 | Maria, Luisa, Giovanni |
+C5 | conf5 | 2018-01-28 | torino  | 13  | Carlo, Piero, Mauro    |

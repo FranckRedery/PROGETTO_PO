@@ -1,3 +1,5 @@
-National Geographic| NG| 2020-12-07| Leonardo| 12|
-Il messaggero| m| 2022-12-08| Franco| 13|
-Calabria| c| 2020-10-08| Assunta| 5|
+R1| riv1| 2020-12-07| Leonardo|12|
+R2| riv2| 2022-12-08| Franco  |13|
+R3| riv3| 2020-10-08| Assunta |5 |
+R4| riv4| 2018-02-03|         |4 |
+R5| riv5| 2017-06-04| Pino    |3|

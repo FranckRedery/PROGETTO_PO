@@ -66,6 +66,8 @@ public:
 
     void aggiungi_keyword(QString k);
 
+    bool is_correlato(int id) const ;
+
 
 private:
 
