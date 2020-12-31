@@ -871,11 +871,15 @@ QString MainWindow::readFile(QString filename)
 
 void MainWindow::on_articolo_add_autore_clicked()
 {
-    id_autori.push_back(ui->articolo_lista_add_autori->currentItem()->text().toInt());
+    if(ui->articolo_lista_add_autori->selectedItems().size()!=0){
+        id_autori.push_back(ui->articolo_lista_add_autori->currentItem()->text().toInt());
+    }
 }
 
 void MainWindow::on_articoli_aggiungi_correlato_clicked()
 {
-    id_correlati.push_back(ui->articoli_lista_correlati->currentItem()->text().toInt());
+    if(ui->articoli_lista_correlati->selectedItems().size()!=0){
+        id_correlati.push_back(ui->articoli_lista_correlati->currentItem()->text().toInt());
+    }
 }
 

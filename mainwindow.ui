@@ -209,7 +209,7 @@
           <string notr="true">background-color: rgb(145, 15, 15);</string>
          </property>
          <property name="text">
-          <string>Aggiungi articolo da file</string>
+          <string>Aggiungi articoli da file</string>
          </property>
         </widget>
        </item>
@@ -1255,7 +1255,7 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
        <string>Articoli influenzati</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>40</x>

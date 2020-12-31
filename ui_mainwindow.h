@@ -182,7 +182,7 @@ public:
     QLabel *label_15;
     QSpinBox *PAGINA_F_ID_CONFERENZA;
     QPushButton *sezione_f_articoli_influenzati;
-    QWidget *widget;
+    QWidget *layoutWidget9;
     QGridLayout *gridLayout_20;
     QLabel *label_14;
     QSpinBox *Sezione_F_ID_articolo;
@@ -923,18 +923,18 @@ public:
         sezione_f_articoli_influenzati->setObjectName(QString::fromUtf8("sezione_f_articoli_influenzati"));
         sezione_f_articoli_influenzati->setGeometry(QRect(70, 100, 151, 51));
         sezione_f_articoli_influenzati->setStyleSheet(QString::fromUtf8("background-color: rgb(15,138,8); "));
-        widget = new QWidget(PAG_SEZIONE_F);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(40, 60, 201, 22));
-        gridLayout_20 = new QGridLayout(widget);
+        layoutWidget9 = new QWidget(PAG_SEZIONE_F);
+        layoutWidget9->setObjectName(QString::fromUtf8("layoutWidget9"));
+        layoutWidget9->setGeometry(QRect(40, 60, 201, 22));
+        gridLayout_20 = new QGridLayout(layoutWidget9);
         gridLayout_20->setObjectName(QString::fromUtf8("gridLayout_20"));
         gridLayout_20->setContentsMargins(0, 0, 0, 0);
-        label_14 = new QLabel(widget);
+        label_14 = new QLabel(layoutWidget9);
         label_14->setObjectName(QString::fromUtf8("label_14"));
 
         gridLayout_20->addWidget(label_14, 0, 0, 1, 1);
 
-        Sezione_F_ID_articolo = new QSpinBox(widget);
+        Sezione_F_ID_articolo = new QSpinBox(layoutWidget9);
         Sezione_F_ID_articolo->setObjectName(QString::fromUtf8("Sezione_F_ID_articolo"));
         Sezione_F_ID_articolo->setMinimum(1);
         Sezione_F_ID_articolo->setMaximum(9999);
@@ -990,7 +990,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(9);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1015,7 +1015,7 @@ public:
         pulsante_aggiungi_autori_file->setText(QCoreApplication::translate("MainWindow", "Aggiungi autori da file", nullptr));
         pulsante_aggiungi_riviste_file->setText(QCoreApplication::translate("MainWindow", "Aggiungi riviste da file", nullptr));
         pulsante_aggiungi_conferenze_file->setText(QCoreApplication::translate("MainWindow", "Aggiungi conferenze da file", nullptr));
-        pulsante_aggiungi_articolo_file->setText(QCoreApplication::translate("MainWindow", "Aggiungi articolo da file", nullptr));
+        pulsante_aggiungi_articolo_file->setText(QCoreApplication::translate("MainWindow", "Aggiungi articoli da file", nullptr));
         aggiungi_autore->setText(QCoreApplication::translate("MainWindow", "Aggiungi Autore", nullptr));
         label_cognome->setText(QCoreApplication::translate("MainWindow", "Cognome", nullptr));
         label_id_autore->setText(QCoreApplication::translate("MainWindow", "ID", nullptr));
