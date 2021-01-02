@@ -133,18 +133,18 @@ public:
     QListWidget *SEZIONE_B_visualizzazione_articoli;
     QWidget *layoutWidget5;
     QGridLayout *gridLayout_11;
-    QRadioButton *SezioneB_scelta_visualizza_articoli_per_autore;
-    QRadioButton *SEZIONE_B_pulsante_visualizz_articoli_di_conferenza;
-    QRadioButton *SEZIONE_B_pulsante_visualizz_articoli_di_rivista;
-    QGridLayout *gridLayout_9;
-    QLabel *label_9;
-    QSpinBox *sezioneB_id_autore;
     QGridLayout *gridLayout_8;
     QLabel *label_10;
     QSpinBox *SEZIONE_B_ID_CONFERENZA;
+    QGridLayout *gridLayout_9;
+    QLabel *label_9;
+    QSpinBox *sezioneB_id_autore;
     QGridLayout *gridLayout_10;
     QLabel *label_11;
     QSpinBox *SEZIONE_B_ID_RIVISTA;
+    QRadioButton *SezioneB_scelta_visualizza_articoli_per_autore;
+    QRadioButton *SEZIONE_B_pulsante_visualizz_articoli_di_conferenza;
+    QRadioButton *SEZIONE_B_pulsante_visualizz_articoli_di_rivista;
     QWidget *PAG_SEZIONE_C;
     QPushButton *SEZIONE_C_TORNAMENU;
     QListWidget *SEZIONE_C_LISTWIDGET;
@@ -699,24 +699,26 @@ public:
         SEZIONE_B_visualizzazione_articoli->setGeometry(QRect(10, 200, 771, 371));
         layoutWidget5 = new QWidget(PAG_SEZIONE_B);
         layoutWidget5->setObjectName(QString::fromUtf8("layoutWidget5"));
-        layoutWidget5->setGeometry(QRect(10, 70, 771, 61));
+        layoutWidget5->setGeometry(QRect(10, 70, 771, 75));
         gridLayout_11 = new QGridLayout(layoutWidget5);
         gridLayout_11->setObjectName(QString::fromUtf8("gridLayout_11"));
         gridLayout_11->setContentsMargins(0, 0, 0, 0);
-        SezioneB_scelta_visualizza_articoli_per_autore = new QRadioButton(layoutWidget5);
-        SezioneB_scelta_visualizza_articoli_per_autore->setObjectName(QString::fromUtf8("SezioneB_scelta_visualizza_articoli_per_autore"));
+        gridLayout_8 = new QGridLayout();
+        gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
+        label_10 = new QLabel(layoutWidget5);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
 
-        gridLayout_11->addWidget(SezioneB_scelta_visualizza_articoli_per_autore, 1, 0, 1, 1);
+        gridLayout_8->addWidget(label_10, 0, 0, 1, 1);
 
-        SEZIONE_B_pulsante_visualizz_articoli_di_conferenza = new QRadioButton(layoutWidget5);
-        SEZIONE_B_pulsante_visualizz_articoli_di_conferenza->setObjectName(QString::fromUtf8("SEZIONE_B_pulsante_visualizz_articoli_di_conferenza"));
+        SEZIONE_B_ID_CONFERENZA = new QSpinBox(layoutWidget5);
+        SEZIONE_B_ID_CONFERENZA->setObjectName(QString::fromUtf8("SEZIONE_B_ID_CONFERENZA"));
+        SEZIONE_B_ID_CONFERENZA->setMinimum(1);
+        SEZIONE_B_ID_CONFERENZA->setMaximum(9999);
 
-        gridLayout_11->addWidget(SEZIONE_B_pulsante_visualizz_articoli_di_conferenza, 1, 1, 1, 1);
+        gridLayout_8->addWidget(SEZIONE_B_ID_CONFERENZA, 0, 1, 1, 1);
 
-        SEZIONE_B_pulsante_visualizz_articoli_di_rivista = new QRadioButton(layoutWidget5);
-        SEZIONE_B_pulsante_visualizz_articoli_di_rivista->setObjectName(QString::fromUtf8("SEZIONE_B_pulsante_visualizz_articoli_di_rivista"));
 
-        gridLayout_11->addWidget(SEZIONE_B_pulsante_visualizz_articoli_di_rivista, 1, 2, 1, 1);
+        gridLayout_11->addLayout(gridLayout_8, 0, 1, 1, 1);
 
         gridLayout_9 = new QGridLayout();
         gridLayout_9->setObjectName(QString::fromUtf8("gridLayout_9"));
@@ -735,23 +737,6 @@ public:
 
         gridLayout_11->addLayout(gridLayout_9, 0, 0, 1, 1);
 
-        gridLayout_8 = new QGridLayout();
-        gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
-        label_10 = new QLabel(layoutWidget5);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-
-        gridLayout_8->addWidget(label_10, 0, 0, 1, 1);
-
-        SEZIONE_B_ID_CONFERENZA = new QSpinBox(layoutWidget5);
-        SEZIONE_B_ID_CONFERENZA->setObjectName(QString::fromUtf8("SEZIONE_B_ID_CONFERENZA"));
-        SEZIONE_B_ID_CONFERENZA->setMinimum(1);
-        SEZIONE_B_ID_CONFERENZA->setMaximum(9999);
-
-        gridLayout_8->addWidget(SEZIONE_B_ID_CONFERENZA, 0, 1, 1, 1);
-
-
-        gridLayout_11->addLayout(gridLayout_8, 0, 1, 1, 1);
-
         gridLayout_10 = new QGridLayout();
         gridLayout_10->setObjectName(QString::fromUtf8("gridLayout_10"));
         label_11 = new QLabel(layoutWidget5);
@@ -768,6 +753,21 @@ public:
 
 
         gridLayout_11->addLayout(gridLayout_10, 0, 2, 1, 1);
+
+        SezioneB_scelta_visualizza_articoli_per_autore = new QRadioButton(layoutWidget5);
+        SezioneB_scelta_visualizza_articoli_per_autore->setObjectName(QString::fromUtf8("SezioneB_scelta_visualizza_articoli_per_autore"));
+
+        gridLayout_11->addWidget(SezioneB_scelta_visualizza_articoli_per_autore, 1, 0, 1, 1);
+
+        SEZIONE_B_pulsante_visualizz_articoli_di_conferenza = new QRadioButton(layoutWidget5);
+        SEZIONE_B_pulsante_visualizz_articoli_di_conferenza->setObjectName(QString::fromUtf8("SEZIONE_B_pulsante_visualizz_articoli_di_conferenza"));
+
+        gridLayout_11->addWidget(SEZIONE_B_pulsante_visualizz_articoli_di_conferenza, 1, 1, 1, 1);
+
+        SEZIONE_B_pulsante_visualizz_articoli_di_rivista = new QRadioButton(layoutWidget5);
+        SEZIONE_B_pulsante_visualizz_articoli_di_rivista->setObjectName(QString::fromUtf8("SEZIONE_B_pulsante_visualizz_articoli_di_rivista"));
+
+        gridLayout_11->addWidget(SEZIONE_B_pulsante_visualizz_articoli_di_rivista, 1, 2, 1, 1);
 
         stackedWidget->addWidget(PAG_SEZIONE_B);
         PAG_SEZIONE_C = new QWidget();
@@ -1061,12 +1061,12 @@ public:
         articoli_aggiungi_correlato->setText(QCoreApplication::translate("MainWindow", "Aggiungi", nullptr));
         sezioneB_to_menu->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         SEZIONEB_PULSANTE_VISUALIZZA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "ID conferenza", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "ID rivista", nullptr));
         SezioneB_scelta_visualizza_articoli_per_autore->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli di quell'autore", nullptr));
         SEZIONE_B_pulsante_visualizz_articoli_di_conferenza->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli di quella conferenza", nullptr));
         SEZIONE_B_pulsante_visualizz_articoli_di_rivista->setText(QCoreApplication::translate("MainWindow", "Visualizza articoli di quella rivista", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));
-        label_10->setText(QCoreApplication::translate("MainWindow", "ID conferenza", nullptr));
-        label_11->setText(QCoreApplication::translate("MainWindow", "ID rivista", nullptr));
         SEZIONE_C_TORNAMENU->setText(QCoreApplication::translate("MainWindow", "Menu principale", nullptr));
         SEZIONE_C_PULSANTE_CONFERMA->setText(QCoreApplication::translate("MainWindow", "Clicca per confermare", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "ID autore", nullptr));

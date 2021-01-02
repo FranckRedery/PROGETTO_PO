@@ -1,5 +1,21 @@
-C1 | conf1 | 2020-08-06 | napoli  | 140 | Marco, Aurelio         |
-C2 | conf2 | 2018-05-04 | cosenza | 80  | Maurizio, Francesco    |
+ISTRUZIONI
+
+Per inserire le conferenze da input ogni campo da inserire deve essere opportunamente separato dal carattere '|' , in questa sezione
+DEVONO ESSERE OBBLIGATORIAMENTE INSERITI I CAMPI NOME E DATA.
+
+Nell'inserimento dei vari organizzatori separarli dal carattere ','
+L'ID relativo alla conferenza verrà scelto in automatico dal programma (il primo disponibile) e poi sarà visibile nella pagina visualizza conferenze
+
+Qui si riporta un esempio funzionante dell'input con il seguente schema : NOME | ACRONIMO | DATA | LUOGO | NUMERO PARTECIPANTI | NOMI ORGANIZZATORI |
+
+
+C1 | conf1 | 2020-08-09 | napoli  | 140 | Marco, Aurelio         |
+C1 | conf2 | 2020-08-10 | cosenza | 80  | Maurizio, Francesco    |
 C3 | conf3 | 2020-12-20 | rende   | 256 |                        |
 C4 | conf4 | 2019-02-20 | milano  | 388 | Maria, Luisa, Giovanni |
 C5 | conf5 | 2018-01-28 | torino  | 13  | Carlo, Piero, Mauro    |
+
+
+Per inserire l'input cancellare tutto eccetto l'input da inserire presentato come nell'esempio e poi cliccare nel progetto su Aggiungi conferenze da file
+
+N.B. INSERIRE LA DATA COME NEL FORMATO RIPORTATO NELL'ESEMPIO (ANNO-MESE-GIORNO) ALTRIMENTI ALCUNI METODI POTREBBERO NON RISULTARE FUNZIONANTI :)

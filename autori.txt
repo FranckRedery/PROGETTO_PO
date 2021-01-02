@@ -1,3 +1,20 @@
- Francesco| Reda| ciao , siamo delle , afferenze |
- Giovanni| Muciaccia| anche io , ho delle afferenze|
- Checca| Sculetta| puppami la fava, pippo pippo|
+ISTRUZIONI
+
+Per inserire gli autori da input ogni campo da inserire deve essere opportunamente separato dal carattere '|' , in questa sezione
+solamente il campo riguardante le afferenze potrà essere lasciato vuoto mentre gli altri devono essere obbligatoriamente compilati
+L'ID relativo all'autore verrà scelto in automatico dal programma (il primo disponibile) e poi sarà visibile nella pagina visualizza autori
+
+Nell'inserimento delle afferenze separare ognuna dall'altra con una virgola ',' 
+
+Qui si riporta un esempio funzionante dell'input con il seguente schema : NOME | COGNOME | VARIE AFFERENZE |
+
+
+Francesco| Reda   | ciao , siamo delle , afferenze |
+Francesco| Monaco | anche io , ho delle afferenze  |
+Matteo   | Pippo  | unical , pippo pippo           |
+Luca     | Fava   | ferrovie dello stato, papa     |
+Martino  | De Luca|                                |
+
+
+
+Per inserire l'input cancellare tutto eccetto l'input da inserire presentato come nell'esempio e poi cliccare nel progetto su Aggiungi autori da file

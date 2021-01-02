@@ -839,30 +839,30 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
         <x>10</x>
         <y>70</y>
         <width>771</width>
-        <height>61</height>
+        <height>75</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_11">
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="SezioneB_scelta_visualizza_articoli_per_autore">
-         <property name="text">
-          <string>Visualizza articoli di quell'autore</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QRadioButton" name="SEZIONE_B_pulsante_visualizz_articoli_di_conferenza">
-         <property name="text">
-          <string>Visualizza articoli di quella conferenza</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QRadioButton" name="SEZIONE_B_pulsante_visualizz_articoli_di_rivista">
-         <property name="text">
-          <string>Visualizza articoli di quella rivista</string>
-         </property>
-        </widget>
+       <item row="0" column="1">
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>ID conferenza</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SEZIONE_B_ID_CONFERENZA">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>9999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_9">
@@ -880,27 +880,6 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
            </property>
            <property name="maximum">
             <number>999999999</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="0" column="1">
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>ID conferenza</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="SEZIONE_B_ID_CONFERENZA">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>9999</number>
            </property>
           </widget>
          </item>
@@ -926,6 +905,27 @@ Esempio : &quot;ciao, ho moltissime, keyword &quot;</string>
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="SezioneB_scelta_visualizza_articoli_per_autore">
+         <property name="text">
+          <string>Visualizza articoli di quell'autore</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QRadioButton" name="SEZIONE_B_pulsante_visualizz_articoli_di_conferenza">
+         <property name="text">
+          <string>Visualizza articoli di quella conferenza</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QRadioButton" name="SEZIONE_B_pulsante_visualizz_articoli_di_rivista">
+         <property name="text">
+          <string>Visualizza articoli di quella rivista</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

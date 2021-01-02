@@ -1,22 +1,23 @@
-/*This file is part of Nome-Programma.
+/*This file is part of ProgettoPO-2020-2021-Reda-209394.
 
-Nome-Programma is free software: you can redistribute it and/or modify
+ProgettoPO-2020-2021-Reda-209394 is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Nome-Programma is distributed in the hope that it will be useful,
+ProgettoPO-2020-2021-Reda-209394 is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Nome-Programma.  If not, see <http://www.gnu.org/licenses/>.*/
+along with ProgettoPO-2020-2021-Reda-209394.  If not, see <http://www.gnu.org/licenses/>.*/
 
 
 #include "gestore.h"
 #include <algorithm>
 #include <iostream>
+#include <climits>
 
 void Gestore::aggiungi_autore(QString n, QString c, int id, std::list<QString> a){
 
@@ -276,7 +277,7 @@ bool sort_prezzo(const Articolo* a , const Articolo* b){
 }
 
 // SEZIONE D METODO 2 , prendo gli articoli dell'autore e li ordino per prezzo
-void Gestore::articoli_autore_sorted_anno(int id, std::list<Articolo *> &lista) const{
+void Gestore::articoli_autore_sorted_prezzo(int id, std::list<Articolo *> &lista) const{
     get_articoli_autore(id,lista);
     lista.sort(sort_prezzo);
 }

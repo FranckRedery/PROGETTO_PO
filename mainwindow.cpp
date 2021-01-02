@@ -1,17 +1,17 @@
-/*This file is part of Nome-Programma.
+/*This file is part of ProgettoPO-2020-2021-Reda-209394.
 
-Nome-Programma is free software: you can redistribute it and/or modify
+ProgettoPO-2020-2021-Reda-209394 is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Nome-Programma is distributed in the hope that it will be useful,
+ProgettoPO-2020-2021-Reda-209394 is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Nome-Programma.  If not, see <http://www.gnu.org/licenses/>.*/
+along with ProgettoPO-2020-2021-Reda-209394.  If not, see <http://www.gnu.org/licenses/>.*/
 
 
 #include "mainwindow.h"
@@ -458,7 +458,7 @@ void MainWindow::on_PAG_D_PULSANTE_CONFERMA_clicked()
     }
 
     if(ui->PAG_D_RADIO_metodo_d2->isChecked()){
-        gestore.articoli_autore_sorted_anno(ui->PAG_D_ID_AUTORE->value(),lista_articoli);
+        gestore.articoli_autore_sorted_prezzo(ui->PAG_D_ID_AUTORE->value(),lista_articoli);
         for(auto& i : lista_articoli){
             ui->PAG_D_LISTA->addItem("ID ARTICOLO :  " + QString::number(i->get_identificativo()) + "  TITOLO :  " + i->get_titolo() + "  PAGINE : " + QString::number(i->get_num_pagine()) + "  PREZZO : " + QString::number(i->get_prezzo()) + "  ID CONFERENZA/RIVISTA ASSOCIATA :  " + QString::number(i->get_pubblicazione()->get_id()));
         }
@@ -549,29 +549,30 @@ void MainWindow::on_pulsante_visualizza_Articoli_clicked()
 
 /*SEZIONE F METODO 4 : AGGIUNGERE GLI INPUT DA FILE DI TESTO
 
-L'ID RELATIVO AD AUTORI E ARTICOLI VERRA' SETTATO IN AUTOMATICO
+L'ID RELATIVO AD AUTORI,CONFERENZE,RIVISTE ED ARTICOLI VERRA' SETTATO IN AUTOMATICO
 PER SEMPLIFICARE L'INSERIMENTO ALL'UTENTE
 
 PER QUANTO RIGUARDA LA MODALITA' DI INSERIMENTO,
-IN GENERALE BISOGNA INSERIRE OGNI CAMPO RICHIESTO E POI QUANDO SI FINISCE DI
-INSERIRLO SCRIVERE '|'.
+IN GENERALE BISOGNA INSERIRE OGNI CAMPO RICHIESTO E QUANDO SI FINISCE DI INSERIRLO DIGITARE '|'.
+
 SE CI SONO CAMPI COME LE KEYWORD CHE POSSONO ESSERE PIU' DI UNA (LISTE)
-BISOGNA SEPARARE I DIVERSI ATTRIBUTI (KEYWORD/AFFERENZE ... ECC) UNA DALL'ALTRA CON ','
+BISOGNA SEPARARE I DIVERSI OGGETTI (KEYWORD/AFFERENZE ... ECC) UNO DALL'ALTRO CON ','
 
 NEL DETTAGLIO LE MODALITA' DI INSERIMENTO SONO SPIEGATE
-DENTRO I FILE DI TESTO SPECIFICI PER ESSERE PIU' CHIARI
-E CON DEI RELATIVI ESEMPI
+DENTRO I FILE DI TESTO SPECIFICI PER OGNI SEZIONE (PRESENTI NELLA CARTELLA) CON DEI RELATIVI ESEMPI
 
 L'INPUT DA FILE DI TESTO E' GESTITO IN MODO CHE SE SI RISPETTANO  I CRITERI DI INSERIMENTO
 SI POSSONO INSERIRE VOLENDO ANCHE IN MODO "ALTERNATO" INPUT DA INTERFACCIA E DA FILE DI TESTO
 SENZA ALCUN PROBLEMA
+
 */
 
 
-/* IN GENERALE L'INPUT DA CODICE VIENE PRESO IN UN LOOP WHILE IN CUI SI ANALIZZANO CHAR
-   PER CHAR E VENGONO INSERITI NELL'OPPORTUNO CAMPO , OGNI VOLTA CHE SI INCONTRA UNA '|'
-   SI INCREMENTA UN CONTATORE PER FAR CAPIRE CHE SI E' PASSATI AD INSERIRE IL PROSSIMO CAMPO
-   E INVECE NEL CASO DI LISTE DI PIU' ELEMENTI OGNI VOLTA CHE SI TROVA UNA ',' SI SALVA
+/* IN GENERALE L'INPUT DA CODICE VIENE PRESO IN UN LOOP WHILE IN CUI SI ANALIZZA IL TESTO CHAR
+   PER CHAR , OGNI VOLTA CHE SI INCONTRA UNA '|' SI INCREMENTA UN CONTATORE PER FAR CAPIRE CHE
+   SI E' PASSATI AD INSERIRE IL PROSSIMO CAMPO.
+
+   NEL CASO DI LISTE DI PIU' ELEMENTI OGNI VOLTA CHE SI TROVA UNA ',' SI SALVA
    QUELL'ELEMENTO E SI PROCEDE CON PRENDERE IL PROSSIMO FINCHE' NON VIENE TERMINATO L'INSERIMENTO
    CON IL CARATTERE '|'
 */
@@ -611,6 +612,11 @@ void MainWindow::on_pulsante_aggiungi_autori_file_clicked()
 
 
             if(cont == 3){
+                if(nome.simplified().isEmpty() || cognome.simplified().isEmpty()){
+                    QMessageBox mess(QMessageBox::Critical, "Errore", "I campi nome e cognome non possono essere vuoti.", QMessageBox::Ok,this);
+                    mess.exec();
+                    return;
+                }
                 aff.push_back(parola.simplified());
                 visualizza_afferenze += parola.simplified();
                 id = gestore.get_first_free_id_autore();
@@ -673,6 +679,12 @@ void MainWindow::on_pulsante_aggiungi_conferenze_file_clicked()
                visualizza_orgnizzatori += org.simplified();
                id = gestore.get_first_free_id_pubblicazione();
 
+               if(nome.simplified().isEmpty() || data.simplified().isEmpty()){
+                   QMessageBox errore(QMessageBox::Critical, "Errore", "I campi nome e data non possono essere vuoti.", QMessageBox::Ok,this);
+                   errore.exec();
+                   return;
+               }
+
                if(!gestore.is_pubblicazione_unique(data.simplified(),nome.simplified(),true)){
                    QMessageBox mess_err(QMessageBox::Critical, "Errore", "Nome e data già occupate da un altra confereza (Non possono esistere conferenze con stesso nome e data).", QMessageBox::Ok,this);
                    mess_err.exec();
@@ -726,6 +738,12 @@ void MainWindow::on_pulsante_aggiungi_riviste_file_clicked()
         if(cont == 5){
 
             id = gestore.get_first_free_id_pubblicazione();
+
+            if(nome.simplified().isEmpty() || data.simplified().isEmpty()){
+                QMessageBox errore(QMessageBox::Critical, "Errore", "I campi nome e data non possono essere vuoti.", QMessageBox::Ok,this);
+                errore.exec();
+                return;
+            }
 
             if(!gestore.is_pubblicazione_unique(data.simplified(),nome.simplified(),false)){
                 QMessageBox mess_err(QMessageBox::Critical, "Errore", "Nome e data già occupate da un altra rivista (Non possono esistere riviste con stesso nome e data).", QMessageBox::Ok,this);
