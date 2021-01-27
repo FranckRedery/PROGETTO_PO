@@ -1,22 +1,5 @@
-ISTRUZIONI
-
-Per inserire le riviste da input ogni campo da inserire deve essere opportunamente separato dal carattere '|' , in questa sezione
-DEVONO ESSERE OBBLIGATORIAMENTE INSERITI I CAMPI NOME E DATA.
-L'ID relativo alla conferenza verrà scelto in automatico dal programma (il primo disponibile) e poi sarà visibile nella pagina visualizza riviste
-
-Qui si riporta un esempio funzionante dell'input con il seguente schema : NOME | ACRONIMO | DATA | LUOGO | EDITORE | VOLUME |
-
-
-
-
 R1| riv1| 2020-10-07| Leonardo|12|
 R2| riv2| 2022-12-08| Franco  |13|
 R3| riv3| 2020-10-08| Assunta |5 |
 R4| riv4| 2018-02-03| Pia     |4 |
 R5| riv5| 2017-06-04| Pino    |3 |
-
-
-
-Per inserire l'input cancellare tutto eccetto l'input da inserire presentato come nell'esempio e poi cliccare nel progetto su Aggiungi riviste da file
-
-N.B. INSERIRE LA DATA COME NEL FORMATO RIPORTATO NELL'ESEMPIO (ANNO-MESE-GIORNO) ALTRIMENTI ALCUNI METODI POTREBBERO NON RISULTARE FUNZIONANTI :)
